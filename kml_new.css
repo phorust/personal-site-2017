@@ -1,0 +1,114 @@
+/* Containers and "body" - structural stuff */
+body, html {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  color: #333;
+  /* make selection red */
+  font-family: 'Lato', sans-serif;
+}
+
+#wrapper {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 auto;
+  width: 500px;
+
+  opacity: 0;
+  transition: all 0.6s ease-out;
+  padding-bottom: 30px;
+
+  text-align: center;
+}
+#wrapper.loaded {
+  opacity: 1;
+  padding-bottom: inherit;
+}
+
+nav {
+  list-style: none;
+}
+nav > li {
+  display: inline-block;
+}
+nav > li > a {
+  padding: 5px 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.1s ease;
+}
+nav > li > a:hover {
+  background-color: #a40000;
+  color: #DDD;
+}
+
+#content {
+  padding: 10px 20px;
+}
+
+
+/* The meat */
+#term {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  bottom: 0;
+  padding: 5px 10px; /* doesn't work */
+  margin-bottom: 15px;
+  opacity: 0;
+  font-family: 'DejaVu Sans Mono for Powerline', monospace;
+  font-size: 12px;
+  transition: all 0.6s ease-out;
+
+  background-color: #333;
+  color: #f1f2f0;
+  border-radius: 10px;
+}
+/* must be a better selector than copying this */
+#term.loaded {
+  opacity: 1;
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
+#appbar {
+  text-align: left;
+  background-color: #EEE;
+}
+#appbar div {
+  display: inline-block;
+  border-radius: 15px;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  text-align: center;
+}
+#close {
+  background-color: #F16061;
+}
+#minimize {
+  background-color: #FDD484;
+}
+#maximize {
+  background-color: #AFD792;
+}
+
+#lastline {
+  position: absolute;
+  bottom: 0;
+}
+#lastline > input {
+  border: none;
+  padding: 0;
+  margin-left: 12px;
+
+  font-family: 'DejaVu Sans Mono for Powerline', monospace;
+  font-size: 12px;
+
+  background-color: #333;
+  color: #f1f2f0;
+}
+#lastline > input:focus {
+  outline: none;
+}
