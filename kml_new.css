@@ -40,7 +40,7 @@ nav > li > a {
 }
 nav > li > a:hover {
   background-color: #a40000;
-  color: #DDD;
+  color: #f1f2f3;
 }
 
 #content {
@@ -51,15 +51,17 @@ nav > li > a:hover {
 /* The meat */
 #term {
   position: relative;
-  width: 100%;
-  height: 200px;
+  width: 0;
+  height: 0;
   bottom: 0;
-  padding: 5px 10px; /* doesn't work */
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 15px;
+  overflow: hidden;
   opacity: 0;
   font-family: 'DejaVu Sans Mono for Powerline', monospace;
   font-size: 12px;
-  transition: all 0.6s ease-out;
+  transition: all 0.3s ease-out;
 
   background-color: #333;
   color: #f1f2f0;
@@ -70,11 +72,24 @@ nav > li > a:hover {
   opacity: 1;
   margin-top: 15px;
   margin-bottom: 0;
+  width: 100%;
+  height: 200px;
 }
 
 #appbar {
   text-align: left;
   background-color: #EEE;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-left: 4px;
+  padding-top: 4px;
+  /* non-kosher styles */
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: default;
 }
 #appbar div {
   display: inline-block;
@@ -85,6 +100,7 @@ nav > li > a:hover {
   text-align: center;
 }
 #close {
+  /* TODO: add gradients */
   background-color: #F16061;
 }
 #minimize {
@@ -94,15 +110,22 @@ nav > li > a:hover {
   background-color: #AFD792;
 }
 
+#output {
+  overflow: scroll;
+  height: 176px; /* 200 - 24 */
+  padding: 4px;
+  padding-top: 24px;
+  text-align: left;
+}
 #lastline {
-  position: absolute;
-  bottom: 0;
 }
 #lastline > input {
+  width: 423px;
   border: none;
   padding: 0;
-  margin-left: 12px;
+  margin-left: 7px;
 
+  /* add PT Mono */
   font-family: 'DejaVu Sans Mono for Powerline', monospace;
   font-size: 12px;
 
@@ -111,4 +134,11 @@ nav > li > a:hover {
 }
 #lastline > input:focus {
   outline: none;
+}
+
+.prompt_path {
+  color: #B7B7B7;
+}
+.prompt_arrow {
+  color: #B4E37D;
 }
