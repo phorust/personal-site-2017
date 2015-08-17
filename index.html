@@ -16,16 +16,26 @@
     <div id='content'>
       <div id='term'>
         <div id='appbar'>
-          <div id='close'>x</div>
-          <div id='minimize'>-</div>
-          <div id='maximize'>+</div>
+          <div id='close'></div>
+          <div id='minimize'></div>
+          <div id='maximize'></div>
         </div>
-        <div id='lastline'>
-          <span id='caret'>~ ></span><input type='text' />
+        <div id='output'>
+          <div id='textarea'>
+            this is some test output<br>
+            <span class='prompt_path'>~</span> <span class='prompt_arrow'>></span> cat test.txt<br>
+            this is a test text file<br>
+            <span class='prompt_path'>~</span> <span class='prompt_arrow'>></span> echo $HOME<br>
+            /home/phorust<br>
+          </div>
+          <div id='lastline'>
+            <span class='prompt_path'>~</span> <span class='prompt_arrow'>></span><input type='text' />
+          </div>
         </div>
       </div>
     </div>
   </div>
   <script type='text/javascript' src='kml_new.js'></script>
+  <script type='text/javascript' src='term.js'></script>
 </body>
 </html>
