@@ -3,17 +3,16 @@
  * github.com/phorust/phorust.github.io
  */
 
-var startTime;
-
 $(document).ready(function() {
-  // for uptime
-  startTime = Date.now();
-
   $('#wrapper').addClass('loaded');
 
   /* attr selectors for href? */
   $('nav a').click(function(e) {
     e.preventDefault();
-    $('#term').show().toggleClass('loaded');
+    window.minimize();
   });
 });
+
+
+// for uptime
+window.startTime = Date.now();
