@@ -1,4 +1,4 @@
-var PROMPT = '<span class="prompt_path">~</span> <span class="prompt_arrow">></span> ';
+var PROMPT = '<span class="prompt_path">~</span> <span class="prompt_arrow">&#x2192;</span> ';
 var commandsRun = [];
 var commandIndex = -1; // counts backwards
 
