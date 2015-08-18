@@ -2,16 +2,17 @@
 <head>
   <title>Kevin Lee</title>
   <link rel='stylesheet' href='kml_new.css'>
-  <script src='jquery-2.0.3.js'></script>
+  <script src='lib/babel-core-browser.js'></script>
+  <script src='lib/jquery-2.0.3.js'></script>
 </head>
 <body>
   <div id='wrapper'>
     <h1>Kevin Lee</h1>
     <nav>
-      <li><a href='/about.html'>about</a></li>
-      <li><a href='/blog.html'>blog</a></li>
-      <li><a href='/software.html'>software</a></li>
-      <li><a href='/design.html'>design</a></li>
+      <li><a href='about.html'>about</a></li>
+      <li><a href='blog.html'>blog</a></li>
+      <li><a href='software.html'>software</a></li>
+      <li><a href='design.html'>design</a></li>
     </nav>
     <div id='content'>
       <div id='term'>
@@ -35,7 +36,9 @@
       </div>
     </div>
   </div>
-  <script type='text/javascript' src='kml_new.js'></script>
-  <script type='text/javascript' src='term.js'></script>
+  <script type='text/babel' src='src/kml_new.js'></script>
+  <script type='text/babel' src='src/filesys.js'></script>
+  <script type='text/babel' src='src/term.js'></script>
+  <script type='text/babel' src='src/phsh.js'></script>
 </body>
 </html>
