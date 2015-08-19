@@ -4,10 +4,15 @@ var cwd;
 
 /* Shell internal functions */
 function print(s) {
-  /* doesn't work */
   $('#textarea').append(
     window.PROMPT + $('#lastline > input').val() + '<br>'
   );
+  if (typeof s === 'string') {
+    _printString(s)
+  }
+}
+
+function _printString(s) {
   $('#textarea').append(s + '<br>');
 }
 
@@ -70,19 +75,34 @@ function processInput() {
   $('#lastline > input').val('');
 }
 
+function processFlags(tokens, flags) {
+  // O(nm) where n is num flags and m is sum lengths of tokens
+  var found = new Set();
+  for (var token of tokens) {
+    if (token[0] === '-') {
+      // --long-form-options
+      if (token[1] === '-') {
+        if (flags.indexOf(token) !== -1) {
+          found.add(token);
+        }
+      }
+      // -lAGh, short form options which can be concat together
+      for (var flag of flags) {
+        if (found.has(flag)) { continue; }
+        if (token.indexOf(flag) !== -1) {
+          found.add(flag);
+        }
+      }
+    }
+  }
+
+  return Array.from(found);
+}
+
 
 /* Commands. TODO: move to new file */
-function uptime(argv) {
-  var secs = (Date.now() - startTime) / 1000;
-  var mins = Math.round(secs / 60);
-  var secs = Math.round(secs % 60);
-  if (mins < 10) {
-    mins = '0' + mins;
-  }
-  if (secs < 10) {
-    secs = '0' + secs;
-  }
-  print(mins + ':' + secs);
+function clear(argv) {
+  $('#textarea').html('');
 }
 
 function echo(argv) {
@@ -120,7 +140,30 @@ function echo(argv) {
 }
 
 function exit(argv) {
-  $('#term').show().toggleClass('loaded');
+  window.minimize();
+  clear();
+}
+
+function ls(argv) {
+  var files = cwd.list();
+  if (argv[1] == '-l') {
+
+  }
+  console.log(files);
+  print(Object.keys(files));
+}
+
+function uptime(argv) {
+  var secs = (Date.now() - startTime) / 1000;
+  var mins = Math.round(secs / 60);
+  var secs = Math.round(secs % 60);
+  if (mins < 10) {
+    mins = '0' + mins;
+  }
+  if (secs < 10) {
+    secs = '0' + secs;
+  }
+  print(mins + ':' + secs);
 }
 
 

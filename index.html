@@ -7,14 +7,18 @@
 </head>
 <body>
   <div id='wrapper'>
-    <h1>Kevin Lee</h1>
+    <!-- <h1>Kevin Lee</h1> -->
+    <img src='i/kl.png' width='100px'>
     <nav>
-      <li><a href='about.html'>about</a></li>
+      <li><a id='about' href='about.html'>about</a></li>
       <li><a href='blog.html'>blog</a></li>
-      <li><a href='software.html'>software</a></li>
+      <li><a id='software' href='software.html'>software</a></li>
       <li><a href='design.html'>design</a></li>
     </nav>
     <div id='content'>
+      <div id='about_content'>
+        The last 10 lines of code I wrote look like this:
+      </div>
       <div id='term'>
         <div id='appbar'>
           <div id='close'></div>
@@ -22,13 +26,7 @@
           <div id='maximize'></div>
         </div>
         <div id='output'>
-          <div id='textarea'>
-            this is some test output<br>
-            <span class='prompt_path'>~</span> <span class='prompt_arrow'>&#x2192;</span> cat test.txt<br>
-            this is a test text file<br>
-            <span class='prompt_path'>~</span> <span class='prompt_arrow'>&#x2192;</span> echo $HOME<br>
-            /home/phorust<br>
-          </div>
+          <div id='textarea'></div>
           <div id='lastline'>
             <span class='prompt_path'>~</span> <span class='prompt_arrow'>&#x2192;</span><input type='text' />
           </div>
