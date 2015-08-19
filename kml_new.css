@@ -50,7 +50,7 @@ nav > li > a:hover {
 
 /* The meat */
 #about_content {
-  height: 0;
+  max-height: 0;
   margin-bottom: 15px;
   opacity: 0;
   transition: all 0.3s ease-out;
@@ -61,6 +61,14 @@ nav > li > a:hover {
   opacity: 1;
   margin-top: 15px;
   margin-bottom: 0;
+  /* js max-height setting */
+}
+#about_content > a {
+  text-decoration: none;
+}
+code {
+  text-align: left;
+  font-size: 12px;
 }
 
 #term {

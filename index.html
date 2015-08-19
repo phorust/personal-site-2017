@@ -2,8 +2,14 @@
 <head>
   <title>Kevin Lee</title>
   <link rel='stylesheet' href='kml_new.css'>
+  <!-- libs -->
   <script src='lib/babel-core-browser.js'></script>
   <script src='lib/jquery-2.0.3.js'></script>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/styles/default.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
+  <script>
+    hljs.initHighlightingOnLoad();
+  </script>
 </head>
 <body>
   <div id='wrapper'>
@@ -17,7 +23,8 @@
     </nav>
     <div id='content'>
       <div id='about_content'>
-        The last 10 lines of code I wrote look like this:
+        The last few lines of code I wrote look like this:
+        <a target="_blank"><pre><code id='recent_code'></code></pre></a>
       </div>
       <div id='term'>
         <div id='appbar'>
@@ -35,6 +42,7 @@
     </div>
   </div>
   <script type='text/babel' src='src/kml_new.js'></script>
+  <script type='text/babel' src='src/github_tracker.js'></script>
   <script type='text/babel' src='src/filesys.js'></script>
   <script type='text/babel' src='src/term.js'></script>
   <script type='text/babel' src='src/phsh.js'></script>
