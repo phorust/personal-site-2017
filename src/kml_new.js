@@ -3,11 +3,20 @@
  * github.com/phorust/phorust.github.io
  */
 function hideAbout() {
- $('#about_content').removeClass('loaded');
+  $('#about_content')
+    .removeClass('loaded')
+    .css('max-height', 0);
 }
 
 function toggleAbout() {
- $('#about_content').toggleClass('loaded');
+  $('#about_content')
+    .toggleClass('loaded')
+    .css('max-height',
+         $('#about_content').hasClass('loaded')
+           // TODO: no more hacky +43 guessing on height
+           ? $('#recent_code').height() + 43
+           : 0
+        );
 }
 
 $(document).ready(function() {
