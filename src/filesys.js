@@ -18,25 +18,27 @@ class File extends FileSysObj {
 }
 
 class Directory extends FileSysObj {
-  children: Array<FileSysObj>;
+  children: Object;
 
   constructor(name: string,
               parentdir: string,
-              children?: Array<FileSysObj>) {
+              children?: Object) {
     super(name, parentdir);
-    this.children = children || [];
+    this.children = children || {}
   }
 
-  list(): Array<FileSysObj> {
+  list(): Object {
     return this.children;
   }
 
   addChild(fsobj: FileSysObj) {
-    this.children.append(fsobj);
+    this.children[fsobj.name] = fsobj;
   }
 
   addChildren(fsobjs: Array<FileSysObj>) {
-    this.children = this.children.concat(fsobjs);
+    for (var child of fsobjs) {
+      this.addChild(child);
+    }
   }
 }
 
