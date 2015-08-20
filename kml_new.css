@@ -140,6 +140,12 @@ code {
   padding-top: 24px;
   text-align: left;
 }
+#textarea {
+  white-space: pre;
+}
+span.directory {
+    color: #54FDE6;
+}
 #lastline {
 }
 #lastline > input {
