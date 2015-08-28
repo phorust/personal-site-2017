@@ -80,7 +80,6 @@ code {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 15px;
-  overflow: hidden;
   opacity: 0;
   font-family: 'DejaVu Sans Mono for Powerline', monospace;
   font-size: 12px;
@@ -89,6 +88,7 @@ code {
   background-color: #333;
   color: #f1f2f0;
   border-radius: 10px;
+  border-top: 22px solid #f1f2f0;
 }
 /* must be a better selector than copying this */
 #term.loaded {
@@ -101,11 +101,9 @@ code {
 
 #appbar {
   text-align: left;
-  background-color: #EEE;
   position: absolute;
+  top: -22px;
   z-index: 1;
-  top: 0;
-  left: 0;
   width: 100%;
   padding-left: 4px;
   padding-top: 4px;
@@ -135,9 +133,8 @@ code {
 
 #output {
   overflow: scroll;
-  height: 176px; /* 200 - 24 */
+  height: 190px;
   padding: 4px;
-  padding-top: 24px;
   text-align: left;
 }
 #textarea {
