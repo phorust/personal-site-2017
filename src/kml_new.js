@@ -9,23 +9,42 @@ function hideAbout() {
 }
 
 function toggleAbout() {
+  var isLoaded = !$('#about_content').hasClass('loaded');
   $('#about_content')
     .toggleClass('loaded')
     .css('max-height',
-         $('#about_content').hasClass('loaded')
-           // TODO: no more hacky +43 guessing on height
-           ? $('#recent_code').height() + 43
-           : 0
+         // TODO: no more hacky +43 guessing on height
+         isLoaded ? $('#recent_code').height() + 43
+                  : 0
         );
+  $('#about_content > a > pre')
+    .css('max-height',
+         isLoaded ? $('#recent_code').height()
+                  : 0
+        );
+}
+
+function checkContentOverflow() {
+  var newHeight = $('#wrapper').height();
+  console.log(newHeight);
+  if ($('#about_content').hasClass('loaded')) {
+    console.log('loaded');
+    newHeight += $('#recent_code').height();
+  } else {
+    newHeight -= $('#recent_code').height();
+  }
+  console.log(newHeight);
+  if (newHeight > $(window).height()) {
+    $('#wrapper').addClass('full');
+  } else {
+    $('#wrapper').removeClass('full');
+  }
 }
 
 $(document).ready(function() {
   $('#wrapper').addClass('loaded');
 
   /* attr selectors for href? */
-  $('nav a').click(e => {
-    e.preventDefault();
-  });
   $('#software').click(e => {
     window.toggleMinimize();
     hideAbout();
@@ -33,6 +52,12 @@ $(document).ready(function() {
   $('#about').click(e => {
     window.minimize();
     toggleAbout();
+    console.log('toggle');
+  });
+  $('nav a').click(e => {
+    e.preventDefault();
+    console.log('check');
+    checkContentOverflow();
   });
 });
 
