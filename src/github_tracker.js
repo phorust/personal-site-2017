@@ -22,6 +22,10 @@ function highlight(code, url) {
   $('#about_content > a').attr('href', url);
 }
 
+function getInterestingBlockFromPatch(patch) {
+  
+}
+
 $(document).ready(_ => {
   var mostRecent10LineDiff;
   var events;
@@ -47,7 +51,7 @@ $(document).ready(_ => {
               return;
             }
             for (var file of commitData.files) {
-              if (file.additions + file.deletions < 10) {
+              if (file.additions < 10) {
                 continue;
               }
               mostRecent10LineDiff = file.patch;

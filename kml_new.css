@@ -16,7 +16,10 @@ body, html {
   width: 500px;
 
   opacity: 0;
-  transition: all 0.6s ease-out;
+  transition: opacity 0.6s ease-out,
+              padding 0.6s ease-out,
+              top 0.6s ease-out,
+              transform 0.6s ease-out;
   padding-bottom: 30px;
 
   text-align: center;
@@ -24,6 +27,10 @@ body, html {
 #wrapper.loaded {
   opacity: 1;
   padding-bottom: inherit;
+}
+#wrapper.full {
+  top: 0;
+  transform: translateY(0%);
 }
 
 nav {
@@ -65,6 +72,16 @@ nav > li > a:hover {
 }
 #about_content > a {
   text-decoration: none;
+}
+#about_content > a > pre {
+  max-height: 0;
+  transition: all 0.6s ease-out;
+  opacity: 0;
+  overflow: hidden;
+}
+#about_content.loaded > a > pre {
+  opacity: 1;
+  /* js max-height setting */
 }
 code {
   text-align: left;
