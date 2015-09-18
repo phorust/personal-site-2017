@@ -23,8 +23,6 @@ function toggleAbout() {
          isLoaded ? $('#recent_code').height()
                   : 0
         );
-  isLoaded ? window.activateRecentCodeLink()
-           : window.deactivateRecentCodeLink();
 }
 
 function checkContentOverflow() {
