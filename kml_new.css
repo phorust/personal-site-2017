@@ -132,6 +132,18 @@ code {
 #subtitle {
   margin-top: 0;
 }
+/* Below... Maybe the default color is nicer. */
+a#facebook:hover {
+  background-color: #3b5999;
+  color: #fff;
+}
+a#bigfix:hover {
+  background-color: #ABC450;
+}
+a#berkeley:hover {
+  background-color: #3B7EA1;
+  color: #fff;
+}
 
 #term {
   position: relative;

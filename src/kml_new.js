@@ -43,15 +43,19 @@ $(document).ready(function() {
   $('#wrapper').addClass('loaded');
 
   /* attr selectors for href? */
-  $('#software').click(e => {
+  $('a.software').click(e => {
     window.toggleMinimize();
     hideAbout();
   });
-  $('#about').click(e => {
+  $('a.about').click(e => {
     window.minimize();
     toggleAbout();
   });
   $('nav a').click(e => {
+    e.preventDefault();
+    checkContentOverflow();
+  });
+  $('#subtitle a').click(e => {
     e.preventDefault();
     checkContentOverflow();
   });
