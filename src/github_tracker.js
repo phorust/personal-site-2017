@@ -24,13 +24,6 @@ function highlight(code, url) {
   recentCodeURL = url;
 }
 
-function activateRecentCodeLink() {
-  $('#about_content > a').attr('href', recentCodeURL);
-}
-function deactivateRecentCodeLink() {
-  $('#about_content > a').attr('href', '');
-}
-
 function getInterestingBlockFromPatch(patch) {
 
 }
@@ -86,6 +79,3 @@ $(document).ready(_ => {
     }
   );
 });
-
-
-window.activateRecentCodeLink = activateRecentCodeLink;
