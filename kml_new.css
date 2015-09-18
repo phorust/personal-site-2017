@@ -3,9 +3,10 @@ body, html {
   margin: 0;
   height: 100%;
   width: 100%;
+
   color: #333;
-  /* make selection red */
   font-family: 'Lato', sans-serif;
+  background-color: #fDfCf6;
 }
 
 #wrapper {
@@ -43,11 +44,17 @@ nav > li > a {
   padding: 5px 10px;
   text-decoration: none;
   color: inherit;
+  background: none;
   transition: all 0.1s ease;
+  border: none;
 }
 nav > li > a:hover {
-  background-color: #a40000;
-  color: #f1f2f3;
+  background-color: #FFDE00;
+  /*background-color: #a40000;*/
+  /*background-color: #E67872;*/
+  /*background-color: #F8BF61;*/
+  /*background-color: #6FCBDC;*/
+  /*color: #f1f2f3;*/
 }
 
 #content {
@@ -55,20 +62,51 @@ nav > li > a:hover {
 }
 
 
+/* Adjustments to tag defaults */
+::selection {
+  background-color: #FFDE00;
+  /*background-color: #a40000;*/
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  transition: all 0.1s ease;
+  border-bottom: 1px solid #333;
+}
+a:hover {
+  color: inherit;
+  background-color: #FFDE00;
+  border: none;
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+}
+
+p {
+  line-height: 1.5;
+}
+
+
 /* The meat */
 #about_content {
   max-height: 0;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
   opacity: 0;
   transition: all 0.3s ease-out;
 
   font-size: 14px;
+  text-align: left;
+  /*display: none; TODO: otherwise the margin pushes term down even when not on about,
+  but this makes the height calcs in toggleAbout fail */
 }
 #about_content.loaded {
   opacity: 1;
-  margin-top: 15px;
+  margin-top: 25px;
   margin-bottom: 0;
   /* js max-height setting */
+  /*display: block;*/
 }
 #about_content > a {
   text-decoration: none;
@@ -87,6 +125,12 @@ code {
   text-align: left;
   font-size: 11px;
   overflow: scroll;
+}
+#title {
+  margin-bottom: 2px;
+}
+#subtitle {
+  margin-top: 0;
 }
 
 #term {
