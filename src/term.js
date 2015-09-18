@@ -3,6 +3,7 @@ var WIDTH = 63;
 
 function minimize() {
   $('#term').show().removeClass('loaded');
+  window.toggleAbout();
 }
 
 function unminimize() {
@@ -15,7 +16,7 @@ function toggleMinimize() {
 
 $(document).ready(_ => {
   $('#minimize').click(function(e) {
-    toggleMinimize();
+    minimize();
   });
   $('#output').click(function(e) {
     $('#lastline > input').focus();

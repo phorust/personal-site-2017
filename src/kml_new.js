@@ -41,6 +41,7 @@ function checkContentOverflow() {
 
 $(document).ready(function() {
   $('#wrapper').addClass('loaded');
+  toggleAbout();
 
   /* attr selectors for href? */
   $('a.software').click(e => {
@@ -64,3 +65,4 @@ $(document).ready(function() {
 
 // for uptime
 window.startTime = Date.now();
+window.toggleAbout = toggleAbout;
