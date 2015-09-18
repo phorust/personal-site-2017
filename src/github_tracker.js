@@ -73,6 +73,15 @@ $(document).ready(_ => {
       findMR10LD((mostRecent10LineDiff, url) => {
         if (!mostRecent10LineDiff) {
           mostRecent10LineDiff = "I haven't committed a 10 line block in a while.";
+        } else {
+          // TODO: complete me
+          // var lines = mostRecent10LineDiff.split('\n');
+          // var cleanedCode = "";
+          // lines = lines.slice(1,lines.length);
+          // for (var line of lines) {
+          //   // remove +- gutter
+          //   cleanedCode += line.slice(1, line.length);
+          // }
         }
         highlight(mostRecent10LineDiff, url);
       });
