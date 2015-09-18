@@ -5,7 +5,14 @@ body, html {
   width: 100%;
 
   color: #333;
+  font-family: 'Avenir Next';
+  /*font-family: 'Avenir';
   font-family: 'Lato', sans-serif;
+  font-family: 'Raleway';
+  font-family: 'Museo Sans';
+  font-family: 'Roboto Slab';
+  font-family: 'PF DinText Pro';
+  font-family: 'Maax';*/
   background-color: #fDfCf6;
 }
 
@@ -21,13 +28,11 @@ body, html {
               padding 0.6s ease-out,
               top 0.6s ease-out,
               transform 0.6s ease-out;
-  padding-bottom: 30px;
 
   text-align: center;
 }
 #wrapper.loaded {
   opacity: 1;
-  padding-bottom: inherit;
 }
 #wrapper.full {
   top: 0;
@@ -35,26 +40,39 @@ body, html {
 }
 
 nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  font-weight: bold;
+  color: #888;
+}
+nav > ul {
   list-style: none;
+  padding-left: inherit;
 }
-nav > li {
+nav > ul > li {
   display: inline-block;
+  padding: 4px 8px;
+  transition: all 0.2s ease;
 }
-nav > li > a {
-  padding: 5px 10px;
-  text-decoration: none;
-  color: inherit;
-  background: none;
-  transition: all 0.1s ease;
-  border: none;
+nav > ul > li:hover {
+  color: #333;
 }
-nav > li > a:hover {
-  background-color: #FFDE00;
-  /*background-color: #a40000;*/
-  /*background-color: #E67872;*/
-  /*background-color: #F8BF61;*/
-  /*background-color: #6FCBDC;*/
-  /*color: #f1f2f3;*/
+nav > ul > li::before {
+  display: block;
+  width: 5px;
+  height: 5px;
+  margin: 8px auto;
+  border-radius: 5px;
+  border: 2px solid #888;
+  content: '';
+  transition: all 0.2s ease;
+}
+nav > ul > li:hover::before {
+  background: #FFDE00;
+  border-color: #FFDE00;
 }
 
 #content {
@@ -71,7 +89,7 @@ nav > li > a:hover {
 a {
   text-decoration: none;
   color: black;
-  transition: all 0.1s ease;
+  transition: all 0.2s ease;
   border-bottom: 1px solid #333;
 }
 a:hover {
@@ -82,6 +100,11 @@ a:hover {
 
 h1, h2, h3 {
   line-height: 1.2;
+  font-family: 'Avenir';
+  /*font-family: 'Avenir Next';
+  font-family: 'Lato', sans-serif;
+  font-family: 'PF DinText Pro';
+  font-family: 'Maax';*/
 }
 
 p {
