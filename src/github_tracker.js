@@ -1,3 +1,5 @@
+var recentCodeURL;
+
 // thanks to http://bost.ocks.org/mike/shuffle/
 function shuffle(array) {
   var m = array.length, t, i;
@@ -19,11 +21,18 @@ function highlight(code, url) {
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
   });
-  $('#about_content > a').attr('href', url);
+  recentCodeURL = url;
+}
+
+function activateRecentCodeLink() {
+  $('#about_content > a').attr('href', recentCodeURL);
+}
+function deactivateRecentCodeLink() {
+  $('#about_content > a').attr('href', '');
 }
 
 function getInterestingBlockFromPatch(patch) {
-  
+
 }
 
 $(document).ready(_ => {
@@ -77,3 +86,6 @@ $(document).ready(_ => {
     }
   );
 });
+
+
+window.activateRecentCodeLink = activateRecentCodeLink;

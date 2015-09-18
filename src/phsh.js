@@ -51,9 +51,12 @@ function cycleCommand(n) {
 function updatePrompt(path?: string) {
   path || (path = cwd.getPath());
   $('.prompt_path').last().text(path);
+
+  // If the terminal is hidden, width() is 0
+  var promptPathStringWidth = $('.prompt_path').last().width() || 8;
+  var promptCharacterWidth  = ($('.prompt_arrow').width() || 8) * 3;
   $('#lastline > input').width(
-    $('#output').width() - $('.prompt_path').last().width()
-    - $('.prompt_arrow').width() * 3
+    $('#output').width() - promptPathStringWidth - promptCharacterWidth
   );
 }
 

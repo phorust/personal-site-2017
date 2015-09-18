@@ -14,6 +14,7 @@ function toggleAbout() {
     .toggleClass('loaded')
     .css('max-height',
          // TODO: no more hacky +43 guessing on height
+         // TODO: incorporate other elements height
          isLoaded ? $('#recent_code').height() + 43
                   : 0
         );
@@ -22,18 +23,17 @@ function toggleAbout() {
          isLoaded ? $('#recent_code').height()
                   : 0
         );
+  isLoaded ? window.activateRecentCodeLink()
+           : window.deactivateRecentCodeLink();
 }
 
 function checkContentOverflow() {
   var newHeight = $('#wrapper').height();
-  console.log(newHeight);
   if ($('#about_content').hasClass('loaded')) {
-    console.log('loaded');
     newHeight += $('#recent_code').height();
   } else {
     newHeight -= $('#recent_code').height();
   }
-  console.log(newHeight);
   if (newHeight > $(window).height()) {
     $('#wrapper').addClass('full');
   } else {
@@ -52,11 +52,9 @@ $(document).ready(function() {
   $('#about').click(e => {
     window.minimize();
     toggleAbout();
-    console.log('toggle');
   });
   $('nav a').click(e => {
     e.preventDefault();
-    console.log('check');
     checkContentOverflow();
   });
 });
