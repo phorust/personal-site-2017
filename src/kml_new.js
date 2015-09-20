@@ -7,6 +7,8 @@ function hideAbout() {
 }
 
 function showAbout() {
+  // min-height won't actually accommodate all the code...
+  // but it will look better this way anyway.
   $('#about_content').show().addClass('loaded');
   $('#about_content > a > pre')
     .css('max-height', $('#recent_code').height());
@@ -14,38 +16,9 @@ function showAbout() {
     .css('min-height', $('#about_content').outerHeight(true));
 }
 
-function toggleAbout() {
-  var isLoaded = !$('#about_content').hasClass('loaded');
-  $('#about_content')
-    .toggleClass('loaded');
-  $('#about_content > a > pre')
-    .css('max-height',
-         isLoaded ? $('#recent_code').height()
-                  : 0
-        );
-
-  $('#content')
-    .css('min-height', isLoaded ? $('#about_content').outerHeight(true)
-                     : 'auto');
-}
-
-function checkContentOverflow() {
-  var newHeight = $('#wrapper').height();
-  if ($('#about_content').hasClass('loaded')) {
-    newHeight += $('#about_content').outerHeight(true);
-  } else {
-    newHeight -= $('#about_content').outerHeight(true);
-  }
-  if (newHeight > $(window).height()) {
-    $('#wrapper').addClass('full');
-  } else {
-    $('#wrapper').removeClass('full');
-  }
-}
-
 $(document).ready(function() {
   $('#wrapper').addClass('loaded');
-  toggleAbout();
+  showAbout();
 
   /* attr selectors for href? */
   $('.software').click(e => {
@@ -58,11 +31,9 @@ $(document).ready(function() {
   });
   $('nav a').click(e => {
     e.preventDefault();
-    checkContentOverflow();
   });
   $('#subtitle a').click(e => {
     e.preventDefault();
-    checkContentOverflow();
   });
 });
 
