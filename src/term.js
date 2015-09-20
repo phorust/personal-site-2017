@@ -2,12 +2,12 @@ var PROMPT = '<span class="prompt_path">~</span> <span class="prompt_arrow">&#x2
 var WIDTH = 63;
 
 function minimize() {
-  $('#term').show().removeClass('loaded');
-  window.toggleAbout();
+  $('#term').removeClass('loaded').delay(300).fadeOut(1);
 }
 
 function unminimize() {
-  $('#term').show().addClass('loaded');
+  $('#term').fadeIn(1).addClass('loaded');
+  $('#content').css('min-height', $('#term').height());
 }
 
 function toggleMinimize() {
@@ -27,4 +27,3 @@ window.PROMPT = PROMPT;
 window.WIDTH = WIDTH;
 window.minimize = minimize;
 window.unminimize = unminimize;
-window.toggleMinimize = toggleMinimize;
