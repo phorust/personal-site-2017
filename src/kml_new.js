@@ -3,34 +3,38 @@
  * github.com/phorust/phorust.github.io
  */
 function hideAbout() {
-  $('#about_content')
-    .removeClass('loaded')
-    .css('max-height', 0);
+  $('#about_content').removeClass('loaded').delay(300).fadeOut(1);
+}
+
+function showAbout() {
+  $('#about_content').show().addClass('loaded');
+  $('#about_content > a > pre')
+    .css('max-height', $('#recent_code').height());
+  $('#content')
+    .css('min-height', $('#about_content').outerHeight(true));
 }
 
 function toggleAbout() {
   var isLoaded = !$('#about_content').hasClass('loaded');
   $('#about_content')
-    .toggleClass('loaded')
-    .css('max-height',
-         // TODO: no more hacky +43 guessing on height
-         // TODO: incorporate other elements height
-         isLoaded ? $('#recent_code').height() + 43
-                  : 0
-        );
+    .toggleClass('loaded');
   $('#about_content > a > pre')
     .css('max-height',
          isLoaded ? $('#recent_code').height()
                   : 0
         );
+
+  $('#content')
+    .css('min-height', isLoaded ? $('#about_content').outerHeight(true)
+                     : 'auto');
 }
 
 function checkContentOverflow() {
   var newHeight = $('#wrapper').height();
   if ($('#about_content').hasClass('loaded')) {
-    newHeight += $('#recent_code').height();
+    newHeight += $('#about_content').outerHeight(true);
   } else {
-    newHeight -= $('#recent_code').height();
+    newHeight -= $('#about_content').outerHeight(true);
   }
   if (newHeight > $(window).height()) {
     $('#wrapper').addClass('full');
@@ -44,13 +48,13 @@ $(document).ready(function() {
   toggleAbout();
 
   /* attr selectors for href? */
-  $('a.software').click(e => {
-    window.toggleMinimize();
+  $('.software').click(e => {
+    window.unminimize();
     hideAbout();
   });
-  $('a.about').click(e => {
+  $('.about').click(e => {
     window.minimize();
-    toggleAbout();
+    showAbout();
   });
   $('nav a').click(e => {
     e.preventDefault();
@@ -65,4 +69,3 @@ $(document).ready(function() {
 
 // for uptime
 window.startTime = Date.now();
-window.toggleAbout = toggleAbout;
