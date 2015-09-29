@@ -1,4 +1,7 @@
+// The access token here has absolutely no power to do anything, they're
+// just used to bypass rate limits
 var recentCodeURL;
+var access_token = '63540329ea0788edef4210cb78b40f77461de963';
 
 // thanks to http://bost.ocks.org/mike/shuffle/
 function shuffle(array) {
@@ -15,9 +18,10 @@ function shuffle(array) {
   return array;
 }
 
-function highlight(code, url) {
-  // TODO: only look at additions, maybe 5+ lines
+function highlight(code, url, lang) {
   $('#recent_code').text(code);
+  // overwrite last language class (shouldn't ever happen);
+  $('#recent_code').attr('class', 'hljs ' + lang);
   $('pre code').each(function(i, block) {
     hljs.highlightBlock(block);
   });
@@ -46,20 +50,25 @@ $(document).ready(_ => {
         for (var commit of event.payload.commits) {
           if (mostRecent10LineDiff) { return; }
 
-          $.get(commit.url, data => {
-            if (mostRecent10LineDiff) { return; }
-            var commitData = data;
-            if (commitData.author.login !== 'phorust') {
-              return;
-            }
-            for (var file of commitData.files) {
-              if (file.additions < 10) {
-                continue;
+          $.get(
+            commit.url,
+            { access_token },
+            data => {
+              if (mostRecent10LineDiff) { return; }
+              var commitData = data;
+              if (commitData.author.login !== 'phorust') {
+                return;
               }
-              mostRecent10LineDiff = file.patch;
-              return callback(file.patch, commitData.html_url);
+              for (var file of commitData.files) {
+                if (file.additions < 10) { continue; }
+                var lang = file.filename.split('.');
+                lang = lang[lang.length - 1];
+                mostRecent10LineDiff = file.patch;
+                console.log(file.patch);
+                return callback(file.patch, commitData.html_url, lang);
+              }
             }
-          });
+          );
         }
       }
     }
@@ -68,22 +77,31 @@ $(document).ready(_ => {
 
   $.get(
     'https://api.github.com/users/phorust/events',
+    { access_token },
     data => {
       events = data;
-      findMR10LD((mostRecent10LineDiff, url) => {
+      findMR10LD((mostRecent10LineDiff, url, lang) => {
         if (!mostRecent10LineDiff) {
-          mostRecent10LineDiff = "I haven't committed a 10 line block in a while.";
+          mostRecent10LineDiff =
+            "I haven't committed a 10 line block in a while.";
         } else {
-          // TODO: complete me
-          // var lines = mostRecent10LineDiff.split('\n');
-          // var cleanedCode = "";
-          // lines = lines.slice(1,lines.length);
-          // for (var line of lines) {
-          //   // remove +- gutter
-          //   cleanedCode += line.slice(1, line.length);
-          // }
+          // TODO: effectively mark deletions + additions, or only show additions
+          var lines = mostRecent10LineDiff.split('\n');
+          var cleanedCode = "";
+          // remove diff header @@ +25, -18 @@ thing
+          for (var line of lines) {
+            // skip deletions
+            if (line[0] === '-') { continue; }
+            // remove + gutter or @@ if found
+            if (line.indexOf(' @@ ') > 0) {
+              line = '.\n.\n.';
+            } else {
+              line = line.slice(1, line.length);
+            }
+            cleanedCode += line + '\n';
+          }
+          highlight(cleanedCode, url, lang);
         }
-        highlight(mostRecent10LineDiff, url);
       });
     }
   );

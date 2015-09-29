@@ -5,6 +5,7 @@
 /* Tomorrow Comment */
 .hljs-comment {
   color: #999999;
+  background-color: #999999;
 }
 
 /* Tomorrow Red */
@@ -22,6 +23,7 @@
 .css .hljs-class,
 .css .hljs-pseudo {
   color: #f2777a;
+  background-color: #f2777a;
 }
 
 /* Tomorrow Orange */
@@ -33,12 +35,14 @@
 .hljs-params,
 .hljs-constant {
   color: #f99157;
+  background-color: #f99157;
 }
 
 /* Tomorrow Yellow */
 .ruby .hljs-class .hljs-title,
 .css .hljs-rule .hljs-attribute {
   color: #ffcc66;
+  background-color: #ffcc66;
 }
 
 /* Tomorrow Green */
@@ -51,12 +55,14 @@
 .ruby .hljs-symbol,
 .xml .hljs-cdata {
   color: #99cc99;
+  background-color: #99cc99;
 }
 
 /* Tomorrow Aqua */
 .hljs-title,
 .css .hljs-hexcolor {
   color: #66cccc;
+  background-color: #66cccc;
 }
 
 /* Tomorrow Blue */
@@ -69,12 +75,110 @@
 .javascript .hljs-title,
 .coffeescript .hljs-title {
   color: #6699cc;
+  background-color: #6699cc;
 }
 
 /* Tomorrow Purple */
 .hljs-keyword,
 .javascript .hljs-function {
   color: #cc99cc;
+  background-color: #cc99cc;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #2d2d2d;
+  color: #cccccc;
+  padding: 0.5em;
+  -webkit-text-size-adjust: none;
+}
+
+.coffeescript .javascript,
+.javascript .xml,
+.tex .hljs-formula,
+.xml .javascript,
+.xml .vbscript,
+.xml .css,
+.xml .hljs-cdata {
+  opacity: 0.5;
+}
+
+
+/* AND HERE BEGINS THE HOVER STYLES */
+/* Tomorrow Comment */
+#recent_code:hover .hljs-comment {
+  background-color: initial;
+}
+
+/* Tomorrow Red */
+#recent_code:hover .hljs-variable,
+#recent_code:hover .hljs-attribute,
+#recent_code:hover .hljs-tag,
+#recent_code:hover .hljs-regexp,
+#recent_code:hover .hljs-deletion,
+#recent_code:hover.ruby .hljs-constant,
+#recent_code:hover.xml .hljs-tag .hljs-title,
+#recent_code:hover.xml .hljs-pi,
+#recent_code:hover.xml .hljs-doctype,
+#recent_code:hover.html .hljs-doctype,
+#recent_code:hover.css .hljs-id,
+#recent_code:hover.css .hljs-class,
+#recent_code:hover.css .hljs-pseudo {
+  background-color: initial;
+}
+
+/* Tomorrow Orange */
+#recent_code:hover .hljs-number,
+#recent_code:hover .hljs-preprocessor,
+#recent_code:hover .hljs-pragma,
+#recent_code:hover .hljs-built_in,
+#recent_code:hover .hljs-literal,
+#recent_code:hover .hljs-params,
+#recent_code:hover .hljs-constant {
+  background-color: initial;
+}
+
+/* Tomorrow Yellow */
+#recent_code:hover.ruby .hljs-class .hljs-title,
+#recent_code:hover.css .hljs-rule .hljs-attribute {
+  background-color: initial;
+}
+
+/* Tomorrow Green */
+#recent_code:hover .hljs-string,
+#recent_code:hover .hljs-value,
+#recent_code:hover .hljs-inheritance,
+#recent_code:hover .hljs-header,
+#recent_code:hover .hljs-name,
+#recent_code:hover .hljs-addition,
+#recent_code:hover.ruby .hljs-symbol,
+#recent_code:hover.xml .hljs-cdata {
+  background-color: initial;
+}
+
+/* Tomorrow Aqua */
+#recent_code:hover .hljs-title,
+#recent_code:hover.css .hljs-hexcolor {
+  background-color: initial;
+}
+
+/* Tomorrow Blue */
+#recent_code:hover .hljs-function,
+#recent_code:hover.python .hljs-decorator,
+#recent_code:hover.python .hljs-title,
+#recent_code:hover.ruby .hljs-function .hljs-title,
+#recent_code:hover.ruby .hljs-title .hljs-keyword,
+#recent_code:hover.perl .hljs-sub,
+#recent_code:hover.javascript .hljs-title,
+#recent_code:hover.coffeescript .hljs-title {
+  background-color: initial;
+}
+
+/* Tomorrow Purple */
+#recent_code:hover .hljs-keyword,
+#recent_code:hover.javascript .hljs-function {
+  background-color: initial;
 }
 
 .hljs {
