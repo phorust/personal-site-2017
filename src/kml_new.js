@@ -4,6 +4,7 @@
  */
 function hideAbout() {
   $('#about_content').removeClass('loaded').delay(300).fadeOut(1);
+  $('#wrapper').removeClass('full');
 }
 
 function showAbout() {
@@ -14,6 +15,9 @@ function showAbout() {
     .css('max-height', $('#recent_code').height());
   $('#content')
     .css('min-height', $('#about_content').outerHeight(true));
+  if ($('#about_content').outerHeight(true) + 100 > $(window).height()) {
+    $('#wrapper').addClass('full');
+  }
 }
 
 $(document).ready(function() {
@@ -40,3 +44,4 @@ $(document).ready(function() {
 
 // for uptime
 window.startTime = Date.now();
+window.showAbout = showAbout;
