@@ -26,6 +26,8 @@ function highlight(code, url, lang) {
     hljs.highlightBlock(block);
   });
   recentCodeURL = url;
+  // maybe not the best but
+  window.showAbout();
 }
 
 function getInterestingBlockFromPatch(patch) {
@@ -72,7 +74,7 @@ $(document).ready(_ => {
         }
       }
     }
-    return callback(null, null);
+    return callback(null, null, null);
   };
 
   $.get(
@@ -93,7 +95,7 @@ $(document).ready(_ => {
             // skip deletions
             if (line[0] === '-') { continue; }
             // remove + gutter or @@ if found
-            if (line.indexOf(' @@ ') > 0) {
+            if (line.indexOf(' @@') > 0) {
               line = '.\n.\n.';
             } else {
               line = line.slice(1, line.length);
