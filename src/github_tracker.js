@@ -26,6 +26,29 @@ function highlight(code, url, lang) {
     hljs.highlightBlock(block);
   });
   recentCodeURL = url;
+
+  // now we highlight what hljs missed
+  // in the future: maybe don't highlight whitespace?
+  var unhighlighted = $('#recent_code')
+                        .contents()
+                        .filter(function() { return this.nodeType == 3; });
+  for (var i = 0; i < unhighlighted.length; i++) {
+    var text = unhighlighted[i];
+    $(text).replaceWith("<span class='hljs-kl-plaintext'>" +
+                           text.data +
+                         '</span>');
+  }
+  // let's get rid of gaps
+  var highlighted = $('#recent_code')
+                      .contents();
+  for (var i = 0; i < highlighted.length; i++) {
+    var block = highlighted[i];
+    if ($(block).text().length == 1) {
+      // merge this color with the last
+      $(block).attr('class', $(block).prev().attr('class'));
+    }
+  }
+
   // maybe not the best but
   window.showAbout();
 }
