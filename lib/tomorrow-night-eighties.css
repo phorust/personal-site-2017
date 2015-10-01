@@ -2,6 +2,14 @@
 /* Original theme - https://github.com/chriskempson/tomorrow-theme */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 
+/* KL */
+.hljs-kl-plaintext {
+  background-color: #ccc;
+}
+#recent_code:hover .hljs-kl-plaintext {
+  background-color: initial;
+}
+
 /* Tomorrow Comment */
 .hljs-comment {
   color: #999999;
