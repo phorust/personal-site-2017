@@ -191,7 +191,7 @@ a#berkeley:hover {
 #term {
   position: relative;
   width: 100%;
-  height: 250px;
+  height: 244px;
   bottom: 0;
   margin-left: auto;
   margin-right: auto;
@@ -257,7 +257,7 @@ a#berkeley:hover {
   display: none;
 }
 #term.loaded #output {
-  height: 190px;
+  height: 234px;
   padding: 4px;
   display: block;
 }

@@ -4,6 +4,12 @@ var cwd;
 var lastwd;
 
 /* Shell internal functions */
+function init() {
+  cwd = window.fsroot_Users_phorust;
+  lastwd = window.fsroot_Users_phorust;
+  updatePrompt();
+}
+
 function print(s: string, noNewline?: boolean, noPrompt?: boolean) {
   noPrompt || printOldPrompt();
   noNewline || $('#textarea').append(s + '<br>');
@@ -321,7 +327,9 @@ function echo(argv) {
 
 function exit(argv) {
   window.minimize();
+  window.showAbout();
   clear();
+  init();
 }
 
 function ls(argv) {
@@ -358,8 +366,7 @@ function uptime(argv) {
 
 
 $(document).ready(_ => {
-  cwd = window.fsroot;
-  lastwd = window.fsroot;
+  init();
 
   $('#lastline').on('keyup', e => {
     e.preventDefault();
