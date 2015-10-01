@@ -96,7 +96,7 @@ $(document).ready(_ => {
             if (line[0] === '-') { continue; }
             // remove + gutter or @@ if found
             if (line.indexOf(' @@') > 0) {
-              line = '.\n.\n.';
+              line = '...';
             } else {
               line = line.slice(1, line.length);
             }

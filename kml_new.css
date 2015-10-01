@@ -34,12 +34,6 @@ body, html {
 #wrapper.loaded {
   opacity: 1;
 }
-#wrapper.full {
-  top: 0;
-  transform: translateY(0%);
-  /* account for footer */
-  padding-bottom: 70px;
-}
 
 nav {
   position: fixed;
