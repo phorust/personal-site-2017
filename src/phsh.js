@@ -50,6 +50,7 @@ function cycleCommand(n) {
 
 function updatePrompt(path?: string) {
   path || (path = cwd.getPath());
+  path = window.cleanPath(path);
   $('.prompt_path').last().text(path);
 
   // If the terminal is hidden, width() is 0
