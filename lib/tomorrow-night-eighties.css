@@ -98,7 +98,7 @@
   overflow-x: auto;
   background: #2d2d2d;
   color: #cccccc;
-  padding: 0.5em;
+  margin: 0.5em;
   -webkit-text-size-adjust: none;
 }
 
@@ -187,23 +187,4 @@
 #recent_code:hover .hljs-keyword,
 #recent_code:hover.javascript .hljs-function {
   background-color: initial;
-}
-
-.hljs {
-  display: block;
-  overflow-x: auto;
-  background: #2d2d2d;
-  color: #cccccc;
-  padding: 0.5em;
-  -webkit-text-size-adjust: none;
-}
-
-.coffeescript .javascript,
-.javascript .xml,
-.tex .hljs-formula,
-.xml .javascript,
-.xml .vbscript,
-.xml .css,
-.xml .hljs-cdata {
-  opacity: 0.5;
 }
