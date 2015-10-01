@@ -162,6 +162,47 @@ function suggestCommand() {
   // TODO
 }
 
+function tokensToFileSysObjs(tokens               : Array<string>,
+                             fileCallback         : Function,
+                             notFileCallback      : Function,
+                             dirCallback          : Function,
+                             notDirCallback       : Function,
+                             doesNotExistCallback : Function) {
+  var _fileFound = file => {
+    if (file instanceof window.Directory) {
+      if (!dirCallback(file, token)) { return; }
+    } else {
+      if (!notDirCallback(file, token)) { return; }
+    }
+    if (file instanceof window.File) {
+      if (!fileCallback(file, token)) { return; }
+    } else {
+      if (!notFileCallback(file, token)) { return; }
+    }
+    return true;
+  };
+
+  var files = cwd.list();
+
+  // in local dir
+  for (var token of tokens) {
+    if (token[0] == '/' || token[0] == '~') {
+      // Absolute path or relative to home
+      var file = window.getByPath(token);
+      if (file) {
+        if (!_fileFound(file)) { return; }
+      } else {
+        if (!doesNotExistCallback(files[token], token)) { return; }
+      }
+    } else if (files[token]) {
+      // Local path
+      if (!_fileFound(files[token])) { return; }
+    } else {
+      if (!doesNotExistCallback(files[token], token)) { return; }
+    }
+  }
+}
+
 
 /* Commands. TODO: move to new file */
 function cat(argv) {
@@ -170,23 +211,43 @@ function cat(argv) {
     // real cat enters an interactive mode but...
     return;
   }
-  var files = cwd.list();
-  for (var i = 1; i < argv.length; i++) {
-    if (files[argv[i]]) {
-      if (files[argv[i]] instanceof window.File) {
-        print(files[argv[i]].contents, false, true);
-      } else {
-        print(`cat: ${argv[i]}: Is a directory`, false, true);
-      }
-    } else {
-      print(`cat: ${argv[i]}: No such file or directory`, false, true);
-    }
+  var _cat_file = (fsobj: window.FileSysObj, token: string) => {
+    print(fsobj.contents, false, true);
+    return true;
   }
+  var _cat_dir = (fsobj: window.FileSysObj, token: string) => {
+    print(`cat: ${token}: Is a directory`, false, true);
+    return true;
+  }
+  var _cat_dne = (fsobj: window.FileSysObj, token: string) => {
+    print(`cat: ${token}: No such file or directory`, false, true);
+    return true;
+  }
+
+  tokensToFileSysObjs(argv.slice(1, argv.length),
+                      _cat_file,
+                      _=>{return true;},
+                      _cat_dir,
+                      _=>{return true;},
+                      _cat_dne);
 }
 
+/**
+ * Change directory.
+ *
+ * There's some weird behavior zsh displays:
+ * in a sub dir of ~
+ *   > cd ~ doesnotexist
+ *   cd: no such file or directory: doesnotexist/<pathToCurDirFrom ~>
+ * in not a sub dir of ~
+ *   > cd ~ doesnotexist
+ *   cd: string not in pwd: /Users/phorust
+ * Other cases not yet correctly implemented:
+ * multiple args
+ *   > cd .. doesnotexist
+ *   cd: string not in pwd: ..
+ */
 function cd(argv) {
-  // TODO: take advantage of window.getByPath
-  var files = cwd.list();
   // Special path codes
   if (argv[1] === '-') {
     [lastwd, cwd] = [cwd, lastwd];
@@ -200,21 +261,24 @@ function cd(argv) {
     return print('', true);
   }
 
-  // Absolute paths
-  // if (argv[1][1] == '/'
-
-  // in local dir
-  if (files[argv[1]]) {
-    if (files[argv[1]] instanceof window.Directory) {
-      lastwd = cwd;
-      cwd = files[argv[1]];
-      print('', true);
-    } else {
-      print(`cd: not a directory: ${argv[1]}`);
-    }
-  } else {
-    print(`cd: no such file or directory: ${argv[1]}`);
+  var _cd_file = (fsobj: window.FileSysObj, token: string) => {
+    return print(`cd: not a directory: ${token}`);
   }
+  var _cd_dir = (fsobj: window.FileSysObj, token: string) => {
+    lastwd = cwd;
+    cwd = fsobj;
+    return print('', true);
+  }
+  var _cd_dne = (fsobj: window.FileSysObj, token: string) => {
+    return print(`cd: no such file or directory: ${token}`);
+  }
+  var _cd_not_dir = _cd_file;
+  tokensToFileSysObjs(argv.slice(1, 2),
+                      _cd_file,
+                      _=>{},
+                      _cd_dir,
+                      _cd_not_dir,
+                      _cd_dne);
 }
 
 function clear(argv) {
