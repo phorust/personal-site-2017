@@ -5,7 +5,7 @@ body, html {
   width: 100%;
 
   color: #333;
-  font-family: 'Avenir Next';
+  font-family: 'Avenir Next', 'Open Sans', sans-serif;
   /*font-family: 'Avenir';
   font-family: 'Lato', sans-serif;
   font-family: 'Raleway';
@@ -143,6 +143,10 @@ p {
 }
 #about_content > a {
   text-decoration: none;
+}
+#recent_code {
+  /* otherwise lines show between highlighting on nonretina */
+  line-height: 1.1em;
 }
 #recent_code_link {
   display: block;
