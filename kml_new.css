@@ -153,12 +153,16 @@ p {
 #recent_code_link:hover {
   display: block;
   margin-bottom: 100px;
+  background: initial;
 }
 #recent_code_link > pre {
   max-height: 0;
-  transition: all 0.6s ease-out;
+  transition: opacity 0.6s ease-out;
   opacity: 0;
   overflow: hidden;
+}
+#recent_code_link > pre:hover {
+  background: #2d2d2d;
 }
 #about_content.loaded > #recent_code_link > pre {
   opacity: 1;
