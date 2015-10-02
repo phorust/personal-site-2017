@@ -1,3 +1,5 @@
+var showAbout = modules.kml_new.showAbout;
+
 // The access token here has absolutely no power to do anything, they're
 // just used to bypass rate limits
 var recentCodeURL;
@@ -50,7 +52,7 @@ function highlight(code, url, lang) {
   }
 
   // maybe not the best but
-  window.showAbout();
+  showAbout();
 }
 
 function getInterestingBlockFromPatch(patch) {

@@ -1,5 +1,5 @@
-var PROMPT = '<span class="prompt_path">~</span> <span class="prompt_arrow">&#x2192;</span> ';
-var WIDTH = 63;
+var PROMPT = '<span class ="prompt_path">~</span> <span class ="prompt_arrow">&#x2192;</span> ';
+var WIDTH  = 63;
 
 function minimize() {
   $('#term').removeClass('loaded').delay(300).fadeOut(1);
@@ -23,7 +23,9 @@ $(document).ready(_ => {
   });
 });
 
-window.PROMPT = PROMPT;
-window.WIDTH = WIDTH;
-window.minimize = minimize;
-window.unminimize = unminimize;
+module.exports('term', {
+  PROMPT,
+  WIDTH,
+  minimize,
+  unminimize,
+});

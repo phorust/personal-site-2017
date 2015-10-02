@@ -1,12 +1,23 @@
-var commandsRun = [];
+var Directory = modules.filesys.Directory;
+var File      = modules.filesys.File;
+var cleanPath = modules.filesys.cleanPath;
+var fshome    = modules.filesys.fshome;
+var fsroot    = modules.filesys.fsroot;
+var getByPath = modules.filesys.getByPath;
+var PROMPT    = modules.term.PROMPT;
+var WIDTH     = modules.term.WIDTH;
+var minimize  = modules.term.minimize;
+var showAbout = modules.kml_new.showAbout;
+
+var commandsRun  = [];
 var commandIndex = -1; // counts backwards
 var cwd;
 var lastwd;
 
 /* Shell internal functions */
 function init() {
-  cwd = window.fsroot_Users_phorust;
-  lastwd = window.fsroot_Users_phorust;
+  cwd = fshome;
+  lastwd = fshome;
   updatePrompt();
 }
 
@@ -23,7 +34,7 @@ function printf(tokens: Array<Object>, columns?: number) {
     maxTokenLen = Math.max(maxTokenLen, token.text.length);
   }
   columnWidth = maxTokenLen + 1;
-  columnsPerRow = Math.max(1, Math.trunc(window.WIDTH / columnWidth));
+  columnsPerRow = Math.max(1, Math.trunc(WIDTH / columnWidth));
 
   // null columns is auto
   columns || (columns = columnsPerRow);
@@ -56,7 +67,7 @@ function cycleCommand(n) {
 
 function updatePrompt(path?: string) {
   path || (path = cwd.getPath());
-  path = window.cleanPath(path);
+  path = cleanPath(path);
   $('.prompt_path').last().text(path);
 
   // If the terminal is hidden, width() is 0
@@ -69,7 +80,7 @@ function updatePrompt(path?: string) {
 
 function printOldPrompt() {
   $('#textarea').append(
-    window.PROMPT + $('#lastline > input').val() + '<br>'
+    PROMPT + $('#lastline > input').val() + '<br>'
   );
   $('#textarea .prompt_path').last().text(
     $('.prompt_path').last().text()
@@ -175,12 +186,12 @@ function tokensToFileSysObjs(tokens               : Array<string>,
                              notDirCallback       : Function,
                              doesNotExistCallback : Function) {
   var _fileFound = file => {
-    if (file instanceof window.Directory) {
+    if (file instanceof Directory) {
       if (!dirCallback(file, token)) { return; }
     } else {
       if (!notDirCallback(file, token)) { return; }
     }
-    if (file instanceof window.File) {
+    if (file instanceof File) {
       if (!fileCallback(file, token)) { return; }
     } else {
       if (!notFileCallback(file, token)) { return; }
@@ -194,7 +205,7 @@ function tokensToFileSysObjs(tokens               : Array<string>,
   for (var token of tokens) {
     if (token[0] == '/' || token[0] == '~') {
       // Absolute path or relative to home
-      var file = window.getByPath(token);
+      var file = getByPath(token);
       if (file) {
         if (!_fileFound(file)) { return; }
       } else {
@@ -217,15 +228,15 @@ function cat(argv) {
     // real cat enters an interactive mode but...
     return;
   }
-  var _cat_file = (fsobj: window.FileSysObj, token: string) => {
+  var _cat_file = (fsobj: FileSysObj, token: string) => {
     print(fsobj.contents, false, true);
     return true;
   }
-  var _cat_dir = (fsobj: window.FileSysObj, token: string) => {
+  var _cat_dir = (fsobj: FileSysObj, token: string) => {
     print(`cat: ${token}: Is a directory`, false, true);
     return true;
   }
-  var _cat_dne = (fsobj: window.FileSysObj, token: string) => {
+  var _cat_dne = (fsobj: FileSysObj, token: string) => {
     print(`cat: ${token}: No such file or directory`, false, true);
     return true;
   }
@@ -267,15 +278,15 @@ function cd(argv) {
     return print('', true);
   }
 
-  var _cd_file = (fsobj: window.FileSysObj, token: string) => {
+  var _cd_file = (fsobj: FileSysObj, token: string) => {
     return print(`cd: not a directory: ${token}`);
   }
-  var _cd_dir = (fsobj: window.FileSysObj, token: string) => {
+  var _cd_dir = (fsobj: FileSysObj, token: string) => {
     lastwd = cwd;
     cwd = fsobj;
     return print('', true);
   }
-  var _cd_dne = (fsobj: window.FileSysObj, token: string) => {
+  var _cd_dne = (fsobj: FileSysObj, token: string) => {
     return print(`cd: no such file or directory: ${token}`);
   }
   var _cd_not_dir = _cd_file;
@@ -326,8 +337,8 @@ function echo(argv) {
 }
 
 function exit(argv) {
-  window.minimize();
-  window.showAbout();
+  minimize();
+  showAbout();
   clear();
   init();
 }
@@ -398,3 +409,5 @@ $(document).ready(_ => {
     }
   });
 });
+
+module.exports('phsh', {});
