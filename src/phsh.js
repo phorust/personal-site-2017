@@ -350,11 +350,13 @@ function ls(argv) {
   var files = cwd.list();
   var toPrint = [];
   if (argv[1] == '-l') {
-
+    // TODO
   }
 
   for (var filename of Object.keys(files).sort()) {
-    var markup = `<span class='${files[filename].getCSSClass()}'>${filename}</span>`;
+    var markup = `<span class='${files[filename].getCSSClass()}'>
+                    filename
+                  </span>`;
     toPrint.push({ text: filename,
                    markup });
   }
