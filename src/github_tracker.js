@@ -91,7 +91,6 @@ $(document).ready(_ => {
                 var lang = file.filename.split('.');
                 lang = lang[lang.length - 1];
                 mostRecent10LineDiff = file.patch;
-                console.log(file.patch);
                 return callback(file.patch, commitData.html_url, lang);
               }
             }
