@@ -120,6 +120,9 @@ function processInput() {
       case 'pwd':
         pwd(tokens);
         break;
+      case 'reset':
+        reset(tokens);
+        break;
       case 'touch':
         touch(tokens);
         break;
@@ -360,6 +363,11 @@ function ls(argv) {
 
 function pwd(tokens) {
   print(cwd.getPath());
+}
+
+function reset(tokens) {
+  clear();
+  init();
 }
 
 function uptime(argv) {
