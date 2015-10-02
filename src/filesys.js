@@ -11,12 +11,12 @@ class FileSysObj {
     this.parentdir = parentdir;
   }
 
-  getPath() {
+  getPath(): string {
     if (this === fshome) { return '~'; }
     return (this.parentdir ? this.parentdir.getPath(): '') + '/' + this.name;
   }
 
-  getCSSClass() {
+  getCSSClass(): string {
     return 'filesysobj';
   }
 }

@@ -24,13 +24,14 @@ function highlight(code, url, lang) {
   $('#recent_code').text(code);
   // overwrite last language class (shouldn't ever happen);
   $('#recent_code').attr('class', 'hljs ' + lang);
-  $('pre code').each(function(i, block) {
+  $('pre code').each((i, block) => {
     hljs.highlightBlock(block);
   });
   recentCodeURL = url;
 
   // now we highlight what hljs missed
   // in the future: maybe don't highlight whitespace?
+  // TODO: support nested plaintext (fails for CSS)
   var unhighlighted = $('#recent_code')
                         .contents()
                         .filter(function() { return this.nodeType == 3; });
