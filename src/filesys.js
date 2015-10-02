@@ -12,7 +12,7 @@ class FileSysObj {
   }
 
   getPath() {
-    if (this === window.fshome) { return '~'; }
+    if (this === fshome) { return '~'; }
     return (this.parentdir ? this.parentdir.getPath(): '') + '/' + this.name;
   }
 
@@ -71,13 +71,6 @@ class Directory extends FileSysObj {
  * eval()'d
  */
 class Executable extends File {
-  constructor(name: string,
-              parentdir: Directory,
-              contents: string) {
-    super(name, parentdir);
-    this.contents = contents;
-  }
-
   run(args: Array<any>): any {
     return babel.run(this.contents);
   }
@@ -88,10 +81,21 @@ class Executable extends File {
   }
 }
 
+/**
+ * The same as a File, but contents is valid javascript code that can be
+ * eval()'d
+ */
+class Link extends Executable {
+  // Override
+  getCSSClass() {
+    return 'link';
+  }
+}
+
 function getByPath(path: string): ?FileSysObj {
   // TODO: need support of thing/../thingspeer
   var tokens = path.split('/');
-  var cwd = tokens[0] == '~' ? window.fshome : window.fsroot;
+  var cwd = tokens[0] == '~' ? fshome : fsroot;
   tokens = tokens.slice(1, tokens.length);
   if (tokens[0] === '') {
     // '~/'.split('/') === ['~', '']
@@ -120,15 +124,12 @@ function cleanPath(path: string): string {
 }
 
 
-var helptext = 'Welcome to phsh. Try all of your favorite shell commands!';
-window.File = File;
-window.Directory = Directory;
-window.Executable = Executable;
-window.getByPath = getByPath;
-window.cleanPath = cleanPath;
-window.fsroot = new Directory('', null);
+var fsroot = new Directory('', null);
 var fsroot_Users = new Directory('Users', fsroot);
 var fsroot_Users_phorust = new Directory('phorust', fsroot_Users);
+// hard code this for now; maybe i'll add envvars later
+var fshome = fsroot_Users_phorust;
+
 fsroot.addChildren([fsroot_Users]);
 fsroot_Users.addChild(fsroot_Users_phorust);
 fsroot_Users_phorust.addChildren(
@@ -141,11 +142,18 @@ fsroot_Users_phorust.addChildren(
         'SimpleSlide': new File('SimpleSlide', null, 'b'),
         'battery': new File('battery', null, 'a') }
     ),
-    new File('help', fsroot_Users_phorust, helptext),
+    new File('help', fsroot_Users_phorust,
+             'Welcome to phsh. Try all of your favorite shell commands!'),
   ]
 );
 
-window.fsroot_Users = fsroot_Users;
-window.fsroot_Users_phorust = fsroot_Users_phorust;
-// hard coding this; maybe ill do envvars later
-window.fshome = fsroot_Users_phorust;
+module.exports('filesys', {
+  FileSysObj,
+  File,
+  Directory,
+  Executable,
+  getByPath,
+  cleanPath,
+  fsroot,
+  fshome,
+});

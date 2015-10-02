@@ -2,6 +2,10 @@
  * you can find it in likely nicer form at
  * github.com/phorust/phorust.github.io
  */
+
+var minimize   = modules.term.minimize;
+var unminimize = modules.term.unminimize;
+
 function hideAbout() {
   $('#about_content').removeClass('loaded').delay(300).fadeOut(1);
 
@@ -27,11 +31,11 @@ $(document).ready(function() {
 
   /* attr selectors for href? */
   $('.software').click(e => {
-    window.unminimize();
+    unminimize();
     hideAbout();
   });
   $('.about').click(e => {
-    window.minimize();
+    minimize();
     showAbout();
   });
   $('nav a').click(e => {
@@ -45,4 +49,4 @@ $(document).ready(function() {
 
 // for uptime
 window.startTime = Date.now();
-window.showAbout = showAbout;
+module.exports('kml_new', { showAbout });
