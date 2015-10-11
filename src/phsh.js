@@ -354,9 +354,7 @@ function ls(argv) {
   }
 
   for (var filename of Object.keys(files).sort()) {
-    var markup = `<span class='${files[filename].getCSSClass()}'>
-                    filename
-                  </span>`;
+    var markup = `<span class='${files[filename].getCSSClass()}'>${filename}</span>`;
     toPrint.push({ text: filename,
                    markup });
   }
