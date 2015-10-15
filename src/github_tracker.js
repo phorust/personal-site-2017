@@ -36,10 +36,17 @@ function highlight(code, url, lang) {
                         .contents()
                         .filter(function() { return this.nodeType == 3; });
   for (var i = 0; i < unhighlighted.length; i++) {
-    var text = unhighlighted[i];
-    $(text).replaceWith("<span class='hljs-kl-plaintext'>" +
-                           text.data +
-                         '</span>');
+    var textElem = unhighlighted[i];
+    var blocks = splitCodeIntoBlocks(textElem.data);
+    var markup = "";
+    for (var block of blocks) {
+      var cssClass = 'hljs-kl-plaintext';
+      if (isWhitespace(block[0])) {
+        cssClass = 'hljs-kl-whitespace';
+      }
+      markup += `<span class="${cssClass}">${block}</span>`
+    }
+    $(textElem).replaceWith(markup);
   }
   // let's get rid of gaps
   var highlighted = $('#recent_code')
@@ -58,6 +65,38 @@ function highlight(code, url, lang) {
 
 function getInterestingBlockFromPatch(patch) {
 
+}
+
+function splitCodeIntoBlocks(code) {
+  var blocks = [];
+  var curBlock = "";
+  var whitespaceBlock = false;
+
+  for (var c of code) {
+    if (isWhitespace(c)) {
+      if (!whitespaceBlock) {
+        whitespaceBlock = true;
+        blocks.push(curBlock);
+        curBlock = c;
+      } else {
+        curBlock += c;
+      }
+    } else {
+      if (whitespaceBlock) {
+        whitespaceBlock = false;
+        blocks.push(curBlock);
+        curBlock = c;
+      } else {
+        curBlock += c;
+      }
+    }
+  }
+
+  blocks.push(curBlock);
+  return blocks;
+}
+function isWhitespace(c) {
+  return c === ' ' || c === '\t' || c === '\n';
 }
 
 $(document).ready(_ => {
