@@ -6,6 +6,9 @@
 .hljs-kl-plaintext {
   background-color: #ccc;
 }
+.hljs-kl-whitespace {
+  background-color: initial;
+}
 #recent_code:hover .hljs-kl-plaintext {
   background-color: initial;
 }
