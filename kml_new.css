@@ -4,7 +4,7 @@ body, html {
   height: 100%;
   width: 100%;
 
-  color: #333;
+  color: #454545;
   font-family: 'Avenir Next', 'Open Sans', sans-serif;
   /*font-family: 'Avenir';
   font-family: 'Lato', sans-serif;
@@ -73,8 +73,7 @@ nav > ul > li:hover::before {
 }
 
 #logo {
-  /* to offset the #recent_code_link's margin-bottom */
-  margin-top: 100px;
+  margin-top: 4px;
 }
 
 #content {
@@ -91,25 +90,27 @@ nav > ul > li:hover::before {
 
 a {
   text-decoration: none;
-  color: black;
+  color: inherit;
   transition: all 0.2s ease;
-  border-bottom: 1px solid #333;
+  font-weight: 600;
 }
 a:hover {
-  color: inherit;
-  background-color: #FFDE00;
-  border: none;
+  color: black;
 }
 
 h1, h2, h3 {
+  /*font-family: 'Avenir Next';*/
   line-height: 1.3;
+
   /*font-family: 'Avenir';*/
-  font-family: 'Avenir Next';
   /*font-family: 'Lato', sans-serif;
   font-family: 'PF DinText Pro';
   font-family: 'Maax';*/
 
-  font-weight: 600;
+  font-weight: 500;
+}
+h1 > a, h2 > a, h3 > a {
+  font-weight: 700;
 }
 
 p {
@@ -164,9 +165,14 @@ p {
   transition: opacity 0.6s ease-out;
   opacity: 0;
   overflow: hidden;
+  /*background: #2d2d2d;*/
 }
 #recent_code_link > pre:hover {
-  background: #2d2d2d;
+  /*background: #2d2d2d;*/
+}
+#recent_code_link > pre > code {
+  /*background: #2d2d2d;*/
+  background-color: initial;
 }
 #about_content.loaded > #recent_code_link > pre {
   opacity: 1;
@@ -185,13 +191,14 @@ code {
 }
 /* Below... Maybe the default color is nicer. */
 a#facebook:hover {
-  background-color: #3b5999;
-  color: #fff;
+  color: #3b5999;
+  background-color: initial;
 }
 a#bigfix:hover {
-  background-color: #ABC450;
+  color: #ABC450;
+  background-color: initial;
 }
 a#berkeley:hover {
-  background-color: #3B7EA1;
-  color: #fff;
+  color: #3B7EA1;
+  background-color: initial;
 }
