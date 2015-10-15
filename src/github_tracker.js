@@ -40,6 +40,7 @@ function highlight(code, url, lang) {
     var blocks = splitCodeIntoBlocks(textElem.data);
     var markup = "";
     for (var block of blocks) {
+      if (block.length === 0) { continue; }
       var cssClass = 'hljs-kl-plaintext';
       if (isWhitespace(block[0])) {
         cssClass = 'hljs-kl-whitespace';
@@ -54,8 +55,10 @@ function highlight(code, url, lang) {
   for (var i = 0; i < highlighted.length; i++) {
     var block = highlighted[i];
     if ($(block).text().length == 1) {
-      // merge this color with the last
-      $(block).attr('class', $(block).prev().attr('class'));
+      // merge this color with the last, unless its whitespace
+      if ($(block).prev().attr('class') !== 'hljs-kl-whitespace') {
+        $(block).attr('class', $(block).prev().attr('class'));
+      }
     }
   }
 
@@ -65,6 +68,19 @@ function highlight(code, url, lang) {
 
 function getInterestingBlockFromPatch(patch) {
 
+}
+
+function recursivelyFindPlaintextNodes(root) {
+  var toSearch = Array.from(root.contents());
+  var helper = node => {
+    toSearch = toSearch.concat(Array.from(node.contents()));
+  };
+
+  for (var node of toSearch) {
+    helper($(node));
+  }
+  console.log(toSearch);
+  return toSearch;
 }
 
 function splitCodeIntoBlocks(code) {
