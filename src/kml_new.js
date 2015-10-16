@@ -23,18 +23,35 @@ function showAbout() {
     .css('min-height', Math.min($(window).height() * 0.60));
 }
 
+function showDesign() {
+  $('#design_content').show().addClass('loaded');
+}
+
+function hideDesign() {
+  // sigh DRY. see hideAbout
+  $('#design_content').removeClass('loaded').delay(300).fadeOut(1);
+  $('body').animate({scrollTop: 0}, 300);
+}
+
 $(document).ready(function() {
   $('#wrapper').addClass('loaded');
   showAbout();
 
   /* attr selectors for href? */
   $('.software').click(e => {
-    unminimize();
+    hideDesign();
     hideAbout();
+    unminimize();
   });
   $('.about').click(e => {
     minimize();
+    hideDesign();
     showAbout();
+  });
+  $('.design').click(e => {
+    minimize();
+    hideAbout();
+    showDesign();
   });
   $('nav a').click(e => {
     e.preventDefault();
