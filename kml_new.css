@@ -34,9 +34,6 @@ body, html {
 #wrapper.loaded {
   opacity: 1;
 }
-#wrapper.wide {
-  max-width: 800px;
-}
 
 nav {
   position: fixed;
@@ -207,37 +204,59 @@ a#berkeley:hover {
 }
 
 /* design section */
-#design_content {
-  width: 800px;
-  left: -150px;
-
+#visual_content {
   position: absolute;
+  left: 0;
+  right: 0;
+
+  width: 100%;
   top: 0;
-  margin-bottom: 25px;
+  margin-top: 150px;
+  margin-bottom: 175px;
   padding: 10px 20px;
   opacity: 0;
   transition: all 0.3s ease-out;
   /* otherwise width 100% takes from padding box, not whole box */
   box-sizing: border-box;
   font-size: 14px;
+  text-align: center;
 }
-#design_content.loaded {
+#visual_content.loaded {
   opacity: 1;
-  margin-top: 25px;
-  margin-bottom: 0;
+  margin-top: 175px;
+  margin-bottom: 100px;
 }
-.design-block {
+.visual-block {
   display: inline-block;
-  width: 240px;
+  width: 220px;
+  padding: 10px;
 }
-.design-block img {
-  margin: 10px;
-  width: 80px;
-  height: 80px;
+.visual-block img {
+  width: 100%;
+  height: 140px;
+  box-sizing: border-box;
+
+  background-size: cover;
+  background-position: center center;
 }
-.design-block h4 {
+.visual-block h4 {
   margin-bottom: 0;
 }
-.design-block p {
+.visual-block p {
   margin-top: 0;
+}
+.visual-block:nth-child(1) img {
+  background-image: url('i/guitar.png');
+}
+.visual-block:nth-child(2) img {
+  background-image: url('i/innod.jpg');
+}
+.visual-block:nth-child(3) img {
+  background-image: url('i/logo.png');
+}
+.visual-block:nth-child(4) img {
+  background-image: url('i/temp.png');
+}
+.visual-block:nth-child(5) img {
+  background-image: url('i/insta.jpg');
 }
