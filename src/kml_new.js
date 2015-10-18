@@ -15,7 +15,7 @@ function hideAbout() {
 }
 
 function showAbout() {
-  $('#about_content').show().addClass('loaded');
+  $('#about_content').fadeIn(1).addClass('loaded');
   $('#about_content > a > pre')
     .css('max-height', $('#recent_code').outerHeight(true));
   // always try to place KL in the same place, slightly above middle
@@ -23,13 +23,15 @@ function showAbout() {
     .css('min-height', Math.min($(window).height() * 0.60));
 }
 
-function showDesign() {
-  $('#design_content').show().addClass('loaded');
+function showVisual() {
+  $('#content').addClass('wide');
+  $('#visual_content').fadeIn(1).addClass('loaded');
 }
 
-function hideDesign() {
+function hideVisual() {
+  $('#content').removeClass('wide');
   // sigh DRY. see hideAbout
-  $('#design_content').removeClass('loaded').delay(300).fadeOut(1);
+  $('#visual_content').removeClass('loaded').delay(300).fadeOut(1);
   $('body').animate({scrollTop: 0}, 300);
 }
 
@@ -39,25 +41,29 @@ $(document).ready(function() {
 
   /* attr selectors for href? */
   $('.software').click(e => {
-    hideDesign();
+    hideVisual();
     hideAbout();
     unminimize();
   });
   $('.about').click(e => {
     minimize();
-    hideDesign();
+    hideVisual();
     showAbout();
   });
-  $('.design').click(e => {
+  $('.visual').click(e => {
     minimize();
     hideAbout();
-    showDesign();
+    showVisual();
   });
   $('nav a').click(e => {
     e.preventDefault();
   });
   $('#subtitle a').click(e => {
     e.preventDefault();
+  });
+
+  $('#recent_code_show').click(e => {
+    $('#recent_code').toggleClass('active');
   });
 });
 
