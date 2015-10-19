@@ -20,16 +20,15 @@ function showAbout() {
     .css('max-height', $('#recent_code').outerHeight(true));
   // always try to place KL in the same place, slightly above middle
   $('#content')
-    .css('min-height', Math.min($(window).height() * 0.60));
+    .css('min-height', $(window).height() * 0.60);
 }
 
 function showVisual() {
-  $('#content').addClass('wide');
   $('#visual_content').fadeIn(1).addClass('loaded');
+  $('#content').css('min-height', $('#visual_content').height());
 }
 
 function hideVisual() {
-  $('#content').removeClass('wide');
   // sigh DRY. see hideAbout
   $('#visual_content').removeClass('loaded').delay(300).fadeOut(1);
   $('body').animate({scrollTop: 0}, 300);
