@@ -1,5 +1,6 @@
 var Directory = modules.filesys.Directory;
 var File      = modules.filesys.File;
+var Link      = modules.filesys.Link;
 var cleanPath = modules.filesys.cleanPath;
 var fshome    = modules.filesys.fshome;
 var fsroot    = modules.filesys.fsroot;
@@ -116,6 +117,9 @@ function processInput() {
         break;
       case 'ls':
         ls(tokens);
+        break;
+      case 'node':
+        node(tokens);
         break;
       case 'pwd':
         pwd(tokens);
@@ -355,10 +359,20 @@ function ls(argv) {
 
   for (var filename of Object.keys(files).sort()) {
     var markup = `<span class='${files[filename].getCSSClass()}'>${filename}</span>`;
+    if (files[filename] instanceof Directory) {
+
+    } else if (files[filename] instanceof Link) {
+
+    }
     toPrint.push({ text: filename,
                    markup });
   }
   printf(toPrint, null);
+}
+
+function node() {
+  // babel.run('var test = "hello world";');
+  // babel.run('console.log(test);');
 }
 
 function pwd(tokens) {

@@ -1,0 +1,264 @@
+$font-body : 'Avenir Next', 'Open Sans', sans-serif;
+$offwhite  : #fDfCf6;
+$offblack  : #454545;
+$grey      : #888;
+$darkgrey  : #333;
+$yellow    : #FFDE00;
+
+%content-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-bottom: 25px;
+  padding: 10px 20px;
+  opacity: 0;
+  transition: all 0.3s ease-out;
+  margin: 0 auto;
+  max-width: 500px;
+  /* otherwise width 100% takes from padding box, not whole box */
+  box-sizing: border-box;
+
+  font-size: 14px;
+  text-align: left;
+  /*display: none; TODO: otherwise the margin pushes term down even when not on about,
+  but this makes the height calcs in toggleAbout fail */
+}
+
+/* Containers and "body" - structural stuff */
+body, html {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+
+  color: $offblack;
+  font-family: 'Avenir Next', 'Open Sans', sans-serif;
+  /*font-family: 'Avenir';
+  font-family: 'Lato', sans-serif;
+  font-family: 'Raleway';
+  font-family: 'Museo Sans';
+  font-family: 'Roboto Slab';
+  font-family: 'PF DinText Pro';
+  font-family: 'Maax';*/
+  background-color: $offwhite;
+}
+
+#wrapper {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+
+  opacity: 0;
+  transition: opacity 0.6s ease-out,
+              padding 0.6s ease-out,
+              top 0.6s ease-out,
+              transform 0.6s ease-out;
+
+  text-align: center;
+}
+#wrapper.loaded {
+  opacity: 1;
+}
+
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  font-weight: bold;
+  color: $grey;
+  background-color: $offwhite;
+  ul {
+    list-style: none;
+    padding-left: inherit;
+    li {
+      display: inline-block;
+      padding: 4px 8px;
+      transition: all 0.2s ease;
+      &:hover {
+        color: $darkgrey;
+      }
+      &::before {
+        display: block;
+        width: 5px;
+        height: 5px;
+        margin: 8px auto;
+        border-radius: 5px;
+        border: 2px solid $grey;
+        content: '';
+        transition: all 0.2s ease;
+      }
+      &:hover::before {
+        background: $yellow;
+        border-color: $yellow;
+      }
+    }
+  }
+}
+
+#logo {
+  margin-top: 4px;
+}
+
+#content {
+  position: relative;
+  transition: all 0.3s ease-out;
+}
+
+
+/* Adjustments to tag defaults */
+::selection {
+  background-color: $yellow;
+  /*background-color: #a40000;*/
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+a:hover {
+  color: black;
+}
+
+h1, h2, h3 {
+  /*font-family: 'Avenir Next';*/
+  line-height: 1.3;
+
+  /*font-family: 'Avenir';*/
+  /*font-family: 'Lato', sans-serif;
+  font-family: 'PF DinText Pro';
+  font-family: 'Maax';*/
+
+  font-weight: 500;
+}
+h1 > a, h2 > a, h3 > a {
+  font-weight: 700;
+}
+
+p {
+  line-height: 1.5;
+}
+
+
+/* The meat */
+#about_content {
+  @extend %content-section;
+}
+#about_content.loaded {
+  opacity: 1;
+  margin-top: 25px;
+  margin-bottom: 0;
+  /* js max-height setting */
+  /*display: block;*/
+}
+#about_content > a {
+  text-decoration: none;
+}
+#recent_code {
+  /* otherwise lines show between highlighting on nonretina */
+  line-height: 1.1em;
+}
+#recent_code_link {
+  display: block;
+  /* account for footer height */
+  margin-bottom: 100px;
+  border: none;
+}
+#recent_code_link:hover {
+  display: block;
+  margin-bottom: 100px;
+  background: initial;
+}
+#recent_code_link > pre {
+  max-height: 0;
+  transition: opacity 0.6s ease-out;
+  opacity: 0;
+  overflow: hidden;
+  /*background: #2d2d2d;*/
+}
+#recent_code_link > pre:hover {
+  /*background: #2d2d2d;*/
+}
+#recent_code_link > pre > code {
+  /*background: #2d2d2d;*/
+  background-color: initial;
+}
+#about_content.loaded > #recent_code_link > pre {
+  opacity: 1;
+  /* js max-height setting */
+}
+code {
+  text-align: left;
+  font-size: 11px;
+  overflow: scroll;
+}
+#title {
+  margin-bottom: 2px;
+}
+#subtitle {
+  margin-top: 0;
+}
+/* Below... Maybe the default color is nicer. */
+a#facebook:hover {
+  color: #3b5999;
+  background-color: initial;
+}
+a#bigfix:hover {
+  color: #ABC450;
+  background-color: initial;
+}
+a#berkeley:hover {
+  color: #3B7EA1;
+  background-color: initial;
+}
+
+/* design section */
+#visual_content {
+  @extend %content-section;
+  margin-top: 0;
+  max-width: 800px;
+  text-align: center;
+
+  .visual-block {
+    display: inline-block;
+    width: 220px;
+    padding: 10px;
+    img {
+      width: 100%;
+      height: 140px;
+      box-sizing: border-box;
+
+      background-size: cover;
+      background-position: center center;
+    }
+    h4 {
+      margin-bottom: 0;
+    }
+    p {
+      margin-top: 0;
+    }
+    &:nth-child(1) img {
+      background-image: url('i/guitar.png');
+    }
+    &:nth-child(2) img {
+      background-image: url('i/innod.jpg');
+    }
+    &:nth-child(3) img {
+      background-image: url('i/logo.png');
+    }
+    &:nth-child(4) img {
+      background-image: url('i/temp.png');
+    }
+    &:nth-child(5) img {
+      background-image: url('i/insta.jpg');
+    }
+  }
+}
+#visual_content.loaded {
+  opacity: 1;
+  margin-top: 25px;
+  margin-bottom: 100px;
+}

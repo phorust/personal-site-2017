@@ -151,6 +151,7 @@ module.exports('filesys', {
   FileSysObj,
   File,
   Directory,
+  Link,
   Executable,
   getByPath,
   cleanPath,
