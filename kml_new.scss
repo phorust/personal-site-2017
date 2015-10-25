@@ -23,6 +23,13 @@ $yellow    : #FFDE00;
   text-align: left;
   /*display: none; TODO: otherwise the margin pushes term down even when not on about,
   but this makes the height calcs in toggleAbout fail */
+
+  &.loaded {
+    opacity: 1;
+    margin-top: 25px;
+    /* account for footer height */
+    margin-bottom: 100px;
+  }
 }
 
 /* Containers and "body" - structural stuff */
@@ -55,9 +62,9 @@ body, html {
               transform 0.6s ease-out;
 
   text-align: center;
-}
-#wrapper.loaded {
-  opacity: 1;
+  &.loaded {
+    opacity: 1;
+  }
 }
 
 nav {
@@ -118,9 +125,9 @@ a {
   color: inherit;
   transition: all 0.2s ease;
   font-weight: 600;
-}
-a:hover {
-  color: black;
+  &:hover {
+    color: black;
+  }
 }
 
 h1, h2, h3 {
@@ -133,9 +140,10 @@ h1, h2, h3 {
   font-family: 'Maax';*/
 
   font-weight: 500;
-}
-h1 > a, h2 > a, h3 > a {
-  font-weight: 700;
+
+  a {
+    font-weight: 700;
+  }
 }
 
 p {
@@ -146,55 +154,50 @@ p {
 /* The meat */
 #about_content {
   @extend %content-section;
+  &.loaded {
+    #recent_code_link > pre {
+      opacity: 1;
+      /* js max-height setting */
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
 }
-#about_content.loaded {
-  opacity: 1;
-  margin-top: 25px;
-  margin-bottom: 0;
-  /* js max-height setting */
-  /*display: block;*/
-}
-#about_content > a {
-  text-decoration: none;
-}
+
 #recent_code {
   /* otherwise lines show between highlighting on nonretina */
   line-height: 1.1em;
 }
 #recent_code_link {
   display: block;
-  /* account for footer height */
-  margin-bottom: 100px;
   border: none;
+  &:hover {
+    display: block;
+    background: initial;
+  }
+
+  pre {
+    max-height: 0;
+    transition: opacity 0.6s ease-out;
+    opacity: 0;
+    overflow: hidden;
+    /*background: #2d2d2d;*/
+    &:hover {
+      /*background: #2d2d2d;*/
+    }
+
+    code {
+      /*background: #2d2d2d;*/
+      background-color: initial;
+      text-align: left;
+      font-size: 11px;
+      overflow: scroll;
+    }
+  }
 }
-#recent_code_link:hover {
-  display: block;
-  margin-bottom: 100px;
-  background: initial;
-}
-#recent_code_link > pre {
-  max-height: 0;
-  transition: opacity 0.6s ease-out;
-  opacity: 0;
-  overflow: hidden;
-  /*background: #2d2d2d;*/
-}
-#recent_code_link > pre:hover {
-  /*background: #2d2d2d;*/
-}
-#recent_code_link > pre > code {
-  /*background: #2d2d2d;*/
-  background-color: initial;
-}
-#about_content.loaded > #recent_code_link > pre {
-  opacity: 1;
-  /* js max-height setting */
-}
-code {
-  text-align: left;
-  font-size: 11px;
-  overflow: scroll;
-}
+
 #title {
   margin-bottom: 2px;
 }
@@ -256,9 +259,4 @@ a#berkeley:hover {
       background-image: url('i/insta.jpg');
     }
   }
-}
-#visual_content.loaded {
-  opacity: 1;
-  margin-top: 25px;
-  margin-bottom: 100px;
 }
