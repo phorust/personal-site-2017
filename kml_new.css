@@ -39,9 +39,8 @@ body, html {
   opacity: 0;
   transition: opacity 0.6s ease-out, padding 0.6s ease-out, top 0.6s ease-out, transform 0.6s ease-out;
   text-align: center; }
-
-#wrapper.loaded {
-  opacity: 1; }
+  #wrapper.loaded {
+    opacity: 1; }
 
 nav {
   position: fixed;
