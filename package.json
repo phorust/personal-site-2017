@@ -1,0 +1,26 @@
+{
+  "name": "kevinmlee.io",
+  "version": "2.0.0",
+  "description": "Kevin Lee's personal website",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^5.8.29",
+    "browser-sync": "^2.9.11",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.0.4"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phorust/phorust.github.io.git"
+  },
+  "author": "Kevin Lee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phorust/phorust.github.io/issues"
+  },
+  "homepage": "https://github.com/phorust/phorust.github.io#readme"
+}
