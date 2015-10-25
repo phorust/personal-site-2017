@@ -1,27 +1,30 @@
+@import 'kml_new';
+$term-offwhite : #f1f2f0;
+$term-offblack : #333;
+$term-red      : #F16061;
+$term-yellow   : #FDD484;
+$term-green    : #AFD792;
+$shell-grey    : #B7B7B7;
+$shell-green   : #B4E37D;
+$shell-blue    : #54FDE6;
+
 #term {
+  @extend %content-section;
   position: relative;
-  margin: 0 auto;
-  max-width: 500px;
-  height: 244px;
   bottom: 0;
-  left: 0;
-  right: 0;
-  margin-left: auto;
-  margin-right: auto;
+  height: 244px;
+  padding: initial;
   margin-bottom: 15px;
-  opacity: 0;
+
   font-family: 'DejaVu Sans Mono for Powerline', monospace;
   font-size: 12px;
-  transition: all 0.3s ease-out;
-
   border-radius: 10px;
-  border-top: 22px solid #f1f2f0;
-}
-/* must be a better selector than copying this */
-#term.loaded {
-  opacity: 1;
-  margin-top: 15px;
-  margin-bottom: 0;
+  border-top: 22px solid $term-offwhite;
+  &.loaded {
+    opacity: 1;
+    margin-top: 15px;
+    margin-bottom: 0;
+  }
 }
 
 #appbar {
@@ -38,27 +41,27 @@
   cursor: default;
 
   display: none;
+  div {
+    display: inline-block;
+    border-radius: 12px;
+    width: 12px;
+    height: 12px;
+    line-height: 12px;
+    text-align: center;
+  }
+  #close {
+    /* TODO: add gradients */
+    background-color: $term-red;
+  }
+  #minimize {
+    background-color: $term-yellow;
+  }
+  #maximize {
+    background-color: $term-green;
+  }
 }
 #term.loaded #appbar {
   display: block;
-}
-#appbar div {
-  display: inline-block;
-  border-radius: 12px;
-  width: 12px;
-  height: 12px;
-  line-height: 12px;
-  text-align: center;
-}
-#close {
-  /* TODO: add gradients */
-  background-color: #F16061;
-}
-#minimize {
-  background-color: #FDD484;
-}
-#maximize {
-  background-color: #AFD792;
 }
 
 #output {
@@ -77,39 +80,38 @@
   white-space: pre;
 }
 #lastline {
-}
-#lastline > input {
-  width: 423px;
-  border: none;
-  padding: 0;
-  margin-left: 7px;
+  input {
+    width: 423px;
+    border: none;
+    padding: 0;
+    margin-left: 7px;
 
-  /* add PT Mono */
-  font-family: 'DejaVu Sans Mono for Powerline', monospace;
-  font-size: 12px;
-}
-#lastline > input:focus {
-  outline: none;
-}
+    font-family: 'DejaVu Sans Mono for Powerline', monospace;
+    font-size: 12px;
 
+    &:focus {
+      outline: none;
+    }
+  }
+}
 
 /* Text coloring styles */
 #term {
-  background-color: #333;
-  color: #f1f2f0;
+  background-color: $term-offblack;
+  color: $term-offwhite;
 }
 #lastline > input {
-  background-color: #333;
-  color: #f1f2f0;
+  background-color: $term-offblack;
+  color: $term-offwhite;
 }
 
 #term .prompt_path {
-  color: #B7B7B7;
+  color: $shell-grey;
 }
 #term .prompt_arrow {
-  color: #B4E37D;
+  color: $shell-green;
 }
 
 #term span.directory {
-    color: #54FDE6;
+    color: $shell-blue;
 }
