@@ -15,6 +15,11 @@
   text-align: left;
   /*display: none; TODO: otherwise the margin pushes term down even when not on about,
   but this makes the height calcs in toggleAbout fail */ }
+  .loaded#about_content, .loaded#visual_content {
+    opacity: 1;
+    margin-top: 25px;
+    /* account for footer height */
+    margin-bottom: 100px; }
 
 /* Containers and "body" - structural stuff */
 body, html {
@@ -90,9 +95,8 @@ a {
   color: inherit;
   transition: all 0.2s ease;
   font-weight: 600; }
-
-a:hover {
-  color: black; }
+  a:hover {
+    color: black; }
 
 h1, h2, h3 {
   /*font-family: 'Avenir Next';*/
@@ -102,22 +106,18 @@ h1, h2, h3 {
   font-family: 'PF DinText Pro';
   font-family: 'Maax';*/
   font-weight: 500; }
-
-h1 > a, h2 > a, h3 > a {
-  font-weight: 700; }
+  h1 a, h2 a, h3 a {
+    font-weight: 700; }
 
 p {
   line-height: 1.5; }
 
 /* The meat */
-#about_content.loaded {
+#about_content.loaded #recent_code_link > pre {
   opacity: 1;
-  margin-top: 25px;
-  margin-bottom: 0;
-  /* js max-height setting */
-  /*display: block;*/ }
+  /* js max-height setting */ }
 
-#about_content > a {
+#about_content a {
   text-decoration: none; }
 
 #recent_code {
@@ -126,37 +126,24 @@ p {
 
 #recent_code_link {
   display: block;
-  /* account for footer height */
-  margin-bottom: 100px;
   border: none; }
-
-#recent_code_link:hover {
-  display: block;
-  margin-bottom: 100px;
-  background: initial; }
-
-#recent_code_link > pre {
-  max-height: 0;
-  transition: opacity 0.6s ease-out;
-  opacity: 0;
-  overflow: hidden;
-  /*background: #2d2d2d;*/ }
-
-#recent_code_link > pre:hover {
-  /*background: #2d2d2d;*/ }
-
-#recent_code_link > pre > code {
-  /*background: #2d2d2d;*/
-  background-color: initial; }
-
-#about_content.loaded > #recent_code_link > pre {
-  opacity: 1;
-  /* js max-height setting */ }
-
-code {
-  text-align: left;
-  font-size: 11px;
-  overflow: scroll; }
+  #recent_code_link:hover {
+    display: block;
+    background: initial; }
+  #recent_code_link pre {
+    max-height: 0;
+    transition: opacity 0.6s ease-out;
+    opacity: 0;
+    overflow: hidden;
+    /*background: #2d2d2d;*/ }
+    #recent_code_link pre:hover {
+      /*background: #2d2d2d;*/ }
+    #recent_code_link pre code {
+      /*background: #2d2d2d;*/
+      background-color: initial;
+      text-align: left;
+      font-size: 11px;
+      overflow: scroll; }
 
 #title {
   margin-bottom: 2px; }
@@ -197,19 +184,12 @@ a#berkeley:hover {
     #visual_content .visual-block p {
       margin-top: 0; }
     #visual_content .visual-block:nth-child(1) img {
-      background-image: url("i/guitar.png"); }
+      background-image: url("/i/guitar.png"); }
     #visual_content .visual-block:nth-child(2) img {
-      background-image: url("i/innod.jpg"); }
+      background-image: url("/i/innod.jpg"); }
     #visual_content .visual-block:nth-child(3) img {
-      background-image: url("i/logo.png"); }
+      background-image: url("/i/logo.png"); }
     #visual_content .visual-block:nth-child(4) img {
-      background-image: url("i/temp.png"); }
+      background-image: url("/i/temp.png"); }
     #visual_content .visual-block:nth-child(5) img {
-      background-image: url("i/insta.jpg"); }
-
-#visual_content.loaded {
-  opacity: 1;
-  margin-top: 25px;
-  margin-bottom: 100px; }
-
-/*# sourceMappingURL=kml_new.css.map */
+      background-image: url("/i/insta.jpg"); }
