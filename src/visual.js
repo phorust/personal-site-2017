@@ -34,6 +34,11 @@ $(document).ready(_ => {
   });
 
   $('#visual_content a').click(function() {
+    if (bgs[$(this).text()] == curImages) {
+      curImage = mod(curImage + 1, curImages.length);
+      changeBG(curImage);
+      return;
+    }
     curImages = bgs[$(this).text()] || bgs['photography'];
     curImage = 0;
     changeBG(0);
