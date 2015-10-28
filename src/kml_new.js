@@ -24,14 +24,16 @@ function showAbout() {
 }
 
 function showVisual() {
+  $('#content').css('min-height', $('#visual_content').innerHeight());
   $('#visual_content').fadeIn(1).addClass('loaded');
-  $('#content').css('min-height', $('#visual_content').height());
+  $('body').addClass('visual');
 }
 
 function hideVisual() {
   // sigh DRY. see hideAbout
   $('#visual_content').removeClass('loaded').delay(300).fadeOut(1);
-  $('body').animate({scrollTop: 0}, 300);
+  $('body').animate({scrollTop: 0}, 300)
+           .removeClass('visual');
 }
 
 $(document).ready(function() {

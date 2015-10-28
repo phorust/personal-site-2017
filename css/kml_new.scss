@@ -1,9 +1,12 @@
 $font-body : 'Avenir Next', 'Open Sans', sans-serif;
 $offwhite  : #fDfCf6;
 $offblack  : #454545;
+$lightgrey : #ddd;
 $grey      : #888;
 $darkgrey  : #333;
 $yellow    : #FFDE00;
+$fast      : 0.3s;
+$slow      : 0.6s;
 
 %content-section {
   position: absolute;
@@ -13,7 +16,7 @@ $yellow    : #FFDE00;
   margin-bottom: 25px;
   padding: 10px 20px;
   opacity: 0;
-  transition: all 0.3s ease-out;
+  transition: all $fast ease-out;
   margin: 0 auto;
   max-width: 500px;
   /* otherwise width 100% takes from padding box, not whole box */
@@ -56,10 +59,10 @@ body, html {
   transform: translateY(-50%);
 
   opacity: 0;
-  transition: opacity 0.6s ease-out,
-              padding 0.6s ease-out,
-              top 0.6s ease-out,
-              transform 0.6s ease-out;
+  transition: opacity $slow ease-out,
+              padding $slow ease-out,
+              top $slow ease-out,
+              transform $slow ease-out;
 
   text-align: center;
   &.loaded {
@@ -82,7 +85,7 @@ nav {
     li {
       display: inline-block;
       padding: 4px 8px;
-      transition: all 0.2s ease;
+      transition: all $fast ease;
       &:hover {
         color: $darkgrey;
       }
@@ -94,7 +97,7 @@ nav {
         border-radius: 5px;
         border: 2px solid $grey;
         content: '';
-        transition: all 0.2s ease;
+        transition: all $fast ease;
       }
       &:hover::before {
         background: $yellow;
@@ -123,7 +126,7 @@ nav {
 a {
   text-decoration: none;
   color: inherit;
-  transition: all 0.2s ease;
+  transition: all $fast ease;
   font-weight: 600;
   &:hover {
     color: black;
@@ -180,7 +183,7 @@ p {
 
   pre {
     max-height: 0;
-    transition: opacity 0.6s ease-out;
+    transition: opacity $slow ease-out;
     opacity: 0;
     overflow: hidden;
     /*background: #2d2d2d;*/
@@ -221,42 +224,69 @@ a#berkeley:hover {
 /* design section */
 #visual_content {
   @extend %content-section;
-  margin-top: 0;
-  max-width: 800px;
   text-align: center;
+  color: $offwhite;
+  line-height: 30px;
 
-  .visual-block {
-    display: inline-block;
-    width: 220px;
-    padding: 10px;
-    img {
-      width: 100%;
-      height: 140px;
-      box-sizing: border-box;
+  a {
+    text-transform: uppercase;
+    letter-spacing: 15px;
+  }
+}
 
-      background-size: cover;
-      background-position: center center;
-    }
-    h4 {
-      margin-bottom: 0;
-    }
-    p {
-      margin-top: 0;
-    }
-    &:nth-child(1) img {
-      background-image: url('/i/guitar.png');
-    }
-    &:nth-child(2) img {
-      background-image: url('/i/innod.jpg');
-    }
-    &:nth-child(3) img {
-      background-image: url('/i/logo.png');
-    }
-    &:nth-child(4) img {
-      background-image: url('/i/temp.png');
-    }
-    &:nth-child(5) img {
-      background-image: url('/i/insta.jpg');
+body.visual {
+  // background-size: cover;
+  // background-position: center center;
+  // background-attachment: fixed;
+  // background-image: url('/i/insta.jpg');
+  //
+  // transition: background 0.3s ease;
+
+  &.insta {
+    background-image: url('/i/insta.jpg');
+  }
+
+  nav {
+    // background-color: rgba(252, 251, 245, 0.4);
+    background-color: initial;
+    color: $offwhite;
+    ul {
+      li {
+        &:hover {
+          color: $lightgrey;
+        }
+
+        &::before {
+          border-color: $lightgrey;
+        }
+
+        &:hover::before {
+          border-color: $yellow;
+        }
+      }
     }
   }
+
+  #visual_bg {
+    opacity: 1;
+    background-position: center center;
+  }
+}
+
+#visual_bg {
+  /* transitioning background position lags... but i like it */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-image: url('/i/me.jpg');
+
+  opacity: 0;
+  -webkit-transition: opacity $fast ease,
+              background-image $fast ease;
+  transition: opacity $fast ease,
+              background-image $fast ease;
 }
