@@ -5,6 +5,8 @@
 
 var minimize   = modules.term.minimize;
 var unminimize = modules.term.unminimize;
+var activate   = modules.visual.activate;
+var deactivate   = modules.visual.deactivate;
 
 function hideAbout() {
   $('#about_content').removeClass('loaded').delay(300).fadeOut(1);
@@ -27,6 +29,9 @@ function showVisual() {
   $('#content').css('min-height', $('#visual_content').innerHeight());
   $('#visual_content').fadeIn(1).addClass('loaded');
   $('body').addClass('visual');
+  $('#logo').attr('src', 'i/kl_white.png');
+
+  activate();
 }
 
 function hideVisual() {
@@ -34,6 +39,9 @@ function hideVisual() {
   $('#visual_content').removeClass('loaded').delay(300).fadeOut(1);
   $('body').animate({scrollTop: 0}, 300)
            .removeClass('visual');
+  $('#logo').attr('src', 'i/kl.png');
+
+  deactivate();
 }
 
 $(document).ready(function() {

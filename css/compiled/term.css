@@ -171,10 +171,15 @@ a#berkeley:hover {
   line-height: 30px; }
   #visual_content a {
     text-transform: uppercase;
-    letter-spacing: 15px; }
-
-body.visual.insta {
-  background-image: url("/i/insta.jpg"); }
+    letter-spacing: 15px;
+    /* hack to get text-align center right */
+    padding-left: 15px;
+    transform: opacity 0.3s ease;
+    opacity: 0; }
+    #visual_content a.active {
+      opacity: 1; }
+  #visual_content:hover a {
+    opacity: 1; }
 
 body.visual nav {
   background-color: initial;
@@ -199,10 +204,10 @@ body.visual #visual_bg {
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
-  background-image: url("/i/me.jpg");
+  background-image: url("/i/photos/me.jpg");
   opacity: 0;
-  -webkit-transition: opacity 0.3s ease, background-image 0.3s ease;
-  transition: opacity 0.3s ease, background-image 0.3s ease; }
+  -webkit-transition: opacity 0.3s ease, background-image 1.6s ease;
+  transition: opacity 0.3s ease, background-image 1.6s ease; }
 
 #term {
   bottom: 0;

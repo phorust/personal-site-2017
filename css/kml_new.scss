@@ -7,6 +7,7 @@ $darkgrey  : #333;
 $yellow    : #FFDE00;
 $fast      : 0.3s;
 $slow      : 0.6s;
+$extraslow : 1.6s;
 
 %content-section {
   position: absolute;
@@ -231,6 +232,21 @@ a#berkeley:hover {
   a {
     text-transform: uppercase;
     letter-spacing: 15px;
+    /* hack to get text-align center right */
+    padding-left: 15px;
+
+    transform: opacity $fast ease;
+    opacity: 0;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    a {
+      opacity: 1;
+    }
   }
 }
 
@@ -241,10 +257,6 @@ body.visual {
   // background-image: url('/i/insta.jpg');
   //
   // transition: background 0.3s ease;
-
-  &.insta {
-    background-image: url('/i/insta.jpg');
-  }
 
   nav {
     // background-color: rgba(252, 251, 245, 0.4);
@@ -282,11 +294,11 @@ body.visual {
   background-size: cover;
   background-position: center center;
   background-attachment: fixed;
-  background-image: url('/i/me.jpg');
+  background-image: url('/i/photos/me.jpg');
 
   opacity: 0;
   -webkit-transition: opacity $fast ease,
-              background-image $fast ease;
+              background-image $extraslow ease;
   transition: opacity $fast ease,
-              background-image $fast ease;
+              background-image $extraslow ease;
 }
