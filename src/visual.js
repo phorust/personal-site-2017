@@ -2,45 +2,96 @@ var bgs = {
   'guitars': ['i/guitar.png'],
   'innovative design': ['i/innod.jpg'],
   'logos': ['i/logo.png'],
-  'photography': ['i/me.jpg', 'i/insta.jpg'],
-
+  'photography': ['i/photos/me.jpg',
+                  'i/photos/insta.jpg',
+                  'i/photos/bleachers.jpg',
+                  'i/photos/jellyfish.jpg',
+                  'i/photos/christine.jpg',
+                  'i/photos/twinpeaks.jpg',
+                  'i/photos/lancy.jpg',
+                  'i/photos/orange.jpg',
+                  'i/photos/bridge.jpg',
+                  'i/photos/wheeler.jpg']
 };
 var curImages = bgs['photography'];
 var curImage = 0;
+var intervalID;
+var transitioning = false;
+var callback = _ => {};
 
 function changeBG(i) {
-  console.log(curImages[i]);
   $('#visual_bg').css('background-image', `url(${curImages[i]})`);
+  transitioning = true;
+  setTimeout(_ => { transitioning = false; callback(); }, 1900);
 }
 
 function mod(n,m) {
   return ((n%m)+m)%m;
 }
 
-$(document).ready(_ => {
-  $(document).keydown(e => {
-    switch(e.which) {
-      case 37: // left
-        curImage = mod(curImage - 1, curImages.length);
-        changeBG(curImage);
-        break;
-      case 39: // right
-        curImage = mod(curImage + 1, curImages.length);
-        changeBG(curImage);
-        break;
-      default: return;
-    }
-    e.preventDefault();
-  });
+function next() {
+  if (transitioning) {
+    console.log('qd a next');
+    callback = _ => { console.log('next callback'); callback = _ => {}; next(); };
+    return;
+  }
+  curImage = mod(curImage + 1, curImages.length);
+  changeBG(curImage);
+  // reset fade timing
+  clearInterval(intervalID);
+  intervalID = setInterval(next, 6000);
+}
+function prev() {
+  if (transitioning) {
+    console.log('qd a prev');
+    callback = _ => { console.log('prev callback'); callback = _ => {}; prev(); };
+    return;
+  }
+  curImage = mod(curImage - 1, curImages.length);
+  changeBG(curImage);
+  // reset fade timing
+  clearInterval(intervalID);
+  intervalID = setInterval(next, 6000);
+}
 
+function activate() {
+  intervalID = setInterval(next, 6000);
+  $(document).keydown(keyHandler);
+}
+function deactivate() {
+  clearInterval(intervalID);
+  $(document).unbind('keydown', keyHandler);
+}
+
+function keyHandler(e) {
+  switch(e.which) {
+    case 37: // left
+      prev();
+      break;
+    case 39: // right
+      next();
+      break;
+    default: return;
+  }
+  e.preventDefault();
+}
+
+$(document).ready(_ => {
   $('#visual_content a').click(function() {
     if (bgs[$(this).text()] == curImages) {
-      curImage = mod(curImage + 1, curImages.length);
-      changeBG(curImage);
+      next();
       return;
     }
     curImages = bgs[$(this).text()] || bgs['photography'];
     curImage = 0;
     changeBG(0);
+
+    $('#visual_content a').removeClass('active');
+    $(this).addClass('active');
   });
+});
+
+module.exports('visual', {
+  activate,
+  deactivate,
 });
