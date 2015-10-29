@@ -302,3 +302,13 @@ body.visual {
   transition: opacity $fast ease,
               background-image $extraslow ease;
 }
+
+#banner {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  font-size:  12px;
+  text-align: center;
+  padding: 10px 20px;
+  opacity: 0.4;
+}

@@ -208,3 +208,12 @@ body.visual #visual_bg {
   opacity: 0;
   -webkit-transition: opacity 0.3s ease, background-image 1.6s ease;
   transition: opacity 0.3s ease, background-image 1.6s ease; }
+
+#banner {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  padding: 10px 20px;
+  opacity: 0.4; }
