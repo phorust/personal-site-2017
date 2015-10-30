@@ -76,6 +76,11 @@ function keyHandler(e) {
   e.preventDefault();
 }
 
+function preloadImage(url)
+{
+  (new Image()).src = url;
+}
+
 $(document).ready(_ => {
   $('#visual_content a').click(function() {
     if (bgs[$(this).text()] == curImages) {
@@ -89,6 +94,12 @@ $(document).ready(_ => {
     $('#visual_content a').removeClass('active');
     $(this).addClass('active');
   });
+
+  for (var key in bgs) {
+    for (var url of bgs[key]) {
+      preloadImage(url);
+    }
+  }
 });
 
 module.exports('visual', {
