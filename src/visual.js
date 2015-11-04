@@ -3,15 +3,15 @@ var bgs = {
   'innovative design': ['i/innod.jpg'],
   'logos': ['i/logo.png'],
   'photography': ['i/photos/me.jpg',
-                  'i/photos/insta.jpg',
+                  'i/photos/allen.jpg',
                   'i/photos/bleachers.jpg',
                   'i/photos/jellyfish.jpg',
-                  'i/photos/christine.jpg',
-                  'i/photos/twinpeaks.jpg',
+                  // 'i/photos/christine.jpg',
+                  // 'i/photos/twinpeaks.jpg',
                   'i/photos/lancy.jpg',
-                  'i/photos/orange.jpg',
-                  'i/photos/bridge.jpg',
-                  'i/photos/wheeler.jpg']
+                  'i/photos/orange.jpg']
+                  // 'i/photos/bridge.jpg',
+                  // 'i/photos/wheeler.jpg']
 };
 var curImages = bgs['photography'];
 var curImage = 0;

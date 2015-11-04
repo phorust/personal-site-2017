@@ -1,4 +1,3 @@
-@import 'kml_new';
 $term-offwhite : #f1f2f0;
 $term-offblack : #333;
 $term-red      : #F16061;
@@ -8,17 +7,13 @@ $shell-grey    : #B7B7B7;
 $shell-green   : #B4E37D;
 $shell-blue    : #54FDE6;
 
-#term {
+#term_content {
   @extend %content-section;
   bottom: 0;
   height: 244px;
   padding: initial;
   margin-bottom: 15px;
 
-  font-family: 'DejaVu Sans Mono for Powerline', monospace;
-  font-size: 12px;
-  border-radius: 10px;
-  border-top: 22px solid $term-offwhite;
   &.loaded {
     opacity: 1;
     margin-top: 15px;
@@ -26,10 +21,17 @@ $shell-blue    : #54FDE6;
   }
 }
 
+#term {
+  font-family: 'DejaVu Sans Mono for Powerline', monospace;
+  font-size: 12px;
+  border-radius: 10px;
+  border-top: 22px solid $term-offwhite;
+}
+
 #appbar {
   text-align: left;
   position: absolute;
-  top: -22px;
+  top: 1px;
   z-index: 1;
   width: 100%;
   padding-left: 4px;
@@ -59,7 +61,7 @@ $shell-blue    : #54FDE6;
     background-color: $term-green;
   }
 }
-#term.loaded #appbar {
+#term_content.loaded #term #appbar {
   display: block;
 }
 
@@ -69,7 +71,7 @@ $shell-blue    : #54FDE6;
 
   display: none;
 }
-#term.loaded #output {
+#term_content.loaded #term #output {
   height: 234px;
   padding: 4px;
   display: block;
