@@ -1,0 +1,81 @@
+/* design section */
+#visual_content {
+  @extend %content-section;
+
+  text-align: center;
+  color: $offwhite;
+  line-height: 30px;
+
+  a {
+    text-transform: uppercase;
+    letter-spacing: 15px;
+    /* hack to get text-align center right */
+    padding-left: 15px;
+
+    transition: opacity $fast ease;
+    opacity: 0.3;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  &:hover {
+    a {
+      opacity: 1;
+    }
+  }
+}
+
+body.visual {
+  // background-size: cover;
+  // background-position: center center;
+  // background-attachment: fixed;
+  // background-image: url('/i/insta.jpg');
+  //
+  // transition: background 0.3s ease;
+
+  nav {
+    // background-color: rgba(252, 251, 245, 0.4);
+    background-color: initial;
+    color: $offwhite;
+    ul {
+      li {
+        &:hover {
+          color: $lightgrey;
+        }
+
+        &::before {
+          border-color: $lightgrey;
+        }
+
+        &:hover::before {
+          border-color: $yellow;
+        }
+      }
+    }
+  }
+
+  #visual_bg {
+    opacity: 1;
+    background-position: center center;
+  }
+}
+
+#visual_bg {
+  /* transitioning background position lags... but i like it */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-image: url('/i/photos/me.jpg');
+
+  opacity: 0;
+  -webkit-transition: opacity $fast ease,
+              background-image $extraslow ease;
+  transition: opacity $fast ease,
+              background-image $extraslow ease;
+}
