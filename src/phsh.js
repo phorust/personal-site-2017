@@ -379,12 +379,11 @@ function ls(argv) {
       print(`${token}:`, false, true);
     }
     for (var filename of Object.keys(files).sort()) {
-      var markup = `<span class='${files[filename].getCSSClass()}'>${filename}</span>`;
-      if (files[filename] instanceof Directory) {
-
-      } else if (files[filename] instanceof Link) {
-
+      var innermarkup = filename;
+      if (files[filename] instanceof Link) {
+        innermarkup = `<a target="_blank" href="${files[filename].link}">${filename}</a>`;
       }
+      var markup = `<span class='${files[filename].getCSSClass()}'>${innermarkup}</span>`;
       toPrint.push({ text: filename,
                      markup });
     }

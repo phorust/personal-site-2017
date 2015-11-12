@@ -79,6 +79,15 @@ $shell-blue    : #54FDE6;
 
 #textarea {
   white-space: pre;
+
+  .link a {
+    // text-decoration: underline;
+    border-bottom: 1px solid $offwhite;
+
+    &:hover {
+      border-bottom: 1px solid black;
+    }
+  }
 }
 #lastline {
   input {
@@ -102,7 +111,7 @@ $shell-blue    : #54FDE6;
   color: $term-offwhite;
 }
 #lastline > input {
-  background-color: $term-offblack;
+  background-color: rgba(0,0,0,0);
   color: $term-offwhite;
 }
 

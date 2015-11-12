@@ -82,10 +82,18 @@ class Executable extends File {
 }
 
 /**
- * The same as a File, but contents is valid javascript code that can be
- * eval()'d
+ * The same as a File, but also has an <a> tag
  */
 class Link extends Executable {
+  constructor(name: string,
+              parentdir: Directory,
+              contents: string,
+              link: string) {
+    super(name, parentdir);
+    this.contents = contents;
+    this.link = link;
+  }
+
   // Override
   getCSSClass() {
     return 'link';
@@ -136,11 +144,26 @@ fsroot_Users_phorust.addChildren(
   [
     new File('about', fsroot_Users_phorust, ''),
     new Directory('projects', fsroot_Users_phorust,
-      { 'SummonerSync': new File('SummonerSync', null, 'e'),
-        'phorust.github.io': new File('phorust.github.io', null, 'd'),
-        'colorrange': new File('colorrange', null, 'c'),
-        'SimpleSlide': new File('SimpleSlide', null, 'b'),
-        'battery': new File('battery', null, 'a') }
+      { 'SummonerSync': new Link('SummonerSync',
+                                 null,
+                                 'League of Legends stats for reading on the load screen',
+                                 'http://summonersync.com'),
+        'phorust.github.io': new Link('phorust.github.io',
+                                      null,
+                                      'My personal website',
+                                      'http://kevinmlee.io'),
+        'colorrange': new Link('colorrange',
+                               null,
+                               'A discrete gradient generator',
+                               'http://kevinmlee.io/colorrange'),
+        'SimpleSlide': new Link('SimpleSlide',
+                                null,
+                                'A markdown inspired slideshow language',
+                                'http://kevinmlee.io/SimpleSlide/'),
+        'battery': new Link('battery',
+                             null,
+                             'a terminal battery widget',
+                             'https://github.com/phorust/battery') }
     ),
     new File('help', fsroot_Users_phorust,
              'Welcome to phsh. Try all of your favorite shell commands!'),

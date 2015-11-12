@@ -232,6 +232,10 @@ a#berkeley:hover {
 
 #textarea {
   white-space: pre; }
+  #textarea .link a {
+    border-bottom: 1px solid #fDfCf6; }
+    #textarea .link a:hover {
+      border-bottom: 1px solid black; }
 
 #lastline input {
   width: 423px;
@@ -249,7 +253,7 @@ a#berkeley:hover {
   color: #f1f2f0; }
 
 #lastline > input {
-  background-color: #333;
+  background-color: transparent;
   color: #f1f2f0; }
 
 #term .prompt_path {
