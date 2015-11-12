@@ -275,6 +275,14 @@ a#berkeley:hover {
     opacity: 0.3; }
     #visual_content a.active {
       opacity: 1; }
+      #visual_content a.active::before {
+        content: "<";
+        position: absolute;
+        left: 20px; }
+      #visual_content a.active::after {
+        content: ">";
+        position: absolute;
+        right: 20px; }
   #visual_content:hover a {
     opacity: 1; }
 
