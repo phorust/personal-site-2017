@@ -15,11 +15,17 @@ function toggleMinimize() {
 }
 
 $(document).ready(_ => {
-  $('#minimize').click(function(e) {
+  $('#minimize').click(e => {
     minimize();
+    // should we show the about section?
+    // or minimize to the bar or an icon?
   });
-  $('#output').click(function(e) {
+  $('#output').click(e => {
     $('#lastline > input').focus();
+  });
+  $('#term-project-link').click(e => {
+    $('#lastline > input').val('ls ~/projects');
+    // TODO: send enter key press
   });
 });
 
