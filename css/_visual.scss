@@ -17,6 +17,17 @@
 
     &.active {
       opacity: 1;
+
+      &::before  {
+        content: "<";
+        position: absolute;
+        left: 20px;
+      }
+      &::after {
+        content: ">";
+        position: absolute;
+        right: 20px;
+      }
     }
   }
 

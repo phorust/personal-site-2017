@@ -95,6 +95,11 @@ $(document).ready(_ => {
     $(this).addClass('active');
   });
 
+  $('#visual_content a.active::before').click(_ => {
+    console.log('hi');
+    prev();
+  });
+
   for (var key in bgs) {
     for (var url of bgs[key]) {
       preloadImage(url);
