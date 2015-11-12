@@ -27,7 +27,7 @@ function print(s: string, noNewline?: boolean, noPrompt?: boolean) {
   noNewline || $('#textarea').append(s + '<br>');
 }
 
-function printf(tokens: Array<Object>, columns?: number) {
+function printf(tokens: Array<Object>, columns?: number, noPrompt?: boolean) {
   var maxTokenLen = 0;
   var columnWidth;
   var columnsPerRow;
@@ -41,7 +41,7 @@ function printf(tokens: Array<Object>, columns?: number) {
   columns || (columns = columnsPerRow);
 
   var toPrint = '';
-  printOldPrompt();
+  noPrompt || printOldPrompt();
 
   for (var i = 0; i < tokens.length; i++) {
     var withPadding = tokens[i].markup;
@@ -89,8 +89,8 @@ function printOldPrompt() {
 }
 
 function processInput() {
-  var input = $('#lastline > input').val();
-  var tokens = input.split(' '); // other whitespace?
+  var input  = $('#lastline > input').val();
+  var tokens = input.split(' ').filter(s => { return s !== ""; }); // other whitespace?
 
   if (input !== '') {
     switch (tokens[0]) {
@@ -186,6 +186,12 @@ function suggestCommand() {
   // TODO
 }
 
+/**
+ * If your command has to do with the filesystem, which it probably does,
+ * it shouldn't look for files from argv on its own, but instead use this.
+ *
+ * If any of the callbacks return false, processing of tokens ceases.
+ */
 function tokensToFileSysObjs(tokens               : Array<string>,
                              fileCallback         : Function,
                              notFileCallback      : Function,
@@ -221,6 +227,10 @@ function tokensToFileSysObjs(tokens               : Array<string>,
     } else if (files[token]) {
       // Local path
       if (!_fileFound(files[token])) { return; }
+    } else if (token === '.') {
+      if (!dirCallback(cwd, token)) { return; }
+    } else if (token === '..') {
+      if (!dirCallback(cwd.parentdir || cwd, token)) { return; }
     } else {
       if (!doesNotExistCallback(files[token], token)) { return; }
     }
@@ -297,12 +307,16 @@ function cd(argv) {
     return print(`cd: no such file or directory: ${token}`);
   }
   var _cd_not_dir = _cd_file;
-  tokensToFileSysObjs(argv.slice(1, 2),
-                      _cd_file,
-                      _=>{},
-                      _cd_dir,
-                      _cd_not_dir,
-                      _cd_dne);
+  if (argv.length === 1) {
+    _cd_dir(fshome, '');
+  } else {
+    tokensToFileSysObjs(argv.slice(1, 2),
+                        _cd_file,
+                        _=>{},
+                        _cd_dir,
+                        _cd_not_dir,
+                        _cd_dne);
+  }
 }
 
 function clear(argv) {
@@ -351,23 +365,56 @@ function exit(argv) {
 }
 
 function ls(argv) {
-  var files = cwd.list();
-  var toPrint = [];
-  if (argv[1] == '-l') {
-    // TODO
-  }
-
-  for (var filename of Object.keys(files).sort()) {
-    var markup = `<span class='${files[filename].getCSSClass()}'>${filename}</span>`;
-    if (files[filename] instanceof Directory) {
-
-    } else if (files[filename] instanceof Link) {
-
+  var _ls_file = (fsobj: FileSysObj, token: string) => {
+    print(`${token}`, false, true);
+    if (argv.length > 2) {
+      print('', false, true);
     }
-    toPrint.push({ text: filename,
-                   markup });
+    return true;
   }
-  printf(toPrint, null);
+  var _ls_dir = (dir: Directory, token: string) => {
+    var files = dir.list();
+    var toPrint = [];
+    if (argv.length > 2) {
+      print(`${token}:`, false, true);
+    }
+    for (var filename of Object.keys(files).sort()) {
+      var markup = `<span class='${files[filename].getCSSClass()}'>${filename}</span>`;
+      if (files[filename] instanceof Directory) {
+
+      } else if (files[filename] instanceof Link) {
+
+      }
+      toPrint.push({ text: filename,
+                     markup });
+    }
+    printf(toPrint, false, true);
+    if (argv.length > 2) {
+      print('', false, true);
+    }
+    return true;
+  }
+  var _ls_dne = (fsobj: FileSysObj, token: string) => {
+    print(`ls: ${token}: No such file or directory`, false, true);
+    if (argv.length > 2) {
+      print('', false, true);
+    }
+    return true;
+  }
+
+  if (argv.length === 1) {
+    // get prompt w/o newline
+    print('', true);
+    _ls_dir(cwd, '');
+  } else {
+    print('', true);
+    tokensToFileSysObjs(argv.slice(1, argv.length),
+                        _ls_file,
+                        _=>{return true;},
+                        _ls_dir,
+                        _=>{return true;},
+                        _ls_dne);
+  }
 }
 
 function node() {
