@@ -25,7 +25,9 @@ $(document).ready(_ => {
   });
   $('#term-project-link').click(e => {
     $('#lastline > input').val('ls ~/projects');
-    // TODO: send enter key press
+    $('#lastline > input').focus();
+    // send enter
+    $('#lastline > input').trigger(jQuery.Event('keyup', { which: 13, keyCode: 13 }));
   });
 });
 
