@@ -138,7 +138,7 @@ function processInput() {
         print('who');
         break;
       case 'whoami':
-        print('whoami');
+        print('phorust');
         break;
       case 'where':
         print('test4');
@@ -158,6 +158,7 @@ function processInput() {
   }
 }
 
+// TODO: wtf this looks great why is it not being used
 function processFlags(tokens, flags) {
   // O(nm) where n is num flags and m is sum lengths of tokens
   var found = new Set();
