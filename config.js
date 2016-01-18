@@ -1,5 +1,5 @@
 export default {
-  title: "Kevin Lee's personal website",
-  description: "Uses @koistya's react static site boilerplate",
+  title: "Kevin Lee",
+  description: "Kevin Lee's personal website",
   googleAnalyticsId: 'UA-XXXXX-X',
 };

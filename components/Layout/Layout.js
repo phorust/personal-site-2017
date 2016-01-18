@@ -12,7 +12,15 @@ function Layout({ children }) {
   return (
     <div className="Layout">
       <Navigation />
+      <div id="nameplate">
+        <img id='logo' src='i/kl.png' width='75px' />
+      </div>
+      <div id='visual_bg'></div>
       {children}
+      <div id='banner'>
+        Site still under construction! Check out progress
+        { } <a target="_blank" href='http://github.com/phorust/phorust.github.io'>here.</a>
+      </div>
     </div>
   );
 }
