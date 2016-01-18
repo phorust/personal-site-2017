@@ -1,32 +1,38 @@
-/**
- * React Static Boilerplate
- * https://github.com/koistya/react-static-boilerplate
- * Copyright (c) Konstantin Tarkus (@koistya) | MIT license
- */
+@import '../styleguide.scss';
 
-@import '../variables.scss';
-
-.Navigation {
-  display: flex;
-  flex-direction: row;
-  margin: 2em 0 5em 0;
-  list-style: none;
-  justify-content: flex-end;
-}
-
-.Navigation-item {
-  padding: 0 2em;
-}
-
-.Navigation-link {
-  padding: 0.5em 1em;
-  color: $brand-color;
-  text-decoration: none;
-  text-transform: uppercase;
-  cursor: pointer;
-
-  &:hover {
-    border-bottom: 3px solid $brand-color;
-    color: $text-color;
+nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 11px;
+  font-weight: bold;
+  color: $grey;
+  background-color: $offwhite;
+  ul {
+    list-style: none;
+    padding-left: inherit;
+    li {
+      display: inline-block;
+      padding: 4px 8px;
+      transition: all $fast ease;
+      &:hover {
+        color: $darkgrey;
+      }
+      &::before {
+        display: block;
+        width: 5px;
+        height: 5px;
+        margin: 8px auto;
+        border-radius: 5px;
+        border: 2px solid $grey;
+        content: '';
+        transition: all $fast ease;
+      }
+      &:hover::before {
+        background: $yellow;
+        border-color: $yellow;
+      }
+    }
   }
 }

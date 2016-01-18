@@ -1,0 +1,67 @@
+@import './styleguide.scss';
+
+#about_content {
+  @extend %content-section;
+  &.loaded {
+    #recent_code_link > pre {
+      opacity: 1;
+      /* js max-height setting */
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+#recent_code {
+  /* otherwise lines show between highlighting on nonretina */
+  line-height: 1.1em;
+}
+#recent_code_link {
+  display: block;
+  border: none;
+  &:hover {
+    display: block;
+    background: initial;
+  }
+
+  pre {
+    max-height: 0;
+    transition: opacity $slow ease-out;
+    opacity: 0;
+    overflow: hidden;
+    /*background: #2d2d2d;*/
+    &:hover {
+      /*background: #2d2d2d;*/
+    }
+
+    code {
+      /*background: #2d2d2d;*/
+      background-color: initial;
+      text-align: left;
+      font-size: 11px;
+      overflow: scroll;
+    }
+  }
+}
+
+#title {
+  margin-bottom: 2px;
+}
+#subtitle {
+  margin-top: 0;
+}
+/* Below... Maybe the default color is nicer. */
+a#facebook:hover {
+  color: #3b5999;
+  background-color: initial;
+}
+a#bigfix:hover {
+  color: #ABC450;
+  background-color: initial;
+}
+a#berkeley:hover {
+  color: #3B7EA1;
+  background-color: initial;
+}

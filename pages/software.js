@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../components/term.scss';
 
 export default class extends Component {
 
