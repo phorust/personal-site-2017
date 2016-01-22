@@ -62,8 +62,13 @@ function highlight(code, url, lang) {
     }
   }
 
-  // maybe not the best but
-  showAbout();
+  // after the code is loaded we have to reshow about to account for the longer
+  // about section
+  if (window.location.pathname === "/about" ||
+      window.location.pathname === "/about.html" ||
+      window.location.pathname === "/") {
+    showAbout();
+  }
 }
 
 function getInterestingBlockFromPatch(patch) {

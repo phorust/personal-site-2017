@@ -1,6 +1,7 @@
 var gulp        = require('gulp');
 var browserSync = require('browser-sync').create();
 var sass        = require('gulp-sass');
+var rename      = require('gulp-rename');
 
 gulp.task('sass', _ => {
   return gulp.src('./css/**/*.scss')
@@ -24,6 +25,15 @@ gulp.task('serve', ['sass'], _ => {
 
     gulp.watch("./css/**/*.scss", ['sass']);
     gulp.watch("./*.html").on('change', browserSync.reload);
+});
+
+gulp.task('build', _ => {
+  return gulp.src('index.html')
+             .pipe(rename('software.html'))
+             .pipe(gulp.dest('./'))
+             .pipe(rename('visual.html'))
+             .pipe(gulp.dest('./'));
+            //  .pipe(rename('blog.html'))
 });
 
 gulp.task('watch', _ => {
