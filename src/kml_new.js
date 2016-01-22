@@ -12,6 +12,7 @@ var history  = window.History.createHistory();
 var unlisten = _=>{};
 
 function handleNav(pathname) {
+  console.log('nav');
   if (pathname === "/visual" ||
       pathname === "/visual.html") {
     navVisual();
@@ -105,7 +106,6 @@ $(document).ready(function() {
   });
 
   // load the right view on pageload
-  handleNav(window.location.pathname);
   var unlisten = history.listen(location => {
     handleNav(location.pathname);
   });

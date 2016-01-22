@@ -2,63 +2,97 @@ var bgs = {
   'guitars': ['i/guitar.png'],
   'innovative design': ['i/innod.jpg'],
   'logos': ['i/logo.png'],
-  'photography': ['i/photos/allen.jpg',
+  'photography': ['i/photos/chicago.jpg',
+                  'i/photos/pam.jpg',
+                  'i/photos/green.jpg',
+                  'i/photos/christine.jpg',
+                  'i/photos/white.jpg',
                   'i/photos/jellyfish.jpg',
                   'i/photos/bleachers.jpg',
-                  'i/photos/me.jpg',
-                  // 'i/photos/christine.jpg',
-                  // 'i/photos/twinpeaks.jpg',
-                  'i/photos/lancy.jpg',
+                  'i/photos/allen.jpg',
+                  'i/photos/red.jpg',
+                  'i/photos/seattle.jpg',
                   'i/photos/orange.jpg']
-                  // 'i/photos/bridge.jpg',
-                  // 'i/photos/wheeler.jpg']
 };
 var curImages = bgs['photography'];
 var curImage = 0;
 var intervalID;
-var transitioning = false;
-var callback = _ => {};
+var TRANSTIME = 1200 + 100;
+var state = 'still';
+// false for no key pressed during trans, 1 for next, -1 for prev
+var keyWasPressed = false;
+var changeWasRequested = false;
+
+function stateChange(action, dist) {
+  if (state === 'still') {
+    if (action === 'key' || action === 'change') {
+      // reset fade timing
+      clearInterval(intervalID);
+      intervalID = setInterval(timeNext, 6000);
+    }
+    state = 'trans';
+    setTimeout(_=>{ stateChange('time') }, TRANSTIME);
+    changeBG(mod(curImage + (dist || 1), curImages.length));
+  } else if (state === 'trans') {
+    if (action === 'time') {
+      if (keyWasPressed) {
+        clearInterval(intervalID);
+        intervalID = setInterval(timeNext, 6000);
+        state = 'trans';
+        setTimeout(_=>{ stateChange('time') }, TRANSTIME);
+        changeBG(mod(curImage + keyWasPressed, curImages.length));
+        keyWasPressed = false;
+      } else if (changeWasRequested) {
+        clearInterval(intervalID);
+        intervalID = setInterval(timeNext, 6000);
+        state = 'trans';
+        setTimeout(_=>{ stateChange('time') }, TRANSTIME);
+        changeBG(mod(curImage + 1, curImages.length));
+        changeWasRequested = false;
+      } else {
+        state = 'still';
+      }
+    } else if (action === 'key') {
+      keyWasPressed = dist || 1;
+    } else if (action === 'change') {
+      changeWasRequested = true;
+    }
+  }
+}
 
 function changeBG(i) {
   $('#visual_bg').css('background-image', `url(${curImages[i]})`);
-  transitioning = true;
-  setTimeout(_ => { transitioning = false; callback(); }, 1900);
+  curImage = i;
 }
 
 function mod(n,m) {
   return ((n%m)+m)%m;
 }
 
-function next() {
-  if (transitioning) {
-    console.log('qd a next');
-    callback = _ => { console.log('next callback'); callback = _ => {}; next(); };
-    return;
-  }
-  curImage = mod(curImage + 1, curImages.length);
-  changeBG(curImage);
-  // reset fade timing
-  clearInterval(intervalID);
-  intervalID = setInterval(next, 6000);
+function timeNext() {
+  stateChange('time');
 }
-function prev() {
-  if (transitioning) {
-    console.log('qd a prev');
-    callback = _ => { console.log('prev callback'); callback = _ => {}; prev(); };
-    return;
-  }
-  curImage = mod(curImage - 1, curImages.length);
-  changeBG(curImage);
-  // reset fade timing
-  clearInterval(intervalID);
-  intervalID = setInterval(next, 6000);
+function keyNext() {
+  stateChange('key');
+}
+function keyPrev() {
+  // jank, i should encapsulate in action obj
+  stateChange('key', -1);
+}
+function clickNext() {
+  keyNext();
+}
+function clickPrev() {
+  keyPrev();
 }
 
 function activate() {
-  intervalID = setInterval(next, 6000);
+  console.log('activate');
+  intervalID = setInterval(timeNext, 6000);
   $(document).keydown(keyHandler);
 }
 function deactivate() {
+  console.log('deactivate');
   clearInterval(intervalID);
   $(document).unbind('keydown', keyHandler);
 }
@@ -66,10 +100,10 @@ function deactivate() {
 function keyHandler(e) {
   switch(e.which) {
     case 37: // left
-      prev();
+      keyPrev();
       break;
     case 39: // right
-      next();
+      keyNext();
       break;
     default: return;
   }
@@ -84,20 +118,19 @@ function preloadImage(url)
 $(document).ready(_ => {
   $('#visual_content a').click(function() {
     if (bgs[$(this).text()] == curImages) {
-      next();
+      clickNext();
       return;
     }
     curImages = bgs[$(this).text()] || bgs['photography'];
-    curImage = 0;
-    changeBG(0);
-
+    curImage = -1;
     $('#visual_content a').removeClass('active');
     $(this).addClass('active');
+    stateChange('change');
   });
 
   $('#visual_content a.active::before').click(_ => {
-    console.log('hi');
-    prev();
+    // this doesn't work I think
+    clickPrev();
   });
 
   for (var key in bgs) {
