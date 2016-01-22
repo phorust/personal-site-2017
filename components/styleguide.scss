@@ -46,31 +46,3 @@ h1, h2, h3 {
 p {
   line-height: 1.5;
 }
-
-/* Layout stuff ... feels like this doesn't belong here */
-%content-section {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin-bottom: 25px;
-  padding: 10px 20px;
-  opacity: 0;
-  transition: all $fast ease-out;
-  margin: 0 auto;
-  max-width: 500px;
-  /* otherwise width 100% takes from padding box, not whole box */
-  box-sizing: border-box;
-
-  font-size: 14px;
-  text-align: left;
-  /*display: none; TODO: otherwise the margin pushes term down even when not on about,
-  but this makes the height calcs in toggleAbout fail */
-
-  &.loaded {
-    opacity: 1;
-    margin-top: 25px;
-    /* account for footer height */
-    margin-bottom: 100px;
-  }
-}

@@ -5,6 +5,7 @@
  */
 
 import React, { PropTypes } from 'react';
+import TransitionGroup from 'react/lib/ReactCSSTransitionGroup';
 import './Layout.scss';
 import Navigation from '../Navigation';
 
@@ -13,10 +14,14 @@ function Layout({ children }) {
     <div className="Layout">
       <div id='visual_bg'></div>
       <Navigation />
-      <div id="nameplate">
+      <div id="wrapper">
         <img id='logo' src='i/kl.png' width='75px' />
+        <TransitionGroup transitionName="contentfade"
+                         transitionEnterTimeout={500}
+                         transitionLeaveTimeout={500}>
+          {children}
+        </TransitionGroup>
       </div>
-      {children}
       <div id='banner'>
         Site still under construction! Check out progress
         { } <a target="_blank" href='http://github.com/phorust/phorust.github.io'>here.</a>

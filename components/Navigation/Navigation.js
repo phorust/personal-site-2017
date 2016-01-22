@@ -6,10 +6,10 @@ function Navigation() {
   return (
     <nav>
       <ul role="menu">
-        <li><a className='about' href='/about' onClick={Link.handleClick}>A B O U T</a></li>
-        <li><a className='software' href='/software' onClick={Link.handleClick}>C O D E</a></li>
-        <li><a className='visual' href='/visual' onClick={Link.handleClick}>V I S U A L</a></li>
-        <li><a className='blog' href='/blog' onClick={Link.handleClick}>B L O G</a></li>
+        <a className='about' href='/about' onClick={Link.handleClick}><li>A B O U T</li></a>
+        <a className='software' href='/software' onClick={Link.handleClick}><li>C O D E</li></a>
+        <a className='visual' href='/visual' onClick={Link.handleClick}><li>V I S U A L</li></a>
+        <a className='blog' href='/blog' onClick={Link.handleClick}><li>B L O G</li></a>
       </ul>
     </nav>
 

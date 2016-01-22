@@ -17,21 +17,16 @@ body, html {
   background-color: $offwhite;
 }
 
-#nameplate {
+#wrapper {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
 
-  opacity: 0;
-  transition: opacity $slow ease-out,
-              padding $slow ease-out,
-              top $slow ease-out,
-              transform $slow ease-out;
-
+  // transition: opacity $slow ease-out,
+  //             padding $slow ease-out,
+  //             top $slow ease-out,
+  //             transform $slow ease-out;
   text-align: center;
-  &.loaded {
-    opacity: 1;
-  }
 
   #logo {
     margin-top: 4px;
