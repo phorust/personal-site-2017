@@ -6,7 +6,40 @@
 var minimize   = modules.term.minimize;
 var unminimize = modules.term.unminimize;
 var activate   = modules.visual.activate;
-var deactivate   = modules.visual.deactivate;
+var deactivate = modules.visual.deactivate;
+
+var history  = window.History.createHistory();
+var unlisten = _=>{};
+
+function handleNav(pathname) {
+  if (pathname === "/visual" ||
+      pathname === "/visual.html") {
+    navVisual();
+  } else if (pathname === "/software" ||
+             pathname === "/software.html") {
+    navSoftware();
+  } else if (pathname === "/about" ||
+             pathname === "/about.html" ||
+             pathname === "/") {
+    navAbout();
+  }
+}
+
+function navAbout() {
+  minimize();
+  hideVisual();
+  showAbout();
+}
+function navSoftware() {
+  hideVisual();
+  hideAbout();
+  unminimize();
+}
+function navVisual() {
+  minimize();
+  hideAbout();
+  showVisual();
+}
 
 function hideAbout() {
   $('#about_content').removeClass('loaded').delay(300).fadeOut(1);
@@ -46,23 +79,19 @@ function hideVisual() {
 
 $(document).ready(function() {
   $('#wrapper').addClass('loaded');
-  showAbout();
 
   /* attr selectors for href? */
   $('.software').click(e => {
-    hideVisual();
-    hideAbout();
-    unminimize();
+    navSoftware();
+    history.push({ pathname: '/software' });
   });
   $('.about').click(e => {
-    minimize();
-    hideVisual();
-    showAbout();
+    navAbout();
+    history.push({ pathname: '/' });
   });
   $('.visual').click(e => {
-    minimize();
-    hideAbout();
-    showVisual();
+    navVisual();
+    history.push({ pathname: '/visual' });
   });
   $('nav a').click(e => {
     e.preventDefault();
@@ -73,6 +102,12 @@ $(document).ready(function() {
 
   $('#recent_code_show').click(e => {
     $('#recent_code').toggleClass('active');
+  });
+
+  // load the right view on pageload
+  handleNav(window.location.pathname);
+  var unlisten = history.listen(location => {
+    handleNav(location.pathname);
   });
 });
 
