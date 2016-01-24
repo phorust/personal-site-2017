@@ -1,18 +1,18 @@
 var bgs = {
-  'guitars': ['i/guitar.png'],
-  'innovative design': ['i/innod.jpg'],
-  'logos': ['i/logo.png'],
-  'photography': ['i/photos/chicago.jpg',
-                  'i/photos/pam.jpg',
-                  'i/photos/green.jpg',
-                  'i/photos/christine.jpg',
-                  'i/photos/white.jpg',
-                  'i/photos/jellyfish.jpg',
-                  'i/photos/bleachers.jpg',
-                  'i/photos/allen.jpg',
-                  'i/photos/red.jpg',
-                  'i/photos/seattle.jpg',
-                  'i/photos/orange.jpg']
+  'guitars': ['/i/guitar.png'],
+  'innovative design': ['/i/innod.jpg'],
+  'logos': ['/i/logo.png'],
+  'photography': ['/i/photos/chicago.jpg',
+                  '/i/photos/pam.jpg',
+                  '/i/photos/green.jpg',
+                  '/i/photos/christine.jpg',
+                  '/i/photos/white.jpg',
+                  '/i/photos/jellyfish.jpg',
+                  '/i/photos/bleachers.jpg',
+                  '/i/photos/allen.jpg',
+                  '/i/photos/red.jpg',
+                  '/i/photos/seattle.jpg',
+                  '/i/photos/orange.jpg']
 };
 var curImages = bgs['photography'];
 var curImage = 0;

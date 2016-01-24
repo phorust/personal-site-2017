@@ -1,0 +1,27 @@
+/* structural stuff */
+body, html {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+
+  color: $offblack;
+  font-family: 'Avenir Next', 'Open Sans', sans-serif;
+  /*font-family: 'Avenir';
+  font-family: 'Lato', sans-serif;
+  font-family: 'Raleway';
+  font-family: 'Museo Sans';
+  font-family: 'Roboto Slab';
+  font-family: 'PF DinText Pro';
+  font-family: 'Maax';*/
+  background-color: $offwhite;
+}
+
+#banner {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  font-size:  12px;
+  text-align: center;
+  padding-top: 10px;
+  opacity: 0.4;
+}
