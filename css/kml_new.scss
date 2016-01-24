@@ -1,13 +1,23 @@
-$font-body : 'Avenir Next', 'Open Sans', sans-serif;
-$offwhite  : #fDfCf6;
-$offblack  : #454545;
-$lightgrey : #ddd;
-$grey      : #888;
-$darkgrey  : #333;
-$yellow    : #FFDE00;
-$fast      : 0.3s;
-$slow      : 0.6s;
-$extraslow : 1.2s;
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+@import "styleguide";
+@import "common";
+
+// Use media queries like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+@mixin media-query($device) {
+    @media screen and (max-width: $device) {
+        @content;
+    }
+}
 
 %content-section {
   position: absolute;
@@ -34,24 +44,6 @@ $extraslow : 1.2s;
     /* account for footer height */
     margin-bottom: 100px;
   }
-}
-
-/* Containers and "body" - structural stuff */
-body, html {
-  margin: 0;
-  height: 100%;
-  width: 100%;
-
-  color: $offblack;
-  font-family: 'Avenir Next', 'Open Sans', sans-serif;
-  /*font-family: 'Avenir';
-  font-family: 'Lato', sans-serif;
-  font-family: 'Raleway';
-  font-family: 'Museo Sans';
-  font-family: 'Roboto Slab';
-  font-family: 'PF DinText Pro';
-  font-family: 'Maax';*/
-  background-color: $offwhite;
 }
 
 #wrapper {
@@ -222,15 +214,7 @@ a#berkeley:hover {
   background-color: initial;
 }
 
-#banner {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  font-size:  12px;
-  text-align: center;
-  padding-top: 10px;
-  opacity: 0.4;
-}
-
+// i need to get webpack and get rid of this dumb bundling
 @import 'term';
 @import 'visual';
+@import 'blog';

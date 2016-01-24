@@ -19,6 +19,9 @@ function handleNav(pathname) {
   } else if (pathname === "/software" ||
              pathname === "/software.html") {
     navSoftware();
+  } else if (pathname === "/blog" ||
+             pathname === "/blog.html") {
+    navBlog();
   } else if (pathname === "/about" ||
              pathname === "/about.html" ||
              pathname === "/") {
@@ -29,25 +32,26 @@ function handleNav(pathname) {
 function navAbout() {
   minimize();
   hideVisual();
+  hideBlog();
   showAbout();
 }
 function navSoftware() {
   hideVisual();
   hideAbout();
+  hideBlog();
   unminimize();
 }
 function navVisual() {
   minimize();
   hideAbout();
+  hideBlog();
   showVisual();
 }
-
-function hideAbout() {
-  $('#about_content').removeClass('loaded').delay(300).fadeOut(1);
-
-  // otherwise jumping occurs as the huge about_content div is replaced by the
-  // smaller terminal div
-  $('body').animate({scrollTop: 0}, 300);
+function navBlog() {
+  minimize();
+  hideAbout();
+  hideVisual();
+  showBlog();
 }
 
 function showAbout() {
@@ -58,6 +62,13 @@ function showAbout() {
   $('#content')
     .css('min-height', $(window).height() * 0.60);
 }
+function hideAbout() {
+  $('#about_content').removeClass('loaded').delay(300).fadeOut(1);
+
+  // otherwise jumping occurs as the huge about_content div is replaced by the
+  // smaller terminal div
+  $('body').animate({scrollTop: 0}, 300);
+}
 
 function showVisual() {
   $('#content').css('min-height', $('#visual_content').innerHeight());
@@ -67,7 +78,6 @@ function showVisual() {
 
   activate();
 }
-
 function hideVisual() {
   // sigh DRY. see hideAbout
   $('#visual_content').removeClass('loaded').delay(300).fadeOut(1);
@@ -76,6 +86,14 @@ function hideVisual() {
   $('#logo').attr('src', 'i/kl.png');
 
   deactivate();
+}
+
+function showBlog() {
+  $('#content').css('min-height', $('#blog_content').innerHeight());
+  $('#blog_content').fadeIn(1).addClass('loaded');
+}
+function hideBlog() {
+  $('#blog_content').removeClass('loaded').delay(300).fadeOut(1);
 }
 
 $(document).ready(function() {
@@ -93,6 +111,10 @@ $(document).ready(function() {
   $('.visual').click(e => {
     navVisual();
     history.push({ pathname: '/visual' });
+  });
+  $('.blog').click(e => {
+    navBlog();
+    history.push({ pathname: '/blog' });
   });
   $('nav a').click(e => {
     e.preventDefault();

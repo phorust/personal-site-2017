@@ -1,0 +1,13 @@
+#blog_content {
+  @extend %content-section;
+
+  max-height: 500px;
+}
+
+.post-list {
+  // as the blog gains posts, i'd like to display as an analog of print media
+  // with columns mimicing old, OLD newspapers
+  // -webkit-columns: 3 200px;
+  // -moz-columns: 3 200px;
+  // columns: 3 200px;
+}

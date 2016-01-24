@@ -1,86 +1,57 @@
-<html>
-<head>
-  <title>Kevin Lee</title>
-  <link rel='stylesheet' href='css/compiled/kml_new.css'>
-  <!-- libs -->
-  <script src='lib/babel-core-browser.js'></script>
-  <script src='lib/jquery-2.0.3.js'></script>
-  <script src="https://npmcdn.com/history/umd/History.min.js"></script>
-  <!-- <script src="https://fb.me/react-0.13.3.js"></script> -->
-  <link rel="stylesheet" href="lib/tomorrow-night-eighties.css">
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.7/highlight.min.js"></script>
-  <script>
-    hljs.initHighlightingOnLoad();
-  </script>
-</head>
-<body>
-  <div id='visual_bg'></div>
-  <div id='wrapper'>
-    <img id='logo' src='i/kl.png' width='75px'>
-    <div id='content'>
-      <div id='visual_content'>
-        <a class='active'>photography</a><br>
-        <a>logos</a><br>
-        <a>innovative design</a><br>
-        <a>guitars</a>
-      </div>
-      <div id='term_content'>
-        <div id='term'>
-          <div id='appbar'>
-            <div id='close'></div>
-            <div id='minimize'></div>
-            <div id='maximize'></div>
-          </div>
-          <div id='output'>
-            <div id='textarea'></div>
-            <div id='lastline'>
-              <span class='prompt_path'>~</span> <span class='prompt_arrow'>&#x2192;</span><input type='text' />
-            </div>
-          </div>
-        </div>
-        <p>Try your favorite terminal commands, or just go <a id="term-project-link">straight to the projects.</a></p>
-      </div>
-      <div id='about_content'>
-        <h1 id='title'>Hello! I'm Kevin Lee,</h1>
-        <h2 id='subtitle'>
-          a <a class='software' href='software.html'>software engineer</a>
-          and <a class='visual' href='visual.html'>designer</a> from the Bay Area.
-        </h2>
-        <p>
-          I'm finishing my last year at
-          <a id='berkeley' target="_blank" href='http://berkeley.edu'>UC Berkeley</a>
-          right now.
-          Last summer, I wrote code for
-          <a id='facebook' target="_blank" href='http://facebook.com'>Facebook</a>,
-          and I've also worked at
-          <a id='bigfix' target="_blank" href='http://ibm.com/security/bigfix/'>IBM BigFix</a>.
-        </p>
-        <br>
-        <p>The last few lines of code I wrote look like <a href="javascript:;" id="recent_code_show">this:</a></p>
-        <a id='recent_code_link' target="_blank"><pre><code id='recent_code' class='hljs diff'></code></pre></a>
+---
+layout: default
+---
+<div id='visual_content'>
+  <a class='active'>photography</a><br>
+  <a>logos</a><br>
+  <a>innovative design</a><br>
+  <a>guitars</a>
+</div>
+<div id='term_content'>
+  <div id='term'>
+    <div id='appbar'>
+      <div id='close'></div>
+      <div id='minimize'></div>
+      <div id='maximize'></div>
+    </div>
+    <div id='output'>
+      <div id='textarea'></div>
+      <div id='lastline'>
+        <span class='prompt_path'>~</span> <span class='prompt_arrow'>&#x2192;</span><input type='text' />
       </div>
     </div>
   </div>
-
-  <nav>
-    <ul>
-      <li class='about'>A B O U T</li>
-      <li class='software'>C O D E</li>
-      <li class='visual'>V I S U A L</li>
-      <li class='blog'>B L O G</li>
-    </ul>
-  </nav>
-  <div id='banner'>
-    Site still under construction! Check out progress
-    <a target="_blank" href='http://github.com/phorust/phorust.github.io'>here.</a>
+  <p>Try your favorite terminal commands, or just go <a id="term-project-link">straight to the projects.</a></p>
+</div>
+<div id='about_content'>
+  <h1 id='title'>Hello! I'm Kevin Lee,</h1>
+  <h2 id='subtitle'>
+    a <a class='software' href='software.html'>software engineer</a>
+    and <a class='visual' href='visual.html'>designer</a> from the Bay Area.
+  </h2>
+  <p>
+    I'm finishing my last year at
+    <a id='berkeley' target="_blank" href='http://berkeley.edu'>UC Berkeley</a>
+    right now.
+    Last summer, I wrote code for
+    <a id='facebook' target="_blank" href='http://facebook.com'>Facebook</a>,
+    and I've also worked at
+    <a id='bigfix' target="_blank" href='http://ibm.com/security/bigfix/'>IBM BigFix</a>.
+  </p>
+  <br>
+  <p>The last few lines of code I wrote look like <a href="javascript:;" id="recent_code_show">this:</a></p>
+  <a id='recent_code_link' target="_blank"><pre><code id='recent_code' class='hljs diff'></code></pre></a>
+</div>
+<div id='blog_content'>
+  <div class="post-list">
+    {% for post in site.posts %}
+      <h2>
+        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
+          {{ post.title }}
+        </a>
+      </h2>
+      <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+      <p>{{ post.desc}}</p>
+    {% endfor %}
   </div>
-  <script type='text/babel' src='src/modules.js'></script>
-  <script type='text/babel' src='src/visual.js'></script>
-  <script type='text/babel' src='src/term.js'></script>
-  <script type='text/babel' src='src/kml_new.js'></script>
-  <script type='text/babel' src='src/github_tracker.js'></script>
-  <script type='text/babel' src='src/filesys.js'></script>
-  <script type='text/babel' src='src/phsh.js'></script>
-</body>
-</html>
+</div>
