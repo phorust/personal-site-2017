@@ -45,13 +45,13 @@ layout: default
 <div id='blog_content'>
   <div class="post-list">
     {% for post in site.posts %}
-      <h2>
-        <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
-          {{ post.title }}
-        </a>
-      </h2>
-      <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-      <p>{{ post.desc}}</p>
+    {% if post.visible == 1 %}
+      <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">
+        <h2>{{ post.title }}</h2>
+        <span class="post-meta">{{ post.date | date: "%B %-d, %Y" }}</span>
+      </a>
+      <p>{{ post.excerpt }}</p>
+    {% endif %}
     {% endfor %}
   </div>
 </div>
