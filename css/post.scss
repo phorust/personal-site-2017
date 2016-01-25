@@ -2,10 +2,41 @@
 ---
 @import "styleguide";
 @import "common";
+// @import "jekyll";
+
+$gutter-width: 128px;
 
 .post {
-  width: 55%;
-  max-width: 500px;
-  margin: 0 auto;
   padding-top: 200px;
+  padding-bottom: 200px;
+
+  .post-content, .post-header {
+    padding-left: $gutter-width;
+    padding-right: $gutter-width;
+  }
+
+  .post-title {
+    margin-bottom: 0;
+  }
+  .post-meta {
+    margin-top: 0;
+    font-size: 14px;
+  }
+
+  p {
+    max-width: 500px;
+  }
+
+  .img {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    &.fullbleed {
+      margin-left: -$gutter-width;
+      margin-right: -$gutter-width;
+    }
+
+    img {
+      max-width: 100%;
+    }
+  }
 }
