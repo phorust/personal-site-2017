@@ -13,8 +13,11 @@ $gutter-height: 200px;
   padding-bottom: $gutter-height;
 
   .post-content, .post-header {
-    padding-left: $gutter-width;
-    padding-right: $gutter-width;
+    & > :not(.fullbleed) {
+      // padding-left: $gutter-width;
+      padding-left: 20%;
+      padding-right: $gutter-width;
+    }
   }
 
   .post-title {
@@ -33,12 +36,38 @@ $gutter-height: 200px;
     margin-top: 24px;
     margin-bottom: 24px;
     &.fullbleed {
-      margin-left: -$gutter-width;
-      margin-right: -$gutter-width;
     }
 
     img {
       max-width: 100%;
+    }
+  }
+
+  .pullquote {
+    display: block;
+    font-size: 24px;
+    position: relative;
+
+    i {
+      margin: 40px;
+      display: block;
+      position: relative;
+
+      &:before {
+        display: block;
+        position: absolute;
+        left: -20px;
+        content: "“";
+        font-family: serif;
+      }
+
+      &:after {
+        display: block;
+        position: absolute;
+        right: 20px;
+        content: "”";
+        font-family: serif;
+      }
     }
   }
 }
