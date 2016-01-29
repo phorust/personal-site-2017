@@ -50,8 +50,6 @@ _And here we are now._
 
 "Finishing" this site marks the end of a couple months of coding block and a half year of engineering and over engineering, and with that comes the signature mix of pride and exhausted relief coding never fails to deliver.
 
-<div class='img fullbleed'><img src="/i/photos/chicago.jpg"/></div>
-
 I'll leave you all with this thought that popped into my head while writing this at my usual mental peak of well past midnight:
 
 <p class='pullquote'><i>Never mistake the presence of words on a page for importance.</i></p>
