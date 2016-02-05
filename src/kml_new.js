@@ -101,19 +101,15 @@ $(document).ready(function() {
 
   /* attr selectors for href? */
   $('.software').click(e => {
-    navSoftware();
     history.push({ pathname: '/software' });
   });
   $('.about').click(e => {
-    navAbout();
     history.push({ pathname: '/' });
   });
   $('.visual').click(e => {
-    navVisual();
     history.push({ pathname: '/visual' });
   });
   $('.blog').click(e => {
-    navBlog();
     history.push({ pathname: '/blog' });
   });
   $('nav a').click(e => {

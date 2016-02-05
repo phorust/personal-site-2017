@@ -90,3 +90,11 @@ body.visual {
   transition: opacity $fast ease,
               background-image $extraslow ease;
 }
+
+body.visual #wrapper {
+  opacity: 0.3;
+
+  &:hover {
+    opacity: 1;
+  }
+}

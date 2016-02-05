@@ -1,15 +1,17 @@
 var bgs = {
   'guitars': ['/i/guitar.png'],
   'innovative design': ['/i/innod.jpg'],
-  'logos'      : ['/i/designs/portfolio2k16-01.png',
-                  '/i/designs/portfolio2k16-02.png',
-                  '/i/designs/portfolio2k16-03.png',
+  'design'     : ['/i/designs/portfolio2k16-03.png',
                   '/i/designs/portfolio2k16-04.png',
+                  '/i/designs/portfolio2k16-09.png',
+                  '/i/designs/portfolio2k16-07.png',
                   '/i/designs/portfolio2k16-05.png',
+                  '/i/designs/portfolio2k16-11.png',
                   '/i/designs/portfolio2k16-06.png',
                   '/i/designs/portfolio2k16-08.png',
-                  '/i/designs/portfolio2k16-09.png',
-                  '/i/designs/portfolio2k16-11.png',
+                  '/i/designs/portfolio2k16-01.png',
+                  '/i/designs/portfolio2k16-10.png',
+                  '/i/designs/portfolio2k16-02.png',
                   '/i/designs/portfolio2k16-12.png',
                   '/i/designs/portfolio2k16-13.png',
                   '/i/designs/portfolio2k16-14.png'],
@@ -98,7 +100,8 @@ function clickPrev() {
 }
 
 function activate() {
-  console.log('activate');
+  // sigh. just in case you mash the visual link
+  clearInterval(intervalID);
   intervalID = setInterval(timeNext, 6000);
   $(document).keydown(keyHandler);
 }
