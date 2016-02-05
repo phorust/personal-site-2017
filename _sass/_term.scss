@@ -88,6 +88,10 @@ $shell-blue    : #54FDE6;
       border-bottom: 1px solid black;
     }
   }
+
+  .cmdoutput {
+    overflow-wrap: break-word;
+  }
 }
 #lastline {
   input {

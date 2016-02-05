@@ -142,7 +142,11 @@ fsroot.addChildren([fsroot_Users]);
 fsroot_Users.addChild(fsroot_Users_phorust);
 fsroot_Users_phorust.addChildren(
   [
-    new File('about', fsroot_Users_phorust, ''),
+    new File('about', fsroot_Users_phorust,
+             'This is a work in progress - eventually I want to support' +
+             'tab completion (this already exists I\'m just lazy to polish it),' +
+             'storing the filestyle in local storage, and "all" the commands,' +
+             'including node and the noblest of all, vim.'),
     new Directory('projects', fsroot_Users_phorust,
       { 'SummonerSync': new Link('SummonerSync',
                                  null,

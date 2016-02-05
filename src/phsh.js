@@ -24,7 +24,7 @@ function init() {
 
 function print(s: string, noNewline?: boolean, noPrompt?: boolean) {
   noPrompt || printOldPrompt();
-  noNewline || $('#textarea').append(s + '<br>');
+  noNewline || $('#textarea').append('<span class="cmdoutput">' + s + '</span><br>');
 }
 
 function printf(tokens: Array<Object>, columns?: number, noPrompt?: boolean) {
@@ -110,13 +110,13 @@ function processInput() {
         exit(tokens);
         break;
       case 'll':
-        tokens.splice(1, 0, '-A');
+        tokens.splice(1, 0, '-l');
         // purposeful lack of break;
-      case 'logout':
-        exit(tokens);
-        break;
       case 'ls':
         ls(tokens);
+        break;
+      case 'logout':
+        exit(tokens);
         break;
       case 'node':
         node(tokens);
@@ -127,9 +127,9 @@ function processInput() {
       case 'reset':
         reset(tokens);
         break;
-      case 'touch':
-        touch(tokens);
-        break;
+      // case 'touch':
+      //   touch(tokens);
+      //   break;
       case 'uptime':
         uptime(tokens);
         break;
