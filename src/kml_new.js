@@ -12,17 +12,20 @@ var history  = window.History.createHistory();
 var unlisten = _=>{};
 
 function handleNav(pathname) {
-  console.log('nav');
   if (pathname === "/visual" ||
+      pathname === "/visual/" ||
       pathname === "/visual.html") {
     navVisual();
   } else if (pathname === "/software" ||
+             pathname === "/software/" ||
              pathname === "/software.html") {
     navSoftware();
   } else if (pathname === "/blog" ||
+             pathname === "/blog/" ||
              pathname === "/blog.html") {
     navBlog();
   } else if (pathname === "/about" ||
+             pathname === "/about/" ||
              pathname === "/about.html" ||
              pathname === "/") {
     navAbout();
@@ -74,7 +77,7 @@ function showVisual() {
   $('#content').css('min-height', $('#visual_content').innerHeight());
   $('#visual_content').fadeIn(1).addClass('loaded');
   $('body').addClass('visual');
-  $('#logo').attr('src', 'i/kl_white.png');
+  $('#logo').attr('src', '/i/kl_white.png');
 
   activate();
 }
@@ -83,7 +86,7 @@ function hideVisual() {
   $('#visual_content').removeClass('loaded').delay(300).fadeOut(1);
   $('body').animate({scrollTop: 0}, 300)
            .removeClass('visual');
-  $('#logo').attr('src', 'i/kl.png');
+  $('#logo').attr('src', '/i/kl.png');
 
   deactivate();
 }
