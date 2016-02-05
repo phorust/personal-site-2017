@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "New Year, New Site"
-date:   2016-01-29 01:44:00 -0800
+date:   2016-02-05 01:44:00 -0800
 categories: tech
 excerpt: "About time we got a makeover."
 visible: 1
@@ -50,8 +50,10 @@ _And here we are now._
 
 "Finishing" this site marks the end of a couple months of coding block and a half year of engineering and over engineering, and with that comes the signature mix of pride and exhausted relief coding never fails to deliver.
 
-I'll leave you all with this thought that popped into my head while writing this at my usual mental peak of well past midnight:
+The plan is to write a lot more, on things I've been thinking about a lot. I'll leave you all with this thought that popped into my head while writing this at my usual mental peak of well past midnight:
 
 <p class='pullquote'><i>Never mistake the presence of words on a page for importance.</i></p>
+
+Talk to you all soon,
 
 &mdash; Kevin

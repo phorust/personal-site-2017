@@ -13,6 +13,11 @@ $gutter-height: 200px;
   padding-bottom: $gutter-height;
 
   .post-content, .post-header {
+    .post-back {
+      font-size: 12px;
+      color: $lightgrey;
+    }
+    
     & > :not(.fullbleed) {
       // padding-left: $gutter-width;
       padding-left: 20%;
@@ -21,6 +26,7 @@ $gutter-height: 200px;
   }
 
   .post-title {
+    margin-top: 0;
     margin-bottom: 0;
   }
   .post-meta {
