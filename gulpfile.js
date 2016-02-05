@@ -44,7 +44,7 @@ gulp.task('sass', _ => {
 
 gulp.task('watch', _ => {
   gulp.watch(['_sass/*.scss', 'css/*.scss'], ['sass']);
-  gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
+  gulp.watch(['*.html', '_layouts/*.html', '_posts/*', 'src/*.js'], ['jekyll-rebuild']);
 });
 
 gulp.task('build', _ => {
@@ -53,8 +53,8 @@ gulp.task('build', _ => {
              .pipe(gulp.dest('./'))
              .pipe(rename('visual.html'))
              .pipe(gulp.dest('./'))
-             .pipe(rename('blog.html'))
-             .pipe(gulp.dest('./'));
+             .pipe(rename('index.html'))
+             .pipe(gulp.dest('./blog/'));
 });
 
 gulp.task('default', ['browser-sync', 'watch']);
