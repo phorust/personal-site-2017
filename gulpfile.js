@@ -5,10 +5,48 @@ var rename      = require('gulp-rename');
 var prefix      = require('gulp-autoprefixer');
 var cp          = require('child_process');
 var frontMatter = require('gulp-front-matter');
+var preprocess  = require('gulp-preprocess');
 
 var messages = {
   jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
 };
+
+// rest parameter was canceled
+function build_layout() {
+  var images = [];
+  for (var i = 0; i < arguments.length; i++) { images.concat(arguments[i]); }
+  console.log(arguments);
+  var markup = `<div class='fullbleed'>
+                  <div class='img-grid grid-layout-1'>`;
+  for (var image of images) {
+    if (image.indexOf(',') === -1) {
+      markup += `<img src="${image}"/>`;
+    } else {
+      // Array, render multiple
+      image = image.split(',');
+      markup += `<div class='grid-layout1-${image.length}'>`
+      for (var i of image) {
+        markup += `<img src="${i}"/>`
+      }
+      markup += `</div>`;
+    }
+  }
+
+  markup += `  </div>
+             </div>`;
+  return markup;
+}
+
+gulp.task('build-posts', _ => {
+  gulp.src('./_post_drafts/*.md')
+      .pipe(preprocess({
+        context: {
+          BUILD_LAYOUT: build_layout,
+        },
+        extension: 'html'
+      }))
+      .pipe(gulp.dest('./_posts'));
+});
 
 gulp.task('jekyll-build', (done) => {
   browserSync.notify(messages.jekyllBuild);
@@ -16,7 +54,7 @@ gulp.task('jekyll-build', (done) => {
            .on('close', done);
 });
 
-gulp.task('jekyll-rebuild', ['jekyll-build'], _ => {
+gulp.task('jekyll-rebuild', ['build-posts', 'jekyll-build'], _ => {
   browserSync.reload();
 });
 
@@ -48,7 +86,7 @@ gulp.task('watch', _ => {
     '*.html',
     '_layouts/*.html',
     '_includes/*.html',
-    '_posts/*',
+    '_post_drafts/*',
     'src/*.js'
   ], ['jekyll-rebuild']);
 });

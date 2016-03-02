@@ -17,7 +17,7 @@ $gutter-height: 200px;
       font-size: 12px;
       color: $lightgrey;
     }
-    
+
     & > :not(.fullbleed) {
       // padding-left: $gutter-width;
       padding-left: 20%;
@@ -46,6 +46,37 @@ $gutter-height: 200px;
 
     img {
       max-width: 100%;
+    }
+  }
+
+  .img-grid {
+    width: 80%;
+    margin: 0 auto;
+    white-space: nowrap;
+
+    img {
+      width: 100%;
+    }
+
+    .grid-layout1 {
+      &-2 {
+        img {
+          width: 50%;
+          display: inline-block;
+          box-sizing: border-box;
+          margin: 0;
+        }
+        img:nth-child(1) {
+          padding-right: 3px;
+        }
+        img:nth-child(2) {
+          padding-left: 3px;
+        }
+      }
+    }
+
+    .caption {
+      white-space: normal;
     }
   }
 
