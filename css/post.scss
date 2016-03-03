@@ -8,6 +8,8 @@
 $gutter-width: 128px;
 $gutter-height: 200px;
 
+$line-height: 24px;
+
 .post {
   padding-top: $gutter-height;
   padding-bottom: $gutter-height;
@@ -36,6 +38,9 @@ $gutter-height: 200px;
 
   p {
     max-width: 600px;
+    margin-top: $line-height;
+    margin-bottom: $line-height;
+    line-height: $line-height;
   }
 
   .img {
