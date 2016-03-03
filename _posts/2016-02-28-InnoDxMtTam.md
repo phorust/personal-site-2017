@@ -8,7 +8,15 @@ visible: 1
 permalink: /blog/:categories/:year/:month/:day/:title.html
 ---
 
+Photo posts will be a _little_ bit different.
+
 <div class='img fullbleed'><img src="/i/photos/chicago.jpg"/></div>
+
+For one, I'll be using this nifty serif font which I love the shit out of and have been using everywhere.
+
+<p class='pullquote'><i>Adventure is out there.</i></p>
+
+You just have to find it.
 
 <div class='fullbleed push'>
   <div class='img-grid grid-layout1'>
@@ -21,5 +29,7 @@ permalink: /blog/:categories/:year/:month/:day/:title.html
     </div>
   </div>
 </div>
+
+Good shit, y'all.
 
 &mdash; Kevin
