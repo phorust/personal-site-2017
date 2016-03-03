@@ -35,7 +35,7 @@ $gutter-height: 200px;
   }
 
   p {
-    max-width: 500px;
+    max-width: 600px;
   }
 
   .img {
@@ -138,6 +138,19 @@ $gutter-height: 200px;
         right: 20px;
         content: "”";
         font-family: serif;
+      }
+    }
+  }
+
+  &.photo-post {
+    .post-content {
+      & > :not(.fullbleed) {
+        padding-left: $gutter-width;
+      }
+
+      p {
+        margin-left: auto;
+        margin-right: auto;
       }
     }
   }
