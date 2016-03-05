@@ -106,7 +106,6 @@ function activate() {
   $(document).keydown(keyHandler);
 }
 function deactivate() {
-  console.log('deactivate');
   clearInterval(intervalID);
   $(document).unbind('keydown', keyHandler);
 }

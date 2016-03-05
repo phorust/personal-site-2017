@@ -84,7 +84,6 @@ function recursivelyFindPlaintextNodes(root) {
   for (var node of toSearch) {
     helper($(node));
   }
-  console.log(toSearch);
   return toSearch;
 }
 
