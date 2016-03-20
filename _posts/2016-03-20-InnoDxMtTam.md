@@ -1,7 +1,7 @@
 ---
 layout: photo_post
 title:  "#InnoDxMtTam"
-date:   2016-02-21 16:00:00 -0800
+date:   2016-02-21 00:00:00 -0800
 categories: travel
 excerpt: "Mt. Tamalpais with Innovative Design"
 visible: 1
