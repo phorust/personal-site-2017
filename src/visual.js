@@ -25,7 +25,25 @@ var bgs = {
                   '/i/photos/allen.jpg',
                   '/i/photos/red.jpg',
                   '/i/photos/seattle.jpg',
-                  '/i/photos/orange.jpg']
+                  '/i/photos/orange.jpg'],
+  '100 days of design': ['/i/designs/100days/01-01.png',
+                         //'/i/designs/100days/04-01.png',
+                         '/i/designs/100days/05-01.png',
+                         '/i/designs/100days/06-01.png',
+                         '/i/designs/100days/08-01.png',
+                         '/i/designs/100days/11-01.png',
+                         '/i/designs/100days/15-01.png',
+                         '/i/designs/100days/17-01.png',
+                         '/i/designs/100days/18-01.png',
+                         '/i/designs/100days/21-01.png',
+                         '/i/designs/100days/22-01.png',
+                         '/i/designs/100days/23-01.png',
+                         '/i/designs/100days/24-01.png',
+                         '/i/designs/100days/25-01.png',
+                         '/i/designs/100days/26-01.png',
+                         '/i/designs/100days/29-01.png',
+                         '/i/designs/100days/32-01.png',
+                         '/i/designs/100days/33-01.png']
 };
 var curImages = bgs['photography'];
 var curImage = 0;
