@@ -113,7 +113,7 @@ One thing UW has that Cal doesn't though... cherry blossoms.
   </div>
 </div>
 
-What I love about Seattle is it's awareness of it's place on Earth. Filled with hills, surrounded by greens, pockmarked by bodies of water and overlooked by the watchful Mt. Rainer, it's constant reminders of its beautiful setting are nothing short of alluring. Cherry blossoms are just icing on the cake.
+What I love about Seattle is its awareness of its place on Earth. Filled with hills, surrounded by greens, pockmarked by bodies of water and overlooked by the watchful Mt. Rainer, it's constant reminders of its beautiful setting are nothing short of alluring. Cherry blossoms are just icing on the cake.
 
 We followed our stomachs and our inner tourists to Pike Place and took a second to catch up with some other InnoD photogs in Seattle over Pike Place Chowder's amazingly rich chowder,
 
