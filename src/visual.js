@@ -40,7 +40,6 @@ var bgs = {
                   '/i/photos/grad/DSC06573.jpg',
                   '/i/photos/grad/DSC04325.jpg'],
   'film'       : ['/i/photos/film/01880008.jpg',
-                  '/i/photos/film/01880007.jpg',
                   '/i/photos/film/01880012.jpg',
                   '/i/photos/film/01880013.jpg',
                   '/i/photos/film/01880037.jpg',
