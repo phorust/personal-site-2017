@@ -126,10 +126,11 @@ $(document).ready(function() {
     $('#recent_code').toggleClass('active');
   });
 
-  // load the right view on pageload
   var unlisten = history.listen(location => {
     handleNav(location.pathname);
   });
+  // load the right view on pageload
+  handleNav(window.location.pathname);
 });
 
 
