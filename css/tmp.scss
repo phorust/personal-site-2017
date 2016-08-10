@@ -1,0 +1,77 @@
+@import "common";
+$font-decor: "Old Standard TT", serif;
+
+.date {
+  font-size: 14px;
+  font-family: $font-decor;
+  font-style: italic;
+}
+
+.proj-title {
+  text-transform: uppercase;
+  font-family: $font-body;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.photoblock {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+  width: auto;
+  margin: 3vh 0;
+  height: auto;
+
+  .block {
+    flex: 1;
+    height: 30vh;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    // wtf how does flexbox wor k
+    min-width: 20vw;
+  }
+
+  .cover {
+    object-fit: cover;
+  }
+
+  .nametag {
+    color: #fefefd;
+    background-color: #333;
+    font-family: $font-body;
+    font-weight: 600;
+    padding: 1em;
+    box-sizing: border-box;
+    min-width: 0;
+
+    .name {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      text-align: center;
+
+      .wot {
+        position: relative;
+        top: -1em;
+        margin-bottom: 10px;
+        font-size: 13px;
+        font-family: $font-decor;
+        font-weight: lighter;
+        letter-spacing: 0.1em;
+        font-style: italic;
+      }
+      .woo {
+        font-size: 16px;
+        text-transform: uppercase;
+        letter-spacing: 0.35em;
+      }
+    }
+  }
+}
+
+#content {
+  width: 80vw;
+  margin: 0 auto;
+  padding: 5vh 5vw;
+}
