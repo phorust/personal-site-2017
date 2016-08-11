@@ -28,8 +28,6 @@ $font-decor: "Old Standard TT", serif;
     height: 30vh;
     margin-right: 10px;
     margin-bottom: 10px;
-    // wtf how does flexbox wor k
-    min-width: 20vw;
   }
 
   .cover {
@@ -43,7 +41,6 @@ $font-decor: "Old Standard TT", serif;
     font-weight: 600;
     padding: 1em;
     box-sizing: border-box;
-    min-width: 0;
 
     .name {
       position: relative;
@@ -66,6 +63,84 @@ $font-decor: "Old Standard TT", serif;
         text-transform: uppercase;
         letter-spacing: 0.35em;
       }
+    }
+  }
+  &.type1 {
+    .block {
+      @media screen and (min-width:1121px) {
+        $base-unit: 25%;
+        &:nth-child(1) {
+          width: $base-unit;
+        }
+        &:nth-child(2) {
+          width: 10%;
+        }
+        &:nth-child(3) {
+          width: $base-unit;
+        }
+        &:nth-child(4) {
+          width: $base-unit;
+        }
+        &:nth-child(5) {
+          width: $base-unit;
+        }
+        &:nth-child(6) {
+          width: $base-unit;
+        }
+      }
+      width: 50%;
+    }
+  }
+  &.type2 {
+    .block {
+      @media screen and (min-width:1121px) {
+        $base-unit: 25%;
+        &:nth-child(1) {
+          width: $base-unit;
+        }
+        &:nth-child(2) {
+          width: $base-unit;
+        }
+        &:nth-child(3) {
+          width: $base-unit;
+        }
+        &:nth-child(4) {
+          width: 15%;
+        }
+        &:nth-child(5) {
+          width: $base-unit;
+        }
+        &:nth-child(6) {
+          width: $base-unit;
+        }
+      }
+      width: 50%;
+    }
+  }
+  &.type3 {
+    .block {
+      @media screen and (min-width:1121px) {
+        $base-unit: 35%;
+        &:nth-child(1) {
+          width: $base-unit;
+        }
+        &:nth-child(2) {
+          width: $base-unit;
+        }
+        &:nth-child(3) {
+          width: $base-unit;
+        }
+        &:nth-child(4) {
+          width: 30%;
+        }
+        &:nth-child(5) {
+          width: $base-unit;
+        }
+        &:nth-child(6) {
+          width: $base-unit;
+        }
+      }
+      width: 50%;
     }
   }
 }
