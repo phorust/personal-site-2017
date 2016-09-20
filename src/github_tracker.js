@@ -143,7 +143,7 @@ $(document).ready(_ => {
             data => {
               if (mostRecent10LineDiff) { return; }
               var commitData = data;
-              if (commitData.author.login !== 'phorust') {
+              if (commitData.author && commitData.author.login !== 'phorust') {
                 return;
               }
               for (var file of commitData.files) {

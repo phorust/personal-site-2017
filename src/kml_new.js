@@ -8,7 +8,7 @@ var unminimize = modules.term.unminimize;
 var activate   = modules.visual.activate;
 var deactivate = modules.visual.deactivate;
 
-var history  = window.History.createHistory();
+var history  = window.History.createBrowserHistory();
 var unlisten = _=>{};
 
 function handleNav(pathname) {
