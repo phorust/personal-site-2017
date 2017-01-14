@@ -1,6 +1,21 @@
-.redBg {
-    background-color: red;
-    border-radius: 5px;
-    color: white;
-    padding: 5px;
+@import url('https://fonts.googleapis.com/css?family=Karla');
+$line-height: 21px;
+
+.theOne {
+  position: absolute;
+  bottom: 20vh;
+  left: 20vw;
+  font-family: 'Karla', sans-serif;
+  font-size: 15px;
+  line-height: $line-height;
+  width: 225px;
+  // width: 20vw;
+
+  .line {
+    width: 50%;
+    background-color: black;
+    height: $line-height * 0.2;
+    margin-top: $line-height * 0.4;
+    margin-bottom: $line-height * 0.4;
+  }
 }
