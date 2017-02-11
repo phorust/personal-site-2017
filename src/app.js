@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './index.scss';
+import React, { Component } from 'react';
+import './App.css';
 
-export default class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {scrollDir: 'y'};
@@ -15,7 +15,7 @@ export default class App extends React.Component {
     // if (brutalismLoc.top < 1) {
     //   this.setState({scrollDir: 'x'});
     // }
-    // if (this.state.scrollDir == 'x') {
+    // if (this.state.scrollDir === 'x') {
     //   e.preventDefault();
     //   window.scrollBy(e.deltaY, 0);
     // }
@@ -24,19 +24,19 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className={styles.container} onWheel={this._onWheel}>
-        <div className={styles.kevin}>Kevin</div>
-        <div className={styles.mngyuan}>梦远</div>
-        <div className={styles.lee}>Lee</div>
-        <div className={styles.page}>
-          <div className={styles.theOne}>
+      <div className="container" onWheel={this._onWheel}>
+        <div className="kevin">Kevin</div>
+        <div className="mngyuan">梦远</div>
+        <div className="lee">Lee</div>
+        <div className="page">
+          <div className="theOne">
             <span>Kevin writes code for facebook. He takes photos for fun. This site is under construction.</span>
-            <div className={styles.line}></div>
+            <div className="line"></div>
             <b>Heading</b>
           </div>
         </div>
         <div
-          className={[styles.page, styles.brutalism].join(' ')}
+          className="page brutalism"
           ref={(brutalism) => this.brutalism = brutalism}>
           <h1><a href="#">PHOTOS</a><br/></h1>
           <h1><a href="#">DIGITAL ILLUSTRATIONS</a><br/></h1>
@@ -49,3 +49,5 @@ export default class App extends React.Component {
     )
   }
 }
+
+export default App;
