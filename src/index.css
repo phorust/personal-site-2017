@@ -50,6 +50,7 @@ body, html, #root {
 .page {
   min-width: 100vh;
   min-height: 100vh;
+  position: relative;
 }
 
 .theOne {
@@ -69,4 +70,19 @@ body, html, #root {
   height: calc(21px * 0.2);
   margin-top: calc(21px * 0.4);
   margin-bottom: calc(21px * 0.4);
+}
+
+.photowrapper {
+  height: 70vh;
+  position: absolute;
+  top: 15vh;
+  bottom: 15vh;
+  white-space: nowrap;
+  padding-right: 5vh;
+  padding-left: 5vh;
+}
+
+.photowrapper > img {
+  height: 100%;
+  margin-right: 3px;
 }

@@ -1,26 +1,48 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Route, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import './App.css';
 
-class App extends Component {
+import photo1 from './photos/film/01880014.jpg';
+import photo2 from './photos/film/01880019.jpg';
+
+const Empty = () => <div />;
+
+class Photos extends React.Component {
+  render() {
+    window.photos = this;
+    const photoElems = [<img src={photo1} />, <img src={photo2} />];
+    return (
+      <div className="photowrapper">
+        {photoElems}
+      </div>
+    );
+  }
+}
+
+const Mix = () =>
+  <div className="page">
+    <h3>hello</h3>
+  </div>;
+
+class App extends React.Component {
+  state = {
+    horizontalScroll: false,
+  };
+
   constructor(props) {
     super(props);
-    this.state = {scrollDir: 'y'};
-
-    this._onWheel = this._onWheel.bind(this);
+    window.app = this;
   }
 
-  _onWheel(e) {
-    // console.log(this.brutalism.getBoundingClientRect());
-    // const brutalismLoc = this.brutalism.getBoundingClientRect();
-    // if (brutalismLoc.top < 1) {
-    //   this.setState({scrollDir: 'x'});
-    // }
-    // if (this.state.scrollDir === 'x') {
-    //   e.preventDefault();
-    //   window.scrollBy(e.deltaY, 0);
-    // }
-    console.log(e.deltaY);
-  }
+  _onWheel = e => {
+    if (this.state.horizontalScroll) {
+      e.preventDefault();
+      window.scrollBy(e.deltaY, 0);
+    } else {
+      // console.log(e.deltaY);
+    }
+  };
 
   render() {
     return (
@@ -30,24 +52,27 @@ class App extends Component {
         <div className="lee">Lee</div>
         <div className="page">
           <div className="theOne">
-            <span>Kevin writes code for facebook. He takes photos for fun. This site is under construction.</span>
-            <div className="line"></div>
+            <span>
+              Kevin writes code for facebook. He takes photos for fun. This site
+              is under construction.
+            </span>
+            <div className="line" />
             <b>Heading</b>
+            <br />
+            <br />
+            <Link to={{ pathname: '/photos' }}>
+              PHOTO
+            </Link>
+            ·
+            <Link to={{ pathname: '/mix/june' }}>MIX</Link>
           </div>
-        </div>
-        <div
-          className="page brutalism"
-          ref={(brutalism) => this.brutalism = brutalism}>
-          <h1><a href="#">PHOTOS</a><br/></h1>
-          <h1><a href="#">DIGITAL ILLUSTRATIONS</a><br/></h1>
-          <h1><a href="#">SOFTWARE</a><br/></h1>
-          <h1><a href="#">FAR TOO PERSONAL</a><br/></h1>
-          <h1><a href="#">ABOUT</a><br/></h1>
-          <h1><a href="#">OTHER</a><br/></h1>
+          <Route exact path="/" component={Empty} />
+          <Route path="/photos" component={Photos} />
+          <Route path="/mix/june" component={Mix} />
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default App;
+export default withRouter(App);
