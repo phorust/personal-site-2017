@@ -73,13 +73,14 @@ body, html, #root {
 }
 
 .photowrapper {
-  height: 70vh;
+  height: 55vh;
   position: absolute;
-  top: 15vh;
+  top: 30vh;
   bottom: 15vh;
   white-space: nowrap;
   padding-right: 5vh;
   padding-left: 5vh;
+  margin-left: 80vw;
 }
 
 .photowrapper > img {

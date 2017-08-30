@@ -45,11 +45,15 @@ class App extends React.Component {
   };
 
   render() {
-    return (
-      <div className="container" onWheel={this._onWheel}>
+    const unused = (
+      <div>
         <div className="kevin">Kevin</div>
         <div className="mngyuan">梦远</div>
         <div className="lee">Lee</div>
+      </div>
+    );
+    return (
+      <div className="container" onWheel={this._onWheel}>
         <div className="page">
           <div className="theOne">
             <span>
