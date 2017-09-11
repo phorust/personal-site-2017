@@ -5,10 +5,17 @@ body, html, #root {
   width: 100%;
   height: 100%;
   margin: 0;
+  font-family: 'Karla', sans-serif;
 }
 
 ::-webkit-scrollbar {
   display: none;
+}
+
+a {
+  font-weight: bold;
+  text-decoration: none;
+  color: inherit;
 }
 
 .brutalism {
@@ -54,14 +61,43 @@ body, html, #root {
 }
 
 .theOne {
-  position: absolute;
-  bottom: 20vh;
-  left: 20vw;
+  position: fixed;
+  bottom: 10vh;
+  left: 10vw;
   font-family: 'Karla', sans-serif;
   font-size: 15px;
   line-height: 21px;
-  width: 225px;
-  // width: 20vw;
+  width: 305px;
+  background: rgba(255,255,255,1);
+  height: 540px;
+  padding: 20px 40px;
+  box-sizing: border-box;
+}
+
+.theOneInner {
+  position: absolute;
+  bottom: 0;
+  padding: inherit;
+  left: 0;
+}
+
+.theOneDecor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: inherit;
+  height: 80px;
+  border-top: 12px solid rgba(255, 0, 0, 0.5);
+  border-left: 12px solid rgba(255, 0, 0, 0.5);
+  border-right: 12px solid rgba(69, 91, 159, 0.5);
+}
+
+.nav > a {
+  font-weight: normal;
+}
+.nav > a.active {
+  font-weight: bold;
 }
 
 .line {
@@ -73,17 +109,23 @@ body, html, #root {
 }
 
 .photowrapper {
-  height: 55vh;
+  height: 80vh;
   position: absolute;
-  top: 30vh;
-  bottom: 15vh;
-  white-space: nowrap;
-  padding-right: 5vh;
-  padding-left: 5vh;
-  margin-left: 80vw;
+  top: 15vh;
+  bottom: 5vh;
+  width: 100%;
+  overflow: scroll;
 }
 
-.photowrapper > img {
+.photowrapperInner {
   height: 100%;
-  margin-right: 3px;
+  padding-left: 15vw;
+  padding-right: 5vh;
+  white-space: nowrap;
+  overflow: auto;
+}
+
+.photowrapperInner > img {
+  height: 100%;
+  margin-right: 12px;
 }
