@@ -120,7 +120,7 @@ a {
 .photowrapperInner {
   height: 100%;
   padding-left: 15vw;
-  padding-right: 5vh;
+  padding-right: 15vw;
   white-space: nowrap;
   overflow: auto;
 }

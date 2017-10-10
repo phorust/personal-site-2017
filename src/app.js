@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { Route, Link, NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import './App.css';
@@ -29,31 +30,42 @@ const images = {
   'not for me': importAll(
     require.context('./photos2/not for me', false, /\.(png|jpe?g|svg)$/),
   ),
-  'but you': importAll(require.context('./photos2/you', false, /\.(png|jpe?g|svg)$/)),
+  'but you': importAll(
+    require.context('./photos2/you', false, /\.(png|jpe?g|svg)$/),
+  ),
 };
 
 const Empty = () => <div />;
 
-const Photos = ({ history, match, location }) => {
-  console.log(match.params.set);
-  const photoElems = images[match.params.set].map(src =>
-    <img key={src} src={src} />,
-  );
-  return (
-    <div className="photowrapper">
-      <div className="photowrapperInner">
-        {photoElems}
+class Photos extends React.Component {
+  _photowrapperInner;
+
+  _onWheel = (e) => {
+    e.preventDefault();
+    const node = ReactDOM.findDOMNode(this._photowrapperInner);
+    node.scrollLeft += e.deltaY;
+  }
+
+  render() {
+    const { history, match, location } = this.props;
+    console.log(match.params.set);
+    const photoElems = images[match.params.set].map(src =>
+      <img key={src} src={src} />,
+    );
+    return (
+      <div className="photowrapper">
+        <div className="photowrapperInner" ref={ref => this._photowrapperInner = ref} onWheel={this._onWheel}>
+          {photoElems}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const Mix = () => {
   return (
     <div className="photowrapper">
-      <div className="photowrapperInner">
-        todo
-      </div>
+      <div className="photowrapperInner">todo</div>
     </div>
   );
 };
@@ -88,24 +100,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      horizontalScroll: false,
+      horizontalScroll: true,
       background: 'white',
     };
     window.app = this;
   }
 
-  _onWheel = e => {
-    if (this.state.horizontalScroll) {
-      e.preventDefault();
-      window.scrollBy(e.deltaY, 0);
-    } else {
-      // console.log(e.deltaY);
-    }
-  };
-
   _onMouseMove = e => {
-    const x = Math.floor(e.screenX / window.innerWidth * 128 + 127);
-    const y = Math.floor(e.screenY / window.innerHeight * -128 + 127);
+    // const x = Math.floor(e.screenX / window.innerWidth * 128 + 127);
+    // const y = Math.floor(e.screenY / window.innerHeight * -128 + 127);
     // console.log(x, y);
     // this.setState({background: `rgba(${x}, ${y}, 187, 0.4)`});
   };
@@ -121,7 +124,6 @@ class App extends React.Component {
     return (
       <div
         className="container"
-        onWheel={this._onWheel}
         onMouseMove={this._onMouseMove}
         style={{ background: this.state.background }}
       >
