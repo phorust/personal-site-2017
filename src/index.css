@@ -60,6 +60,25 @@ a {
   position: relative;
 }
 
+.page.black {
+  background: black;
+}
+
+.page.black iframe {
+  position: absolute;
+  top: 35vh;
+  right: 15vw;
+  border: none;
+}
+#hider {
+  width: 640px;
+  height: 55px;
+  background-color: black;
+  position: absolute;
+  top: calc(35vh + 360px - 55px);
+  right: 15vw;
+}
+
 .theOne {
   position: fixed;
   bottom: 10vh;
@@ -69,9 +88,15 @@ a {
   line-height: 21px;
   width: 305px;
   background: rgba(255,255,255,1);
-  height: 540px;
+  max-height: 540px;
+  height: 70%;
   padding: 20px 40px;
   box-sizing: border-box;
+}
+
+.theOne.black {
+  background: none;
+  color: white;
 }
 
 .theOneInner {

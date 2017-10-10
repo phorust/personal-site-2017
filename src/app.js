@@ -35,16 +35,64 @@ const images = {
   ),
 };
 
-const Empty = () => <div />;
+const Sidebar = props =>
+  <div className={'theOne ' + props.className}>
+    {props.children}
+    <div className="theOneInner">
+      <span>
+        Kevin writes code. He takes photos and makes layouts and the occasional
+        graphic.
+        <br />
+        <br />
+        <a href="http://instagram.com/kevinmlee.x" target="_blank">
+          let's collab @kevinmlee.x
+        </a>
+      </span>
+      <div className="line" />
+      <Link to={{ pathname: '/photos/but you' }}>PHOTO</Link>
+      {' · '}
+      <Link to={{ pathname: '/mix/june' }}>MIX</Link>
+    </div>
+  </div>;
+
+class Landing extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { showHider: true };
+  }
+
+  componentDidMount() {
+    setTimeout(() => this.setState({ showHider: false }), 5000);
+  }
+
+  render() {
+    const { showHider } = this.state;
+    const hider = showHider ? <div id="hider" /> : null;
+    return (
+      <div className="page black">
+        <iframe
+          src="https://player.vimeo.com/video/213032482?autoplay=1"
+          width="640"
+          height="360"
+          frameborder="0"
+          webkitallowfullscreen
+          mozallowfullscreen
+          allowfullscreen
+        />
+        {hider}
+      </div>
+    );
+  }
+}
 
 class Photos extends React.Component {
   _photowrapperInner;
 
-  _onWheel = (e) => {
+  _onWheel = e => {
     e.preventDefault();
     const node = ReactDOM.findDOMNode(this._photowrapperInner);
     node.scrollLeft += e.deltaY;
-  }
+  };
 
   render() {
     const { history, match, location } = this.props;
@@ -53,9 +101,15 @@ class Photos extends React.Component {
       <img key={src} src={src} />,
     );
     return (
-      <div className="photowrapper">
-        <div className="photowrapperInner" ref={ref => this._photowrapperInner = ref} onWheel={this._onWheel}>
-          {photoElems}
+      <div className="page">
+        <div className="photowrapper">
+          <div
+            className="photowrapperInner"
+            ref={ref => (this._photowrapperInner = ref)}
+            onWheel={this._onWheel}
+          >
+            {photoElems}
+          </div>
         </div>
       </div>
     );
@@ -64,8 +118,10 @@ class Photos extends React.Component {
 
 const Mix = () => {
   return (
-    <div className="photowrapper">
-      <div className="photowrapperInner">todo</div>
+    <div className="page">
+      <div className="photowrapper">
+        <div className="photowrapperInner">todo</div>
+      </div>
     </div>
   );
 };
@@ -74,24 +130,29 @@ const routes = [
   {
     path: '/',
     exact: true,
-    sidebar: () => <div className="theOneDecor" />,
-    main: Empty,
+    sidebar: () => <Sidebar className="black" />,
+    main: Landing,
   },
   {
     path: '/photos/:set',
     sidebar: ({ match }) =>
-      <div className="nav">
-        {Object.keys(images).map(subfolder =>
-          <NavLink key={subfolder} to={{ pathname: `/photos/${subfolder}` }}>
-            {subfolder + ' '}
-          </NavLink>,
-        )}
-      </div>,
+      <Sidebar>
+        <div className="nav">
+          {Object.keys(images).map(subfolder =>
+            <NavLink key={subfolder} to={{ pathname: `/photos/${subfolder}` }}>
+              {subfolder + ' '}
+            </NavLink>,
+          )}
+        </div>
+      </Sidebar>,
     main: Photos,
   },
   {
     path: '/mix',
-    sidebar: () => <div className="theOneDecor" />,
+    sidebar: () =>
+      <Sidebar>
+        <div className="theOneDecor" />
+      </Sidebar>,
     main: Mix,
   },
 ];
@@ -127,36 +188,22 @@ class App extends React.Component {
         onMouseMove={this._onMouseMove}
         style={{ background: this.state.background }}
       >
-        <div className="page">
-          {routes.map((route, index) =>
-            <Route
-              key={index}
-              path={route.path}
-              exact={route.exact}
-              component={route.main}
-            />,
-          )}
-          <div className="theOne">
-            {routes.map((route, index) =>
-              <Route
-                key={index}
-                path={route.path}
-                exact={route.exact}
-                component={route.sidebar}
-              />,
-            )}
-            <div className="theOneInner">
-              <span>
-                Kevin writes code for facebook. He takes photos for fun. This
-                site is under construction.
-              </span>
-              <div className="line" />
-              <Link to={{ pathname: '/photos/but you' }}>PHOTO</Link>
-              {' · '}
-              <Link to={{ pathname: '/mix/june' }}>MIX</Link>
-            </div>
-          </div>
-        </div>
+        {routes.map((route, index) =>
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            component={route.main}
+          />,
+        )}
+        {routes.map((route, index) =>
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            component={route.sidebar}
+          />,
+        )}
       </div>
     );
   }
