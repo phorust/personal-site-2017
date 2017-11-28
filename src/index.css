@@ -120,9 +120,12 @@ a {
 
 .nav > a {
   font-weight: normal;
+  color: rgba(0, 0, 0, 0.5);
 }
-.nav > a.active {
+.nav > a.active,
+.nav > a:hover {
   font-weight: bold;
+  color: rgba(255, 0, 0, 0.5);
 }
 
 .line {
