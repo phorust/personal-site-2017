@@ -2,10 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Link, NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import Stories from './Stories';
 import './App.css';
 
 const importAll = r => r.keys().map(r);
-const images = {
+const importAllAsDict = r => (
+  r.keys()
+    .reduce(
+      (agg, cur) => ({...agg, [cur]: <img key={cur} src={r(cur)} />}),
+      {}
+    )
+);
+const photos = {
   asian: importAll(
     require.context('./photos2/asia', false, /\.(png|jpe?g|svg)$/),
   ),
@@ -34,6 +42,11 @@ const images = {
     require.context('./photos2/you', false, /\.(png|jpe?g|svg)$/),
   ),
 };
+const stories = {
+  "i wanna tell you that you're cool": importAllAsDict(
+    require.context("./photos2/i wanna tell you that you're cool", false, /\.(png|jpe?g|svg)$/),
+  ),
+}
 
 const Sidebar = props =>
   <div className={'theOne ' + props.className}>
@@ -52,6 +65,8 @@ const Sidebar = props =>
       <Link to={{ pathname: '/photos/but you' }}>PHOTO</Link>
       {' · '}
       <Link to={{ pathname: '/mix/june' }}>MIX</Link>
+      {' · '}
+      <Link to={{ pathname: "/stories/i wanna tell you that you\'re cool" }}>STORY</Link>
     </div>
   </div>;
 
@@ -86,20 +101,45 @@ class Landing extends React.Component {
 }
 
 class Photos extends React.Component {
-  _photowrapperInner;
-
-  _onWheel = e => {
-    e.preventDefault();
-    const node = ReactDOM.findDOMNode(this._photowrapperInner);
-    node.scrollLeft += e.deltaY;
-  };
-
   render() {
     const { history, match, location } = this.props;
     console.log(match.params.set);
-    const photoElems = images[match.params.set].map(src =>
+    const photoElems = photos[match.params.set].map(src =>
       <img key={src} src={src} />,
     );
+    return (
+      <Gallery>
+        {photoElems}
+      </Gallery>
+    );
+  }
+}
+
+class Story extends React.Component {
+  render() {
+    const { history, match, location } = this.props;
+    console.log(match.params.set);
+    const photoElems = stories[match.params.set];
+    return (
+      <Gallery>
+        {Stories[match.params.set](photoElems)}
+      </Gallery>
+    );
+  }
+}
+
+class Gallery extends React.Component {
+  _photowrapperInner;
+
+  _onWheel = e => {
+    if (navigator.appVersion.indexOf('Macintosh') === -1) {
+      e.preventDefault();
+      const node = ReactDOM.findDOMNode(this._photowrapperInner);
+      node.scrollLeft += e.deltaY;
+    }
+  };
+
+  render() {
     return (
       <div className="page">
         <div className="photowrapper">
@@ -108,7 +148,7 @@ class Photos extends React.Component {
             ref={ref => (this._photowrapperInner = ref)}
             onWheel={this._onWheel}
           >
-            {photoElems}
+            {this.props.children}
           </div>
         </div>
       </div>
@@ -138,7 +178,7 @@ const routes = [
     sidebar: ({ match }) =>
       <Sidebar>
         <div className="nav">
-          {Object.keys(images).map(subfolder =>
+          {Object.keys(photos).map(subfolder =>
             <NavLink key={subfolder} to={{ pathname: `/photos/${subfolder}` }}>
               {subfolder + ' '}
             </NavLink>,
@@ -154,6 +194,20 @@ const routes = [
         <div className="theOneDecor" />
       </Sidebar>,
     main: Mix,
+  },
+  {
+    path: '/stories/:set',
+    sidebar: ({ match }) =>
+      <Sidebar>
+        <div className="nav">
+          {Object.keys(Stories).map(storyName =>
+            <NavLink key={storyName} to={{ pathname: `/stories/${storyName}` }}>
+              {storyName+ ' '}
+            </NavLink>,
+          )}
+        </div>
+      </Sidebar>,
+    main: Story,
   },
 ];
 

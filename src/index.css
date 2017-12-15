@@ -151,9 +151,26 @@ a {
   padding-right: 15vw;
   white-space: nowrap;
   overflow: auto;
+  display: flex;
 }
 
 .photowrapperInner > img {
   height: 100%;
   margin-right: 12px;
+}
+
+.textColumn {
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  padding: 48px;
+  white-space: pre;
+}
+
+.textColumn.middle {
+  justify-content: center;
+}
+
+.textColumn.bottom {
+  justify-content: flex-end;
 }
