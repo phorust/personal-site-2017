@@ -99,6 +99,27 @@ i knew weren't there.
 }
       </TextColumnMiddle>
       <Spacer/>
+      <Spacer/>
+      <Spacer/>
+      {photos['./85740MSlee103002-R1-024.jpg']}
+      {photos['./85740MSlee103002-R1-035.jpg']}
+      <TextColumnMiddle>
+{
+`i don't know what to say.
+
+i don't know what i want to say.
+i don't know what i want, or where i'm headed
+or why,
+and i think that's ok.
+`
+}
+      </TextColumnMiddle>
+      <TextColumnBottom>
+{
+`those years will come someday.
+`}
+      </TextColumnBottom>
+      <Spacer/>
     </React.Fragment>
   ),
 };
