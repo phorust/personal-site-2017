@@ -19,7 +19,7 @@ const Spacer = () => (
 );
 
 const Stories = {
-  "i wanna tell you that you're cool": (photos) => (
+  "those years will come someday": (photos) => (
     <React.Fragment>
       <TextColumn>i guess</TextColumn>
       {photos['./71020004.jpeg']}

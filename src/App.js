@@ -43,8 +43,8 @@ const photos = {
   ),
 };
 const stories = {
-  "i wanna tell you that you're cool": importAllAsDict(
-    require.context("./photos2/i wanna tell you that you're cool", false, /\.(png|jpe?g|svg)$/),
+  "those years will come someday": importAllAsDict(
+    require.context("./photos2/those years will come someday", false, /\.(png|jpe?g|svg)$/),
   ),
 }
 
@@ -66,7 +66,7 @@ const Sidebar = props =>
       {' · '}
       <Link to={{ pathname: '/mix/june' }}>MIX</Link>
       {' · '}
-      <Link to={{ pathname: "/stories/i wanna tell you that you\'re cool" }}>STORY</Link>
+      <Link to={{ pathname: "/stories/those years will come someday" }}>STORY</Link>
     </div>
   </div>;
 
