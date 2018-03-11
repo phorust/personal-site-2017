@@ -32,9 +32,6 @@ const photos = {
   iceland: importAll(
     require.context("./photos2/iceland", false, /\.(png|jpe?g|svg)$/)
   ),
-  "new homes": importAll(
-    require.context("./photos2/new homes", false, /\.(png|jpe?g|svg)$/)
-  ),
   "not for me": importAll(
     require.context("./photos2/not for me", false, /\.(png|jpe?g|svg)$/)
   ),
@@ -68,7 +65,12 @@ const Sidebar = props => (
       <div className="line" />
       <Link to={{ pathname: "/photos/but you" }}>PHOTO</Link>
       {" · "}
-      <Link to={{ pathname: "/mix/june" }}>MIX</Link>
+      <a
+        href="https://soundcloud.com/mngyuan/sets/things-i-never-said-to-you-beattape"
+        target="_blank"
+      >
+        MIX
+      </a>
       {" · "}
       <Link to={{ pathname: "/stories/those years will come someday" }}>
         STORY
@@ -177,11 +179,26 @@ const routes = [
     sidebar: ({ match }) => (
       <Sidebar>
         <div className="nav">
-          {Object.keys(photos).map(subfolder => (
-            <NavLink key={subfolder} to={{ pathname: `/photos/${subfolder}` }}>
-              {subfolder + " "}
-            </NavLink>
-          ))}
+          places
+          <br />
+          <NavLink to={{ pathname: `/photos/asian` }}>asia </NavLink>
+          <br />
+          <NavLink to={{ pathname: `/photos/americana` }}>americana </NavLink>
+          <br />
+          <NavLink to={{ pathname: `/photos/the drive home` }}>
+            the drive home{" "}
+          </NavLink>
+          <br />
+          <NavLink to={{ pathname: `/photos/iceland` }}>iceland </NavLink>
+          <br />
+          <br />
+          people
+          <br />
+          <NavLink to={{ pathname: `/photos/before` }}>before </NavLink>
+          <br />
+          <NavLink to={{ pathname: `/photos/family` }}>family </NavLink>
+          <br />
+          <NavLink to={{ pathname: `/photos/but you` }}>but you </NavLink>
         </div>
       </Sidebar>
     ),
@@ -203,7 +220,7 @@ const routes = [
         <div className="nav">
           {Object.keys(Stories).map(storyName => (
             <NavLink key={storyName} to={{ pathname: `/stories/${storyName}` }}>
-              {storyName + " "}
+              {storyName}
             </NavLink>
           ))}
         </div>
