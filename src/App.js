@@ -13,6 +13,8 @@ const importAllAsDict = r =>
       (agg, cur) => ({ ...agg, [cur]: <img key={cur} src={r(cur)} /> }),
       {}
     );
+const importAllAsArray = r =>
+  r.keys().reduce((agg, cur) => [...agg, <img key={cur} src={r(cur)} />], []);
 const photos = {
   asian: importAll(
     require.context("./photos2/asia", false, /\.(png|jpe?g|svg)$/)
@@ -40,12 +42,15 @@ const photos = {
   )
 };
 const stories = {
-  "those years will come someday": importAllAsDict(
+  "oakland just yesterday": importAllAsArray(
     require.context(
-      "./photos2/those years will come someday",
+      "./stories/oakland just yesterday",
       false,
       /\.(png|jpe?g|svg)$/
     )
+  ),
+  ghosts: importAllAsArray(
+    require.context("./stories/ghosts", false, /\.(png|jpe?g|svg)$/)
   )
 };
 
@@ -72,9 +77,7 @@ const Sidebar = props => (
         MIX
       </a>
       {" · "}
-      <Link to={{ pathname: "/stories/those years will come someday" }}>
-        STORY
-      </Link>
+      <Link to={{ pathname: "/stories/oakland just yesterday" }}>STORY</Link>
     </div>
   </div>
 );
@@ -125,7 +128,11 @@ class Story extends React.Component {
     const { history, match, location } = this.props;
     console.log(match.params.set);
     const photoElems = stories[match.params.set];
-    return <Gallery>{Stories[match.params.set](photoElems)}</Gallery>;
+    return (
+      <div className="story">
+        <Gallery>{Stories[match.params.set](photoElems)}</Gallery>
+      </div>
+    );
   }
 }
 
@@ -195,8 +202,8 @@ const routes = [
           <br />
           <br />
           people
+          <br />
           <div style={{ textAlign: "right" }}>
-            <br />
             <NavLink to={{ pathname: `/photos/before` }}>before </NavLink>
             <br />
             <NavLink to={{ pathname: `/photos/family` }}>family </NavLink>
@@ -222,11 +229,14 @@ const routes = [
     sidebar: ({ match }) => (
       <Sidebar>
         <div className="nav">
-          {Object.keys(Stories).map(storyName => (
-            <NavLink key={storyName} to={{ pathname: `/stories/${storyName}` }}>
-              {storyName}
+          <div style={{ textAlign: "right" }}>
+            <NavLink to={{ pathname: `/stories/oakland just yesterday` }}>
+              oakland, just yesterday
             </NavLink>
-          ))}
+            <br />
+            <NavLink to={{ pathname: `/stories/ghosts` }}>ghosts</NavLink>
+            <br />
+          </div>
         </div>
       </Sidebar>
     ),

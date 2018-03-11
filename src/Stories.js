@@ -122,6 +122,15 @@ and i think that's ok.
       <Spacer/>
     </React.Fragment>
   ),
+
+
+
+
+"oakland just yesterday": (photos) =>
+  <React.Fragment><Spacer/><Spacer/>{photos}</React.Fragment>,
+
+"ghosts": (photos) =>
+  <React.Fragment><Spacer/><Spacer/>{photos}</React.Fragment>,
 };
 
 export default Stories;

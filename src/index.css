@@ -159,6 +159,10 @@ a {
   margin-right: 12px;
 }
 
+.story .photowrapperInner > img {
+  margin-right: 0;
+}
+
 .textColumn {
   font-size: 15px;
   display: flex;
