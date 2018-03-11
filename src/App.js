@@ -181,24 +181,28 @@ const routes = [
         <div className="nav">
           places
           <br />
-          <NavLink to={{ pathname: `/photos/asian` }}>asia </NavLink>
-          <br />
-          <NavLink to={{ pathname: `/photos/americana` }}>americana </NavLink>
-          <br />
-          <NavLink to={{ pathname: `/photos/the drive home` }}>
-            the drive home{" "}
-          </NavLink>
-          <br />
-          <NavLink to={{ pathname: `/photos/iceland` }}>iceland </NavLink>
+          <div style={{ textAlign: "right" }}>
+            <NavLink to={{ pathname: `/photos/asian` }}>asia </NavLink>
+            <br />
+            <NavLink to={{ pathname: `/photos/americana` }}>americana </NavLink>
+            <br />
+            <NavLink to={{ pathname: `/photos/the drive home` }}>
+              the drive home{" "}
+            </NavLink>
+            <br />
+            <NavLink to={{ pathname: `/photos/iceland` }}>iceland </NavLink>
+          </div>
           <br />
           <br />
           people
-          <br />
-          <NavLink to={{ pathname: `/photos/before` }}>before </NavLink>
-          <br />
-          <NavLink to={{ pathname: `/photos/family` }}>family </NavLink>
-          <br />
-          <NavLink to={{ pathname: `/photos/but you` }}>but you </NavLink>
+          <div style={{ textAlign: "right" }}>
+            <br />
+            <NavLink to={{ pathname: `/photos/before` }}>before </NavLink>
+            <br />
+            <NavLink to={{ pathname: `/photos/family` }}>family </NavLink>
+            <br />
+            <NavLink to={{ pathname: `/photos/but you` }}>but you </NavLink>
+          </div>
         </div>
       </Sidebar>
     ),
