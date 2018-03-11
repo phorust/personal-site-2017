@@ -1,55 +1,59 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Route, Link, NavLink } from 'react-router-dom';
-import { withRouter } from 'react-router-dom';
-import Stories from './Stories';
-import './App.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import { Route, Link, NavLink } from "react-router-dom";
+import { withRouter } from "react-router-dom";
+import Stories from "./Stories";
+import "./App.css";
 
 const importAll = r => r.keys().map(r);
-const importAllAsDict = r => (
-  r.keys()
+const importAllAsDict = r =>
+  r
+    .keys()
     .reduce(
-      (agg, cur) => ({...agg, [cur]: <img key={cur} src={r(cur)} />}),
+      (agg, cur) => ({ ...agg, [cur]: <img key={cur} src={r(cur)} /> }),
       {}
-    )
-);
+    );
 const photos = {
   asian: importAll(
-    require.context('./photos2/asia', false, /\.(png|jpe?g|svg)$/),
+    require.context("./photos2/asia", false, /\.(png|jpe?g|svg)$/)
   ),
   americana: importAll(
-    require.context('./photos2/americana', false, /\.(png|jpe?g|svg)$/),
+    require.context("./photos2/americana", false, /\.(png|jpe?g|svg)$/)
   ),
   before: importAll(
-    require.context('./photos2/before', false, /\.(png|jpe?g|svg)$/),
+    require.context("./photos2/before", false, /\.(png|jpe?g|svg)$/)
   ),
-  'the drive home': importAll(
-    require.context('./photos2/drive home', false, /\.(png|jpe?g|svg)$/),
+  "the drive home": importAll(
+    require.context("./photos2/drive home", false, /\.(png|jpe?g|svg)$/)
   ),
   family: importAll(
-    require.context('./photos2/family', false, /\.(png|jpe?g|svg)$/),
+    require.context("./photos2/family", false, /\.(png|jpe?g|svg)$/)
   ),
   iceland: importAll(
-    require.context('./photos2/iceland', false, /\.(png|jpe?g|svg)$/),
+    require.context("./photos2/iceland", false, /\.(png|jpe?g|svg)$/)
   ),
-  'new homes': importAll(
-    require.context('./photos2/new homes', false, /\.(png|jpe?g|svg)$/),
+  "new homes": importAll(
+    require.context("./photos2/new homes", false, /\.(png|jpe?g|svg)$/)
   ),
-  'not for me': importAll(
-    require.context('./photos2/not for me', false, /\.(png|jpe?g|svg)$/),
+  "not for me": importAll(
+    require.context("./photos2/not for me", false, /\.(png|jpe?g|svg)$/)
   ),
-  'but you': importAll(
-    require.context('./photos2/you', false, /\.(png|jpe?g|svg)$/),
-  ),
+  "but you": importAll(
+    require.context("./photos2/you", false, /\.(png|jpe?g|svg)$/)
+  )
 };
 const stories = {
   "those years will come someday": importAllAsDict(
-    require.context("./photos2/those years will come someday", false, /\.(png|jpe?g|svg)$/),
-  ),
-}
+    require.context(
+      "./photos2/those years will come someday",
+      false,
+      /\.(png|jpe?g|svg)$/
+    )
+  )
+};
 
-const Sidebar = props =>
-  <div className={'theOne ' + props.className}>
+const Sidebar = props => (
+  <div className={"theOne " + props.className}>
     {props.children}
     <div className="theOneInner">
       <span>
@@ -57,18 +61,21 @@ const Sidebar = props =>
         graphic.
         <br />
         <br />
-        <a href="http://instagram.com/kevinmlee.x" target="_blank">
-          let's collab @kevinmlee.x
+        <a href="http://instagram.com/mngyuan" target="_blank">
+          @mngyuan
         </a>
       </span>
       <div className="line" />
-      <Link to={{ pathname: '/photos/but you' }}>PHOTO</Link>
-      {' · '}
-      <Link to={{ pathname: '/mix/june' }}>MIX</Link>
-      {' · '}
-      <Link to={{ pathname: "/stories/those years will come someday" }}>STORY</Link>
+      <Link to={{ pathname: "/photos/but you" }}>PHOTO</Link>
+      {" · "}
+      <Link to={{ pathname: "/mix/june" }}>MIX</Link>
+      {" · "}
+      <Link to={{ pathname: "/stories/those years will come someday" }}>
+        STORY
+      </Link>
     </div>
-  </div>;
+  </div>
+);
 
 class Landing extends React.Component {
   constructor(props) {
@@ -104,14 +111,10 @@ class Photos extends React.Component {
   render() {
     const { history, match, location } = this.props;
     console.log(match.params.set);
-    const photoElems = photos[match.params.set].map(src =>
-      <img key={src} src={src} />,
-    );
-    return (
-      <Gallery>
-        {photoElems}
-      </Gallery>
-    );
+    const photoElems = photos[match.params.set].map(src => (
+      <img key={src} src={src} />
+    ));
+    return <Gallery>{photoElems}</Gallery>;
   }
 }
 
@@ -120,11 +123,7 @@ class Story extends React.Component {
     const { history, match, location } = this.props;
     console.log(match.params.set);
     const photoElems = stories[match.params.set];
-    return (
-      <Gallery>
-        {Stories[match.params.set](photoElems)}
-      </Gallery>
-    );
+    return <Gallery>{Stories[match.params.set](photoElems)}</Gallery>;
   }
 }
 
@@ -132,7 +131,7 @@ class Gallery extends React.Component {
   _photowrapperInner;
 
   _onWheel = e => {
-    if (navigator.appVersion.indexOf('Macintosh') === -1) {
+    if (navigator.appVersion.indexOf("Macintosh") === -1) {
       e.preventDefault();
       const node = ReactDOM.findDOMNode(this._photowrapperInner);
       node.scrollLeft += e.deltaY;
@@ -168,47 +167,50 @@ const Mix = () => {
 
 const routes = [
   {
-    path: '/',
+    path: "/",
     exact: true,
     sidebar: () => <Sidebar className="black" />,
-    main: Landing,
+    main: Landing
   },
   {
-    path: '/photos/:set',
-    sidebar: ({ match }) =>
+    path: "/photos/:set",
+    sidebar: ({ match }) => (
       <Sidebar>
         <div className="nav">
-          {Object.keys(photos).map(subfolder =>
+          {Object.keys(photos).map(subfolder => (
             <NavLink key={subfolder} to={{ pathname: `/photos/${subfolder}` }}>
-              {subfolder + ' '}
-            </NavLink>,
-          )}
+              {subfolder + " "}
+            </NavLink>
+          ))}
         </div>
-      </Sidebar>,
-    main: Photos,
+      </Sidebar>
+    ),
+    main: Photos
   },
   {
-    path: '/mix',
-    sidebar: () =>
+    path: "/mix",
+    sidebar: () => (
       <Sidebar>
         <div className="theOneDecor" />
-      </Sidebar>,
-    main: Mix,
+      </Sidebar>
+    ),
+    main: Mix
   },
   {
-    path: '/stories/:set',
-    sidebar: ({ match }) =>
+    path: "/stories/:set",
+    sidebar: ({ match }) => (
       <Sidebar>
         <div className="nav">
-          {Object.keys(Stories).map(storyName =>
+          {Object.keys(Stories).map(storyName => (
             <NavLink key={storyName} to={{ pathname: `/stories/${storyName}` }}>
-              {storyName+ ' '}
-            </NavLink>,
-          )}
+              {storyName + " "}
+            </NavLink>
+          ))}
         </div>
-      </Sidebar>,
-    main: Story,
-  },
+      </Sidebar>
+    ),
+    main: Story
+  }
 ];
 
 class App extends React.Component {
@@ -216,7 +218,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       horizontalScroll: true,
-      background: 'white',
+      background: "white"
     };
     window.app = this;
   }
@@ -242,22 +244,22 @@ class App extends React.Component {
         onMouseMove={this._onMouseMove}
         style={{ background: this.state.background }}
       >
-        {routes.map((route, index) =>
+        {routes.map((route, index) => (
           <Route
             key={index}
             path={route.path}
             exact={route.exact}
             component={route.main}
-          />,
-        )}
-        {routes.map((route, index) =>
+          />
+        ))}
+        {routes.map((route, index) => (
           <Route
             key={index}
             path={route.path}
             exact={route.exact}
             component={route.sidebar}
-          />,
-        )}
+          />
+        ))}
       </div>
     );
   }
