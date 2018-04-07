@@ -1,7 +1,7 @@
-[mngyuan.com](mngyuan.com)
+[mngyuan.com](http://mngyuan.com)
 ===
-also [kevinmlee.io](kevinmlee.io)
+also [kevinmlee.io](http://kevinmlee.io)
 
-personal website for [@mnyuan](instagram.com/mngyuan)
+personal website for [@mnyuan](http://instagram.com/mngyuan)
 
 梦远
