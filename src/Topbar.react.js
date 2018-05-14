@@ -10,12 +10,18 @@ const Menu = props => (
 
 const Topbar = props => (
   <div className={`topbar + ${props.black ? 'black' : ''}`}>
-    <div className="nameplate">mngyuan 梦远</div>
+    <div className="nameplate">
+      <Link to={{pathname: '/'}}>mngyuan 梦远</Link>
+    </div>
     <nav>
       <Menu
-        menuHref="/photos/but you"
+        menuHref="/photos/アイスクリーム"
         menuContent={
           <div>
+            <NavLink to={{pathname: `/photos/アイスクリーム`}}>
+              アイスクリーム
+            </NavLink>
+            <br />
             <NavLink to={{pathname: `/photos/before`}}>before </NavLink>
             <br />
             <NavLink to={{pathname: `/photos/family`}}>family </NavLink>

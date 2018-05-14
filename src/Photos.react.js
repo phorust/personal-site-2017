@@ -28,6 +28,9 @@ const photos = {
   'but you': importAll(
     require.context('./photos2/you', false, /\.(png|jpe?g|svg)$/),
   ),
+  アイスクリーム: importAll(
+    require.context('./photos2/ice cream', false, /\.(png|jpe?g|svg)$/),
+  ),
 };
 
 export class Gallery extends React.Component {
