@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Karla');
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 @import url(http://fonts.googleapis.com/earlyaccess/notosanssc.css);
 
 body, html, #root {
@@ -66,17 +67,16 @@ a {
 
 .page.black iframe {
   position: absolute;
-  top: 35vh;
-  right: 15vw;
+  width: 100vw;
+  height: 100vh;
   border: none;
 }
 #hider {
-  width: 640px;
-  height: 55px;
+  width: 100vw;
+  height: 90px;
   background-color: black;
   position: absolute;
-  top: calc(35vh + 360px - 55px);
-  right: 15vw;
+  top: calc(100vh - 90px);
 }
 
 .theOne {
@@ -118,16 +118,6 @@ a {
   border-right: 12px solid rgba(69, 91, 159, 0.5);
 }
 
-.nav a {
-  font-weight: normal;
-  color: rgba(0, 0, 0, 0.5);
-}
-.nav a.active,
-.nav a:hover {
-  font-weight: bold;
-  color: rgba(255, 0, 0, 0.5);
-}
-
 .line {
   width: 50%;
   background-color: black;
@@ -154,6 +144,10 @@ a {
   display: flex;
 }
 
+.photowrapperInner.vertical {
+  flex-direction: vertical;
+}
+
 .photowrapperInner > img {
   height: 100%;
   margin-right: 12px;
@@ -177,4 +171,52 @@ a {
 
 .textColumn.bottom {
   justify-content: flex-end;
+}
+
+.topbar {
+  position: fixed;
+  top: 0;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 12px;
+  text-align: right;
+  width: 100%;
+  padding: 12px 24px;
+  padding-top: 48px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar .nameplate {
+  font-size: 24px;
+  font-family: 'Karla', sans-serif;
+}
+.topbar.black .nameplate {
+  color: white;
+}
+
+.navMenu {
+  position: absolute;
+  right: 0;
+  width: 200px;
+  display: none;
+}
+
+nav a {
+  display: inline-block;
+  position: relative;
+  font-weight: normal;
+  color: rgba(0, 0, 0, 0.5);
+}
+.black nav a {
+  color: white;
+}
+nav a.active,
+nav a:hover {
+  font-weight: bold;
+  color: red;
+}
+nav a:hover .navMenu {
+  display: block;
 }

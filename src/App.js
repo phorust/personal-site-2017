@@ -1,9 +1,10 @@
 import React from 'react';
 import {Route, NavLink, withRouter} from 'react-router-dom';
-import Sidebar from './Sidebar.react';
 import Photos from './Photos.react';
 import Landing from './Landing.react';
 import Story from './Story.react';
+import About from './About.react';
+import Topbar from './Topbar.react';
 import './App.css';
 
 const Mix = () => (
@@ -18,73 +19,27 @@ const routes = [
   {
     path: '/',
     exact: true,
-    sidebar: () => <Sidebar className="black" />,
     main: Landing,
   },
   {
     path: '/photos/:set',
-    sidebar: () => (
-      <Sidebar>
-        <div className="nav">
-          places
-          <br />
-          <div style={{textAlign: 'right'}}>
-            <NavLink to={{pathname: `/photos/asian`}}>asia </NavLink>
-            <br />
-            <NavLink to={{pathname: `/photos/americana`}}>americana </NavLink>
-            <br />
-            <NavLink to={{pathname: `/photos/the drive home`}}>
-              the drive home{' '}
-            </NavLink>
-            <br />
-            <NavLink to={{pathname: `/photos/iceland`}}>iceland </NavLink>
-          </div>
-          <br />
-          <br />
-          people
-          <br />
-          <div style={{textAlign: 'right'}}>
-            <NavLink to={{pathname: `/photos/before`}}>before </NavLink>
-            <br />
-            <NavLink to={{pathname: `/photos/family`}}>family </NavLink>
-            <br />
-            <NavLink to={{pathname: `/photos/but you`}}>but you </NavLink>
-          </div>
-        </div>
-      </Sidebar>
-    ),
     main: Photos,
   },
   {
     path: '/mix',
-    sidebar: () => (
-      <Sidebar>
-        <div className="theOneDecor" />
-      </Sidebar>
-    ),
     main: Mix,
   },
   {
     path: '/stories/:set',
-    sidebar: () => (
-      <Sidebar>
-        <div className="nav">
-          <div style={{textAlign: 'right'}}>
-            <NavLink to={{pathname: `/stories/oakland just yesterday`}}>
-              oakland, just yesterday
-            </NavLink>
-            <br />
-            <NavLink to={{pathname: `/stories/ghosts`}}>ghosts</NavLink>
-            <br />
-          </div>
-        </div>
-      </Sidebar>
-    ),
     main: Story,
+  },
+  {
+    path: '/about',
+    main: About,
   },
 ];
 
-const App = () => (
+const App = ({location}) => (
   // const unused = (
   // <div>
   // <div className="kevin">Kevin</div>
@@ -101,14 +56,7 @@ const App = () => (
         component={route.main}
       />
     ))}
-    {routes.map(route => (
-      <Route
-        key={route.path}
-        path={route.path}
-        exact={route.exact}
-        component={route.sidebar}
-      />
-    ))}
+    <Topbar black={location.pathname === '/'} />
   </div>
 );
 

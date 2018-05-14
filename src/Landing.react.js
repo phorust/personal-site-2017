@@ -17,8 +17,8 @@ class Landing extends React.Component {
       <div className="page black">
         <iframe
           src="https://player.vimeo.com/video/213032482?autoplay=1"
-          width="640"
-          height="360"
+          width="720"
+          height="480"
           frameBorder="0"
           webkitallowfullscreen
           mozallowfullscreen
