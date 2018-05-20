@@ -1,4 +1,5 @@
 import React from 'react';
+import MediaQuery from 'react-responsive';
 import {NavLink, Link} from 'react-router-dom';
 
 const Menu = props => (
@@ -8,8 +9,8 @@ const Menu = props => (
   </Link>
 );
 
-const Topbar = props => (
-  <div className={`topbar + ${props.black ? 'black' : ''}`}>
+const TopbarDesktop = props => (
+  <div className={`topbar ${props.black ? 'black' : ''}`}>
     <div className="nameplate">
       <Link to={{pathname: '/'}}>mngyuan 梦远</Link>
     </div>
@@ -79,6 +80,67 @@ const Topbar = props => (
       <Link to={{pathname: '/about'}}>about</Link>
     </nav>
   </div>
+);
+
+const TopbarMobile = props => (
+  <div className={`topbar mobile ${props.black ? 'black' : ''}`}>
+    <div className="nameplate">
+      <Link to={{pathname: '/'}}>mngyuan 梦远</Link>
+    </div>
+    <nav>
+      <div>
+        people<br />
+        <NavLink to={{pathname: `/photos/アイスクリーム`}}>
+          アイスクリーム
+        </NavLink>
+        <br />
+        <NavLink to={{pathname: `/photos/before`}}>before </NavLink>
+        <br />
+        <NavLink to={{pathname: `/photos/family`}}>family </NavLink>
+        <br />
+        <NavLink to={{pathname: `/photos/but you`}}>but you </NavLink>
+      </div>
+      <div>
+        places<br />
+        <NavLink to={{pathname: `/photos/asian`}}>asia</NavLink>
+        <br />
+        <NavLink to={{pathname: `/photos/americana`}}>americana</NavLink>
+        <br />
+        <NavLink to={{pathname: `/photos/the drive home`}}>
+          the drive home
+        </NavLink>
+        <br />
+        <NavLink to={{pathname: `/photos/iceland`}}>iceland</NavLink>
+      </div>
+      <a
+        href="https://soundcloud.com/mngyuan/sets/things-i-never-said-to-you-beattape"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        mix
+      </a>
+      <div>
+        story<br />
+        <NavLink to={{pathname: `/stories/oakland just yesterday`}}>
+          oakland, just yesterday
+        </NavLink>
+        <br />
+        <NavLink to={{pathname: `/stories/ghosts`}}>ghosts</NavLink>
+        <br />
+      </div>
+    </nav>
+  </div>
+);
+
+const Topbar = props => (
+  <React.Fragment>
+    <MediaQuery query="(max-device-width: 1224px)">
+      <TopbarMobile {...props} />
+    </MediaQuery>
+    <MediaQuery query="(min-device-width: 1224px)">
+      <TopbarDesktop {...props} />
+    </MediaQuery>
+  </React.Fragment>
 );
 
 export default Topbar;
