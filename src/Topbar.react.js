@@ -89,7 +89,8 @@ const TopbarMobile = props => (
     </div>
     <nav>
       <div>
-        people<br />
+        <span className="section">people</span>
+        <br />
         <NavLink to={{pathname: `/photos/アイスクリーム`}}>
           アイスクリーム
         </NavLink>
@@ -101,7 +102,8 @@ const TopbarMobile = props => (
         <NavLink to={{pathname: `/photos/but you`}}>but you </NavLink>
       </div>
       <div>
-        places<br />
+        <span className="section">places</span>
+        <br />
         <NavLink to={{pathname: `/photos/asian`}}>asia</NavLink>
         <br />
         <NavLink to={{pathname: `/photos/americana`}}>americana</NavLink>
@@ -120,7 +122,8 @@ const TopbarMobile = props => (
         mix
       </a>
       <div>
-        story<br />
+        <span className="section">story</span>
+        <br />
         <NavLink to={{pathname: `/stories/oakland just yesterday`}}>
           oakland, just yesterday
         </NavLink>

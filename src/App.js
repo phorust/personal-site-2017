@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, NavLink, withRouter} from 'react-router-dom';
+import {Route, withRouter} from 'react-router-dom';
 import Photos from './Photos.react';
 import Landing from './Landing.react';
 import Story from './Story.react';

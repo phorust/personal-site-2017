@@ -1,5 +1,4 @@
 import React from 'react';
-import MediaQuery from 'react-responsive';
 import ReactDOM from 'react-dom';
 
 const importAll = r => r.keys().map(r);
@@ -34,7 +33,7 @@ const photos = {
   ),
 };
 
-class GalleryDesktop extends React.Component {
+export class Gallery extends React.Component {
   _photowrapperInner;
 
   _onWheel = e => {
@@ -61,25 +60,6 @@ class GalleryDesktop extends React.Component {
     );
   }
 }
-
-const GalleryMobile = props => (
-  <div className="page mobile">
-    <div className="photowrapper mobile">
-      <div className="photowrapperInner mobile">{props.children}</div>
-    </div>
-  </div>
-);
-
-export const Gallery = props => (
-  <React.Fragment>
-    <MediaQuery query="(max-device-width: 1224px)">
-      <GalleryMobile {...props} />
-    </MediaQuery>
-    <MediaQuery query="(min-device-width: 1224px)">
-      <GalleryDesktop {...props} />
-    </MediaQuery>
-  </React.Fragment>
-);
 
 const Photos = props => {
   const {match} = props;

@@ -134,10 +134,6 @@ a {
   width: 100%;
   overflow: scroll;
 }
-.photowrapper.mobile {
-  height: 100vh;
-}
-
 .photowrapperInner {
   height: 100%;
   padding-left: 15vw;
@@ -146,10 +142,6 @@ a {
   overflow: auto;
   display: flex;
 }
-.photowrapperInner.mobile {
-  display: block;
-}
-
 .photowrapperInner.vertical {
   flex-direction: vertical;
 }
@@ -157,12 +149,6 @@ a {
 .photowrapperInner > img {
   height: 100%;
   margin-right: 12px;
-}
-.photowrapperInner.mobile > img {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin: 16px 0;
 }
 
 .story .photowrapperInner > img {
@@ -199,13 +185,6 @@ a {
   justify-content: space-between;
   align-items: center;
 }
-.topbar.mobile {
-  padding: 48px;
-  display: block;
-  font-size: 24px;
-  width: auto;
-  right: 0;
-}
 
 .topbar .nameplate {
   font-size: 24px;
@@ -214,12 +193,6 @@ a {
 }
 .topbar.black .nameplate {
   color: white;
-}
-.topbar.black.mobile {
-  color: red;
-}
-.topbar.mobile .nameplate {
-  font-size: 48px;
 }
 
 .navMenu {
@@ -245,4 +218,49 @@ nav a:hover {
 }
 nav a:hover .navMenu {
   display: block;
+}
+
+@media only screen and (max-width: 768px) {
+  .photowrapper {
+    height: 100vh;
+    top: 0;
+  }
+
+  .photowrapperInner {
+    padding-top: 15vh;
+    display: block;
+  }
+
+  .photowrapperInner > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 16px 0;
+  }
+  .topbar {
+    padding: 24px;
+    display: block;
+    font-size: 12px;
+    width: auto;
+    right: 0;
+  }
+  .topbar.black {
+    color: red;
+  }
+  .topbar .nameplate {
+    font-size: 24px;
+  }
+
+  nav a {
+    background: white;
+  }
+
+  .nameplate {
+    background: white;
+  }
+
+  nav .section {
+    background: black;
+    color: white;
+  }
 }
