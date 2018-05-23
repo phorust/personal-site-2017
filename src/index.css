@@ -250,17 +250,44 @@ nav a:hover .navMenu {
   .topbar .nameplate {
     font-size: 24px;
   }
+  .topbar.black .nameplate {
+    color: black;
+  }
 
   nav a {
     background: white;
   }
+  .black nav a {
+    background: black;
+  }
 
   .nameplate {
+    background: white;
+  }
+  .black .nameplate {
     background: white;
   }
 
   nav .section {
     background: black;
     color: white;
+  }
+  .black nav .section {
+    background: white;
+    color: black;
+  }
+
+  /*.story .photowrapperInner > img {*/
+    /*transform: rotate(90deg);*/
+    /*margin: 0;*/
+  /*}*/
+  .story .photowrapperInner {
+    display: flex;
+    padding-top: 0;
+  }
+  .story .photowrapperInner > img {
+    width: auto;
+    height: 100%;
+    margin: 0;
   }
 }
