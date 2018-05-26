@@ -137,10 +137,10 @@ const TopbarMobile = props => (
 
 const Topbar = props => (
   <React.Fragment>
-    <MediaQuery query="(max-device-width: 1224px)">
+    <MediaQuery query="(max-width: 768px)">
       <TopbarMobile {...props} />
     </MediaQuery>
-    <MediaQuery query="(min-device-width: 1224px)">
+    <MediaQuery query="(min-width: 768px)">
       <TopbarDesktop {...props} />
     </MediaQuery>
   </React.Fragment>
