@@ -155,6 +155,15 @@ a {
   margin-right: 12px;
 }
 
+.preamble {
+  display: flex;
+  align-items: flex-end;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 10px;
+  padding-left: 24px;
+  padding-right: 96px;
+}
+
 .story .photowrapperInner > img {
   margin-right: 0;
 }

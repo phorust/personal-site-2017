@@ -43,6 +43,17 @@ const photos = {
   ),
 };
 
+const PREAMBLES = {
+  'kchao mf': (
+    <div className="preamble">
+      Fuji GA645i<br />
+      Fujicolor Pro 400H<br />
+      <br />with Kelley
+      <br />05.27.18
+    </div>
+  ),
+};
+
 export class Gallery extends React.Component {
   _photowrapperInner;
 
@@ -77,7 +88,8 @@ const Photos = props => {
   const photoElems = photos[match.params.set].map(src => (
     <img key={src} src={src} />
   ));
-  return <Gallery>{photoElems}</Gallery>;
+  const elems = ([PREAMBLES[match.params.set]] || []).concat(photoElems);
+  return <Gallery>{elems}</Gallery>;
 };
 
 export default Photos;
