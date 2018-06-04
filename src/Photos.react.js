@@ -31,6 +31,16 @@ const photos = {
   アイスクリーム: importAll(
     require.context('./photos2/ice cream', false, /\.(png|jpe?g|svg)$/),
   ),
+  // unlinked
+  contacts: importAll(
+    require.context('./photos2/loose/contacts', false, /\.(png|jpe?g|svg)$/),
+  ).reverse(),
+  kchao: importAll(
+    require.context('./photos2/loose/kchao', false, /\.(png|jpe?g|svg)$/),
+  ),
+  'kchao mf': importAll(
+    require.context('./photos2/loose/kchao mf', false, /\.(png|jpe?g|svg)$/),
+  ),
 };
 
 export class Gallery extends React.Component {
