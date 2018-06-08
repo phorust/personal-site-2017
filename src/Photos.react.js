@@ -41,6 +41,12 @@ const photos = {
   'kchao mf': importAll(
     require.context('./photos2/loose/kchao mf', false, /\.(png|jpe?g|svg)$/),
   ),
+  nyc: importAll(
+    require.context('./photos2/loose/nyc', false, /\.(png|jpe?g|svg)$/),
+  ),
+  soph: importAll(
+    require.context('./photos2/loose/soph', false, /\.(png|jpe?g|svg)$/),
+  ),
 };
 
 const PREAMBLES = {
