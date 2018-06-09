@@ -47,6 +47,9 @@ const photos = {
   soph: importAll(
     require.context('./photos2/loose/soph', false, /\.(png|jpe?g|svg)$/),
   ),
+  hearst: importAll(
+    require.context('./photos2/loose/hearst', false, /\.(png|jpe?g|svg)$/),
+  ),
 };
 
 const PREAMBLES = {
@@ -56,6 +59,14 @@ const PREAMBLES = {
       Fujicolor Pro 400H<br />
       <br />with Kelley
       <br />05.27.18
+    </div>
+  ),
+  hearst: (
+    <div className="preamble">
+      Canon F1-n<br />
+      Kodak Portra 800<br />
+      <br />with Linda + Cathy + Lisa
+      <br />05.03.18
     </div>
   ),
 };
