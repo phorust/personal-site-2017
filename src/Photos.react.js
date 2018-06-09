@@ -69,6 +69,14 @@ const PREAMBLES = {
       <br />05.03.18
     </div>
   ),
+  nyc: (
+    <div className="preamble">
+      Canon F1-n<br />
+      Multiple rolls of Kodak Portra 800<br />
+      <br />with the boiz
+      <br />05.12.18-05.24.18
+    </div>
+  ),
 };
 
 export class Gallery extends React.Component {
