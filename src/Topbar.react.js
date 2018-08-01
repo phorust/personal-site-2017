@@ -70,6 +70,8 @@ const TopbarDesktop = props => (
             <br />
             <NavLink to={{pathname: `/stories/ghosts`}}>ghosts</NavLink>
             <br />
+            <NavLink to={{pathname: `/stories/milkfat`}}>milkfat</NavLink>
+            <br />
           </div>
         }
         menuHref="/stories/oakland just yesterday"
@@ -129,6 +131,8 @@ const TopbarMobile = props => (
         </NavLink>
         <br />
         <NavLink to={{pathname: `/stories/ghosts`}}>ghosts</NavLink>
+        <br />
+        <NavLink to={{pathname: `/stories/milkfat`}}>milkfat</NavLink>
         <br />
       </div>
     </nav>

@@ -93,7 +93,9 @@ export class Gallery extends React.Component {
   render() {
     return (
       <div className="page">
-        <div className="photowrapper">
+        <div
+          className={`photowrapper ${this.props.vertical ? 'vertical' : ''}`}
+        >
           <div
             className="photowrapperInner"
             ref={ref => (this._photowrapperInner = ref)}

@@ -131,6 +131,9 @@ and i think that's ok.
 
 "ghosts": (photos) =>
   <React.Fragment><Spacer/><Spacer/>{photos}</React.Fragment>,
+"milkfat": (photos) =>
+  <React.Fragment>{photos}</React.Fragment>,
+
 };
 
 export default Stories;

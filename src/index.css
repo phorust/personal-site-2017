@@ -146,8 +146,27 @@ a {
   overflow: auto;
   display: flex;
 }
-.photowrapperInner.vertical {
-  flex-direction: vertical;
+.photowrapper.vertical {
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+}
+.photowrapperInner {
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+.photowrapper.vertical .photowrapperInner {
+  flex-direction: column;
+}
+.photowrapper.vertical .photowrapperInner > div {
+  margin-bottom: 76px;
+}
+.photowrapper.vertical .photowrapperInner > div:nth-last-child(1) {
+  margin: 0;
+}
+.photowrapper.vertical .photowrapperInner > div > img {
+  width: 100%;
 }
 
 .photowrapperInner > img {

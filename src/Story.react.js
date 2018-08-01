@@ -22,6 +22,9 @@ const stories = {
   ghosts: importAllAsArray(
     require.context('./stories/ghosts', false, /\.(png|jpe?g|svg)$/),
   ),
+  milkfat: importAllAsArray(
+    require.context('./stories/milkfat', false, /\.(png|jpe?g|svg)$/),
+  ).map((photoElem, i) => <div key={i}>{photoElem}</div>),
 };
 
 const Story = props => {
@@ -29,7 +32,9 @@ const Story = props => {
   const photoElems = stories[match.params.set];
   return (
     <div className="story">
-      <Gallery>{Stories[match.params.set](photoElems)}</Gallery>
+      <Gallery vertical={match.params.set === 'milkfat' ? true : null}>
+        {Stories[match.params.set](photoElems)}
+      </Gallery>
     </div>
   );
 };
