@@ -33,7 +33,23 @@ const Story = props => {
   const photoElems = stories[match.params.set];
   const gallery =
     match.params.set === 'milkfat' ? (
-      <SinglePhotoGallery photoElems={photoElems} />
+      <SinglePhotoGallery
+        photoElems={[
+          <React.Fragment>
+            <div className="preamble">
+              milkfat<br />
+              zine<br />
+              <br />
+              milkfat is a celebration of dairy and dairy-related packaging,
+              <br />
+              and an excuse to compile fresh photos.
+              <br />07.28.18
+            </div>
+            {photoElems[0]}
+          </React.Fragment>,
+          ...photoElems.slice(1),
+        ]}
+      />
     ) : (
       <Gallery>{Stories[match.params.set](photoElems)}</Gallery>
     );
