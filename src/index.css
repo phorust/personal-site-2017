@@ -169,6 +169,10 @@ a {
   width: 100%;
 }
 
+.photowrapperInner.single {
+  justify-content: center;
+}
+
 .photowrapperInner > img {
   height: 100%;
   margin-right: 12px;

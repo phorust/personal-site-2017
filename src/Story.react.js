@@ -1,6 +1,7 @@
 import React from 'react';
 import Stories from './Stories';
 import {Gallery} from './Photos.react';
+import SinglePhotoGallery from './SinglePhotoGallery.react';
 
 // const importAllAsDict = r =>
 // r
@@ -24,19 +25,19 @@ const stories = {
   ),
   milkfat: importAllAsArray(
     require.context('./stories/milkfat', false, /\.(png|jpe?g|svg)$/),
-  ).map((photoElem, i) => <div key={i}>{photoElem}</div>),
+  ),
 };
 
 const Story = props => {
   const {match} = props;
   const photoElems = stories[match.params.set];
-  return (
-    <div className="story">
-      <Gallery vertical={match.params.set === 'milkfat' ? true : null}>
-        {Stories[match.params.set](photoElems)}
-      </Gallery>
-    </div>
-  );
+  const gallery =
+    match.params.set === 'milkfat' ? (
+      <SinglePhotoGallery photoElems={photoElems} />
+    ) : (
+      <Gallery>{Stories[match.params.set](photoElems)}</Gallery>
+    );
+  return <div className="story">{gallery}</div>;
 };
 
 export default Story;
