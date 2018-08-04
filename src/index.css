@@ -172,6 +172,9 @@ a {
 .photowrapperInner.single {
   justify-content: center;
 }
+.mobileOnly {
+  display: none;
+}
 
 .photowrapperInner > img {
   height: 100%;
@@ -325,5 +328,16 @@ nav a:hover .navMenu {
     width: auto;
     height: 100%;
     margin: 0;
+  }
+
+  .photowrapperInner.single {
+    display: none;
+  }
+  .mobileOnly {
+    display: flex;
+    flex-direction: column;
+  }
+  .mobileOnly > div > img {
+    width: 100%;
   }
 }

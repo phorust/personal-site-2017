@@ -32,7 +32,11 @@ export default class SinglePhotoGallery extends React.Component {
             }
           >
             {this.props.photoElems[this.state.curPhoto]}
-            <div style={{display: 'none'}}>{this.props.photoElems}</div>
+          </div>
+          <div className="mobileOnly">
+            {this.props.photoElems.map((photoElem, i) => (
+              <div key={i}>{photoElem}</div>
+            ))}
           </div>
         </div>
       </div>
