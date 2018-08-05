@@ -8,8 +8,8 @@ const About = () => (
         graphic.
         <br />
         <br />
-        He listens to podcasts and the Tiny Desk religiously, adores video
-        essays, loves indie games, and has lots of opinions.
+        He listens to podcasts and adores video essays and indie games, and has
+        lots of opinions.
         <br />
         <br />
         He is looking for the next thing he wants to create.
