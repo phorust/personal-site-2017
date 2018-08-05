@@ -171,6 +171,23 @@ a {
 
 .photowrapperInner.single {
   justify-content: center;
+  user-select: none;
+  position: relative;
+}
+.photowrapperInner.single > .left,
+.photowrapperInner.single > .right {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+}
+.photowrapperInner.single > .left {
+  left: 0;
+  cursor: w-resize;
+}
+.photowrapperInner.single > .right {
+  right: 0;
+  cursor: e-resize;
 }
 .mobileOnly {
   display: none;

@@ -17,20 +17,26 @@ export default class SinglePhotoGallery extends React.Component {
           <div
             className="photowrapperInner single"
             ref={ref => (this._photowrapperInner = ref)}
-            onClick={e =>
-              e.nativeEvent.clientX >
-              this._photowrapperInner.getBoundingClientRect().width / 2
-                ? this.setState(prevState => ({
-                    curPhoto: Math.min(
-                      prevState.curPhoto + 1,
-                      this.props.photoElems.length - 1,
-                    ),
-                  }))
-                : this.setState(prevState => ({
-                    curPhoto: Math.max(prevState.curPhoto - 1, 0),
-                  }))
-            }
           >
+            <div
+              class="left"
+              onClick={e =>
+                this.setState(prevState => ({
+                  curPhoto: Math.max(prevState.curPhoto - 1, 0),
+                }))
+              }
+            />
+            <div
+              class="right"
+              onClick={e =>
+                this.setState(prevState => ({
+                  curPhoto: Math.min(
+                    prevState.curPhoto + 1,
+                    this.props.photoElems.length - 1,
+                  ),
+                }))
+              }
+            />
             {this.props.photoElems[this.state.curPhoto]}
           </div>
           <div className="mobileOnly">
