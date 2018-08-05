@@ -65,6 +65,8 @@ const PREAMBLES = {
     <div className="preamble">
       Canon F1-n<br />
       Kodak Portra 800<br />
+      <br />
+      Leica M8<br />
       <br />with Linda + Cathy + Lisa
       <br />05.03.18
     </div>
