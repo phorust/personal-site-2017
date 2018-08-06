@@ -88,7 +88,7 @@ const PREAMBLES = {
       24-70L<br />
       <br />
       <br />with @senaponin, @thepigs, for @mcmintea
-      <br />05.12.18-05.24.18
+      <br />07.28.18
     </div>
   ),
 };
