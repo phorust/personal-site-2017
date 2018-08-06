@@ -50,6 +50,9 @@ const photos = {
   hearst: importAll(
     require.context('./photos2/loose/hearst', false, /\.(png|jpe?g|svg)$/),
   ),
+  mirror: importAll(
+    require.context('./photos2/loose/mirror', false, /\.(png|jpe?g|svg)$/),
+  ),
 };
 
 const PREAMBLES = {
@@ -76,6 +79,15 @@ const PREAMBLES = {
       Canon F1-n<br />
       Multiple rolls of Kodak Portra 800<br />
       <br />with the boiz
+      <br />05.12.18-05.24.18
+    </div>
+  ),
+  mirror: (
+    <div className="preamble">
+      Canon 5DMk4<br />
+      24-70L<br />
+      <br />
+      <br />with @senaponin, @thepigs, for @mcmintea
       <br />05.12.18-05.24.18
     </div>
   ),
