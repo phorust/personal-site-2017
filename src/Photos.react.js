@@ -53,6 +53,9 @@ const photos = {
   mirror: importAll(
     require.context('./photos2/loose/mirror', false, /\.(png|jpe?g|svg)$/),
   ),
+  haetam: importAll(
+    require.context('./photos2/loose/haetam', false, /\.(png|jpe?g|svg)$/),
+  ),
 };
 
 const PREAMBLES = {
@@ -89,6 +92,14 @@ const PREAMBLES = {
       <br />
       <br />with @senaponin, @thepigs, for @mcmintea
       <br />07.28.18
+    </div>
+  ),
+  haetam: (
+    <div className="preamble">
+      Zeiss Ikon / Yashica T2 / Leica CL<br />
+      Fuji 100 / 400H<br />
+      <br />with @haewon_hwang, @brandonachau, @_christianle_
+      <br />07.15.18
     </div>
   ),
 };
