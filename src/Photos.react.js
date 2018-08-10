@@ -60,7 +60,7 @@ const photos = {
 
 const PREAMBLES = {
   'kchao mf': (
-    <div className="preamble">
+    <div className="preamble" key="preamble">
       Fuji GA645i<br />
       Fujicolor Pro 400H<br />
       <br />with Kelley
@@ -68,7 +68,7 @@ const PREAMBLES = {
     </div>
   ),
   hearst: (
-    <div className="preamble">
+    <div className="preamble" key="preamble">
       Canon F1-n<br />
       Kodak Portra 800<br />
       <br />
@@ -78,7 +78,7 @@ const PREAMBLES = {
     </div>
   ),
   nyc: (
-    <div className="preamble">
+    <div className="preamble" key="preamble">
       Canon F1-n<br />
       Multiple rolls of Kodak Portra 800<br />
       <br />with the boiz
@@ -86,7 +86,7 @@ const PREAMBLES = {
     </div>
   ),
   mirror: (
-    <div className="preamble">
+    <div className="preamble" key="preamble">
       Canon 5DMk4<br />
       24-70L<br />
       <br />
@@ -95,7 +95,7 @@ const PREAMBLES = {
     </div>
   ),
   haetam: (
-    <div className="preamble">
+    <div className="preamble" key="preamble">
       Zeiss Ikon / Yashica T2 / Leica CL<br />
       Fuji 100 / 400H<br />
       <br />with @haewon_hwang, @brandonachau, @_christianle_
