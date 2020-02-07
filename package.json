@@ -13,7 +13,7 @@
     "chai": "^3.4.0",
     "css-loader": "^0.21.0",
     "del": "^2.0.2",
-    "eslint": "^1.7.3",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb": "0.1.0",
     "eslint-plugin-react": "^3.6.3",
     "fbjs": "^0.4.0",
