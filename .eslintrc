@@ -1,0 +1,16 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "object-curly-spacing": 0,
+    "no-unused-vars": 1,
+    "comma-dangle": ["warn", {
+        // node doesnt yet support this in parameter lists
+        "functions": "never",
+        "objects": "always-multiline",
+        "arrays": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+    }],
+    "no-console": 0,
+  },
+}
